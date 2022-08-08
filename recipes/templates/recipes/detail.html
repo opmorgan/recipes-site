@@ -1,0 +1,17 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<h1> {{ recipe.title }} </h1>
+<p> {{ recipe.description }}
+<br> {{ recipe.introduction }}
+<br> {{  recipe.variations }}
+</p>
+<br>
+<ul>
+    {% for ri in recipe.ingredients_set_all %}
+      <li>{{ ri.amount }} {{ ri.unit }} {{ ri.name }}
+        ({{ ri.description }})</li>
+      </li>
+    {% endfor %}
+</ul>
+<p> {{ recipe.instructions }} </p>
+<br>
+
