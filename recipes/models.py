@@ -15,9 +15,9 @@ class Ingredient(models.Model):
         return self.title
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=400, default="Untitled")
+    title = models.CharField(max_length=400, default="")
     pub_date = models.DateTimeField('date published')
-    description = models.CharField(max_length=3000, default="")
+    description = models.CharField('Description (1 sentence)', max_length=3000, default="")
     introduction = models.CharField(max_length = 20000, default="")
     variations = models.CharField(max_length = 20000, default="")
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

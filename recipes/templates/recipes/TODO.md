@@ -1,0 +1,1 @@
+- Make it do that recipe ingredients can be edited in Admin, by editing Recipe: https://docs.djangoproject.com/en/4.1/intro/tutorial07/
