@@ -1,3 +1,5 @@
+A simple website for family recipes, made with django.
+
 ## Dependencies
 - System-wide: ```docker```, ```python3```, ```django```
 - Installed in project's python virtual environment: ```django```, ```psycopg2```
