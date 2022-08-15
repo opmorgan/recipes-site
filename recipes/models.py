@@ -16,11 +16,11 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     title = models.CharField(max_length=400, default="")
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('Date published')
     description = models.CharField('Description (1 sentence)', max_length=3000, default="")
-    introduction = models.CharField(max_length = 20000, default="")
-    variations = models.CharField(max_length = 20000, default="")
-    uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    introduction = models.CharField("Introduction", max_length = 20000, default="")
+    variations = models.CharField("Variations", max_length = 20000, default="")
+    uploader = models.ForeignKey("Uploader", settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title_image = models.ImageField()
     instructions = models.CharField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
