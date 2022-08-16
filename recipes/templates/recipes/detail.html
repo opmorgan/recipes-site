@@ -4,15 +4,14 @@
 <br> {{ recipe.introduction }}
 <br> {{  recipe.variations }}
 </p>
-<br>
 <ul>
     {% for ri in recipe.recipeingredient_set.all %}
       <li>{{ ri.amount }} {{ ri.unit|default_if_none:"" }}
 
-        {# TODO: If there is no unit, pluralize ingredient #}
+        {# TODO: If there is no unit, pluralize ingredient. #}
         {{ ri.ingredient_id }}
 
-        {# If there is a unit, pluralize it. #}
+        {# TODO: If there is a unit, pluralize it. #}
         {% if ri.description is not None %}
         ({{ ri.description }})
         {% endif %}
