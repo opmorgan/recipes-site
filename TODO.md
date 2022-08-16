@@ -1,1 +1,2 @@
 - Make it so that recipe ingredients can be edited in Admin, by editing Recipe (need many-to-many mapping of ingredients-recipes): https://docs.djangoproject.com/en/4.1/intro/tutorial07/
+- Add tags
