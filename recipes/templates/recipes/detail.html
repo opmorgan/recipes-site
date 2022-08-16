@@ -6,9 +6,17 @@
 </p>
 <br>
 <ul>
-    {% for ri in recipe.ingredients_set_all %}
-      <li>{{ ri.amount }} {{ ri.unit }} {{ ri.name }}
-        ({{ ri.description }})</li>
+    {% for ri in recipe.recipeingredient_set.all %}
+      <li>{{ ri.amount }} {{ ri.unit|default_if_none:"" }}
+
+        {# TODO: If there is no unit, pluralize ingredient #}
+        {{ ri.ingredient_id }}
+
+        {# If there is a unit, pluralize it. #}
+        {% if ri.description is not None %}
+        ({{ ri.description }})
+        {% endif %}
+      </li>
       </li>
     {% endfor %}
 </ul>

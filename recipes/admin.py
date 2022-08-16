@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Recipe, RecipeIngredient
+from .models import Recipe, RecipeIngredient, Ingredient
 # Register your models here.
 
 # class RecipeIngredientInline(admin.StackedInline):
@@ -18,4 +18,15 @@ from .models import Recipe, RecipeIngredient
 #     ]
 #     inlines = [RecipeIngredientInline]
 
-admin.site.register(Recipe)
+class RecipeIngredient_inline(admin.TabularInline):
+    """ Create tabular form to manage recipe ingredient entry """
+    model = RecipeIngredient
+    extra = 3
+
+class RecipeAdmin(admin.ModelAdmin):
+    inlines = (RecipeIngredient_inline,)
+
+
+admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Ingredient)
+admin.site.register(RecipeIngredient)

@@ -2,7 +2,7 @@ A simple website for family recipes, made with django.
 
 ## Dependencies
 - System-wide: ```docker```, ```python3```, ```django```
-- Installed in project's python virtual environment: ```django```, ```psycopg2```
+- Installed in project's python virtual environment: ```django```, ```psycopg2```, ```Pillow```
 
 ## To set up testing environment
 1. ```sudo docker compose up``` (Run the docker container)
