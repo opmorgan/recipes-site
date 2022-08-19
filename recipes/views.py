@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """ Return ten most recent recipes """
         return Recipe.objects.filter(
-                pub_date__lte=timezone.now()).order_by('-pub_date')[:10]
+                created_at__lte=timezone.now()).order_by('-created_at')[:10]
         ## Tests: should return a list
         ## should not return recipes from future
         ## should return 10 most recent recipes

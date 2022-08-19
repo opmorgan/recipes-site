@@ -25,6 +25,7 @@ class RecipeIngredient_inline(admin.TabularInline):
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = (RecipeIngredient_inline,)
+    readonly_fields = ("created_at","updated_at")
 
 
 admin.site.register(Recipe, RecipeAdmin)

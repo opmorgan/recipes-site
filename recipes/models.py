@@ -1,9 +1,9 @@
-from django.db import models
+import datetime
 
-# Create your models here.
 from django.db import models
 from django.contrib import admin
 from django.conf import settings
+
 
 class Ingredient(models.Model):
     """
@@ -17,7 +17,8 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     title = models.CharField(max_length=400, default="")
-    pub_date = models.DateTimeField('Date published')
+    created_at = models.DateTimeField('Date created', auto_now_add=True)
+    updated_at = models.DateTimeField('Last updated', auto_now=True)
     description = models.CharField('Description (1 sentence)', max_length=3000, default="")
     prep_time = models.CharField('Prep time', max_length=3000, default=None, blank=True, null=True)
     cook_time = models.CharField('Cook time', max_length=3000, default=None, blank=True, null=True)
@@ -28,6 +29,13 @@ class Recipe(models.Model):
     title_image = models.ImageField(default=None, blank=True, null=True)
     instructions = models.CharField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
+
+    def print_created_at(self):
+        return self.created_at.strftime('%B %d, %Y')
+
+    @property
+    def print_updated_at(self):
+        return self.updated_at.strftime('%B %d, %Y, %-H:%M %p')
 
     def __str__(self):
         return self.title
