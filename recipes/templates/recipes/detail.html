@@ -5,20 +5,43 @@
 <br> {{  recipe.variations }}
 </p>
 <ul>
-    {% for ri in recipe.recipeingredient_set.all %}
-      <li>{{ ri.amount }} {{ ri.unit|default_if_none:"" }}
-
-        {# TODO: If there is no unit, pluralize ingredient. #}
+  {% for ri in recipe.recipeingredient_set.all %}
+    <li>
+      {# #### Format recipe ingredient strings #### #}
+      {# (1) Format numbers #}
+      {# ##      if greater than one, round to one decimal. #}
+      {# ##      if whole number, remove trailing zeroes #}
+      {# ##      if less than 1, display as fraction #}
+      {% load humanizelib %}
+      {{ ri.amount|fractional|default_if_none:"" }}
+      {# (2) Pluralize units, if they exist #}
+      {# ##      manually specify any units that should be pluralized #}
+      {# ##      if "cup", pluralize depending on "amount" #}
+      {% if ri.unit == "cup" %}
+        cup{{ ri.amount|pluralize:'s' }}
+      {% else %}
+        {{ ri.unit|default_if_none:"" }}
+      {% endif %}
+      {# If there is a unit, add "of" #}
+      {% if ri.unit is not None %}
+        of
+      {% endif %}
+      {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
+      {# (3a) If there is no unit, don't pluralize ingredient name. #}
+      {% if ri.unit is None %}
+        {{ ri.ingredient_id }}{{ ri.amount|pluralize }}
+      {% else %}
         {{ ri.ingredient_id }}
-
-        {# TODO: If there is a unit, pluralize it. #}
-        {% if ri.description is not None %}
+      {% endif %}
+      {# (3b) If there is a unit, pluralize it. #}
+      {% if ri.description is not None %}
         ({{ ri.description }})
-        {% endif %}
-      </li>
-      </li>
-    {% endfor %}
+      {% endif %}
+    </li>
+    </li>
+  {% endfor %}
 </ul>
 <p> {{ recipe.instructions }} </p>
 <br>
+
 

@@ -25,7 +25,7 @@ class Recipe(models.Model):
     introduction = models.CharField("Introduction", max_length = 20000, default=None, blank=True, null=True)
     variations = models.CharField('Variations', max_length = 20000, default=None, blank=True, null=True)
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title_image = models.ImageField()
+    title_image = models.ImageField(default=None, blank=True, null=True)
     instructions = models.CharField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
 
