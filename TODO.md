@@ -4,6 +4,7 @@
 - Add tags
 - Add weight-volume conversion
 - Add tool to halve/double recipes
+- Use current time zone to display published times.
 
 - [done] Make it so that recipe ingredients can be edited in Admin, by editing Recipe (need many-to-many mapping of ingredients-recipes): https://docs.djangoproject.com/en/4.1/intro/tutorial07/ https://docs.djangoproject.com/en/4.1/topics/db/examples/many_to_many/
 - [done] Require unique name for Ingredient
