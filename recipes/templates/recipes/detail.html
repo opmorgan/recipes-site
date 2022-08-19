@@ -1,13 +1,20 @@
+{% load humanizelib %}
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <h1> {{ recipe.title }} </h1>
+<b> {{ recipe.description }} </b>
+<br>
 <i>
 Published {{ recipe.created_at.date }}
-(Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }})
+(Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }} UTC)
 </i>
-<p> {{ recipe.description }}
+<br>
 <br> {{ recipe.introduction }}
 <br> {{  recipe.variations }}
-</p>
+<br>
+<br> Prep time: {{ recipe.prep_time }}
+<br> Cook time: {{  recipe.cook_time }}
+<br> Serves {{  recipe.servings|fractional }}
 <ul>
   {% for ri in recipe.recipeingredient_set.all %}
     <li>
@@ -16,7 +23,6 @@ Published {{ recipe.created_at.date }}
       {# ##      if greater than one, round to one decimal. #}
       {# ##      if whole number, remove trailing zeroes #}
       {# ##      if less than 1, display as fraction #}
-      {% load humanizelib %}
       {{ ri.amount|fractional|default_if_none:"" }}
       {# (2) Pluralize units, if they exist #}
       {# ##      manually specify any units that should be pluralized #}
