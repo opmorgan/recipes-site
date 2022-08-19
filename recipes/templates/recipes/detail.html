@@ -1,8 +1,8 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <h1> {{ recipe.title }} </h1>
 <i>
-Published {{ recipe.print_created_at }}
-(Last updated {{ recipe.print_updated_at }})
+Published {{ recipe.created_at.date }}
+(Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }})
 </i>
 <p> {{ recipe.description }}
 <br> {{ recipe.introduction }}
