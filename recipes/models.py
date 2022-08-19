@@ -3,6 +3,7 @@ import datetime
 from django.db import models
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.auth import get_user_model
 
 
 class Ingredient(models.Model):
@@ -25,7 +26,7 @@ class Recipe(models.Model):
     servings = models.FloatField('Servings', max_length=3000, default=None, blank=True, null=True)
     introduction = models.CharField("Introduction", max_length = 20000, default=None, blank=True, null=True)
     variations = models.CharField('Variations', max_length = 20000, default=None, blank=True, null=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title_image = models.ImageField(default=None, blank=True, null=True)
     instructions = models.CharField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
