@@ -1,4 +1,3 @@
-- Fix admin entry for instructions: should be able to enter multiple lines (or, use tabular entry)
 - Format detail page
 - Add tags
 - Add weight-volume conversion
@@ -11,3 +10,4 @@
 - [done] format ingredient strings (in templates, unless the dx becomes too sad)
 - [done] Add default for date
 - [done] Make "uploader" field fill out automatically with current username
+- [done] Fix admin entry for instructions: should be able to enter multiple lines (or, use tabular entry)
