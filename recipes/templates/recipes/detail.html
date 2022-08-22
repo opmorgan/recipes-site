@@ -51,7 +51,7 @@ Published {{ recipe.created_at.date }}
     </li>
   {% endfor %}
 </ul>
-<p> {{ recipe.instructions }} </p>
+<p> {{ recipe.instructions|linebreaks }} </p>
 <br>
 
 
