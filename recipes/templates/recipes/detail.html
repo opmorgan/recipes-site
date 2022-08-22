@@ -54,4 +54,10 @@ Published {{ recipe.created_at.date }}
 <p> {{ recipe.instructions|linebreaks }} </p>
 <br>
 
+Tags:
+{% for tag in recipe.tags.all %}
+  {{tag.name}}
+  {% if not forloop.last %}|{% endif %}
+{% endfor %}
+
 

@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.utils import timezone
 
-from .models import Recipe, Ingredient, RecipeIngredient
+from .models import Recipe, Ingredient, RecipeIngredient, Tag
 
 class IndexView(generic.ListView):
     template_name = 'recipes/index.html'

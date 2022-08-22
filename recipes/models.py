@@ -6,6 +6,23 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 
 
+class TagField(models.CharField):
+    """ Field for tags -- forces all-lowercase """
+    def __init__(self, *args, **kwargs):
+        super(TagField, self).__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        return str(value).lower()
+
+
+class Tag(models.Model):
+    name = TagField(max_length=35, unique=True)
+    created_at = models.DateTimeField('Date created', auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Ingredient(models.Model):
     """
     Each ingredient can map to many recipes.
@@ -15,6 +32,7 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=400, default="", unique=True)
     def __str__(self):
         return self.name
+
 
 class Recipe(models.Model):
     title = models.CharField(max_length=400, default="")
@@ -30,6 +48,7 @@ class Recipe(models.Model):
     title_image = models.ImageField(default=None, blank=True, null=True)
     instructions = models.TextField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
+    tags = models.ManyToManyField(Tag)
 
     def print_created_at(self):
         return self.created_at.strftime('%B %d, %Y')
@@ -41,6 +60,12 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
+# class RecipeTag(models.Model):
+#     """ A tag, associated with a recipe """
+#     recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+#     tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
+
+
 class RecipeIngredient(models.Model):
     """ An ingredient, with an amount, used in one recipe """
     recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
@@ -49,5 +74,4 @@ class RecipeIngredient(models.Model):
     unit = models.CharField(max_length = 50, null=True, blank=True)
     description = models.CharField(max_length = 400, default=None, null=True, blank=True) # e.g., "freshly squeezed"
 
-# class Tags(models.Model):
 

@@ -1,5 +1,5 @@
 - Format detail page
-- Add tags
+- Add tags (Consider using django-taggit)
 - Add weight-volume conversion
 - Add tool to halve/double recipes
 - Use current time zone to display published times.
