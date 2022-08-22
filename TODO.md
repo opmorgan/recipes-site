@@ -1,6 +1,5 @@
-- Make "uploader" field fill out automatically with current username
 - Fix admin entry for instructions: should be able to enter multiple lines (or, use tabular entry)
-- Add field for equipment (frying pan, food processor, etc.)
+- Format detail page
 - Add tags
 - Add weight-volume conversion
 - Add tool to halve/double recipes
@@ -10,3 +9,4 @@
 - [done] Require unique name for Ingredient
 - [done] format ingredient strings (in templates, unless the dx becomes too sad)
 - [done] Add default for date
+- [done] Make "uploader" field fill out automatically with current username
