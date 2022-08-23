@@ -1,4 +1,6 @@
 - Style detail page
+- Add count to tag index display (e.g., breakfast [2])
+- In tag index view, sort tags by number of recipes
 - Add search function
 - Add weight-volume conversion
 - Add tool to halve/double recipes
