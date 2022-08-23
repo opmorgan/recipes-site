@@ -9,15 +9,14 @@ h1 {
   margin-bottom: 0px;
 }
 
-h5 {
-  margin-top: 0px;
-  margin-bottom: -15px;
+h3 {
+  margin-top: -10px;
+  margin-bottom: -12px;
 }
 
 ul {
   margin: 0;
 }
-
 
 hr {
     display: block;
@@ -29,7 +28,7 @@ hr {
 }
 
 .description {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .flex-container {
@@ -52,7 +51,7 @@ hr {
 
 .ingredients {
   /* flex: 1 0 200px; */
-  order: 1;
+  /* order: 1; */
   /* padding-left: 20px; */
   /* border-left: 2px solid #111111; */
   padding-bottom: 0px;

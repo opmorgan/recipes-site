@@ -9,22 +9,19 @@
   <div class="description">
     <i> {{ recipe.description }} </i>
   </div>
-
-  <h5> Introduction </h5>
   <p> {{ recipe.introduction }} </p>
-  <h5> Variations </h5>
-  <p> {{  recipe.variations }} </p>
+  <p> <b>Variations:</b> {{  recipe.variations }} </p>
   Prep time: {{ recipe.prep_time }} |
   Cook time: {{  recipe.cook_time }} <br>
   <hr/>
   <div class="flex-container">
     <div class="instructions">
-      <h5> Directions </h5>
+      <h3> Directions </h3>
       <p> {{ recipe.instructions|linebreaks }} </p>
     </div>
     <div class="ingredients">
       <ul>
-        <h5> Ingredients </h5>
+        <h3> Ingredients </h3>
         <br>
         <i>Serves {{  recipe.servings|fractional }}</i>
         {% for ri in recipe.recipeingredient_set.all %}
@@ -64,9 +61,7 @@
       </ul>
     </div>
   </div>
-
   <hr/>
-
   Tags:
   {% for tag in recipe.tags.all %}
     <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
