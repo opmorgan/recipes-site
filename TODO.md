@@ -4,11 +4,14 @@
 - Add search function
 - Add weight-volume conversion
 - Add tool to halve/double recipes
-- Use current time zone to display published times.
+- Use current time zone to display published times
+- Sort recipe index by tag, with headers
+- Combine "Introduction" and "Variations" intro one field
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
 - Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
 - Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
 - Dark mode
+- Add hit counter to recipes index, display hits after recipe name (maybe)
 - Use slugs for tag, recipe (maybe) urls
 - Optimize django: replace wsgi (maybe)
 
