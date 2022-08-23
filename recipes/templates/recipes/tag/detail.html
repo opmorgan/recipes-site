@@ -1,7 +1,16 @@
-{% load recipe_extras %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'recipes/style.css' %}">
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-Tag: {{ tag.name }}
+
+<h2>Tag: {{ tag.name }}</h2>
+
+<ul>
+{% for recipe in recipes %}
+  <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+{% endfor %}
+</ul>
 
 {# {{ tag.name|mycut:"y" }} #}
 

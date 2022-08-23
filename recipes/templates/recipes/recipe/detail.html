@@ -56,7 +56,7 @@ Published {{ recipe.created_at.date }}
 
 Tags:
 {% for tag in recipe.tags.all %}
-  {{tag.name}}
+  <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
   {% if not forloop.last %}|{% endif %}
 {% endfor %}
 

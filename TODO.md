@@ -1,9 +1,11 @@
-- Format detail page
-- Add tags (Consider using django-taggit)
+- Style detail page
+- Add search function
 - Add weight-volume conversion
 - Add tool to halve/double recipes
 - Use current time zone to display published times.
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
+- Use slugs for tag, recipe (maybe) urls
+- Optimize django: replace wsgi (maybe)
 
 - [done] Make it so that recipe ingredients can be edited in Admin, by editing Recipe (need many-to-many mapping of ingredients-recipes): https://docs.djangoproject.com/en/4.1/intro/tutorial07/ https://docs.djangoproject.com/en/4.1/topics/db/examples/many_to_many/
 - [done] Require unique name for Ingredient
@@ -11,3 +13,5 @@
 - [done] Add default for date
 - [done] Make "uploader" field fill out automatically with current username
 - [done] Fix admin entry for instructions: should be able to enter multiple lines (or, use tabular entry)
+- [done] Add tags (Consider using django-taggit)
+- [done] On recipe details page, add hyperlinks for tags

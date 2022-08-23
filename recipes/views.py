@@ -6,10 +6,10 @@ from django import template
 
 from .models import Recipe, Ingredient, RecipeIngredient, Tag
 
-register = template.Library()
+# register = template.Library()
 
 class RecipeIndexView(generic.ListView):
-    template_name = 'recipes/recipe_index.html'
+    template_name = 'recipes/recipe/index.html'
     context_object_name = 'latest_recipe_list'
 
     def get_queryset(self):
@@ -21,7 +21,7 @@ class RecipeIndexView(generic.ListView):
         ## should return 10 most recent recipes
 
 class TagIndexView(generic.ListView):
-    template_name = 'recipes/tag_index.html'
+    template_name = 'recipes/tag/index.html'
     context_object_name = 'latest_tag_list'
 
     def get_queryset(self):
@@ -33,23 +33,18 @@ class TagIndexView(generic.ListView):
         ## should return 10 most recent tags
 
 class RecipeDetailView(generic.DetailView):
-    template_name = 'recipes/recipe_detail.html'
+    template_name = 'recipes/recipe/detail.html'
     model = Recipe
 
 
 class TagDetailView(generic.DetailView):
-    template_name = 'recipes/tag_detail.html'
+    template_name = 'recipes/tag/detail.html'
     model = Tag
 
-    # @register.filter
-    # def is_tagged(recipes, tag):
-    #     return recipes.filter(tag=tag)
-
-    # @register.filter
-    # def in_category(things, category):
-    #     return things.filter(category=category)
-
-    # @register.filter
-    # def lower(value):
-    #     return value.lower()
-
+    def get_context_data(self, **kwargs):
+        context = super(TagDetailView, self).get_context_data(**kwargs)
+        # Object is accessible through self.object or self.get_object()
+        recipes_list = Recipe.objects.filter(tags=(self.object))
+        # Then return
+        context["recipes"] = recipes_list
+        return context
