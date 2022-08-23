@@ -3,64 +3,82 @@
 
 <link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<h1> {{ recipe.title }} </h1>
-<b> {{ recipe.description }} </b>
-<br>
-<i>
-Published {{ recipe.created_at.date }}
-(Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }} UTC)
-</i>
-<br>
-<br> {{ recipe.introduction }}
-<br> {{  recipe.variations }}
-<br>
-<br> Prep time: {{ recipe.prep_time }}
-<br> Cook time: {{  recipe.cook_time }}
-<br> Serves {{  recipe.servings|fractional }}
-<ul>
-  {% for ri in recipe.recipeingredient_set.all %}
-    <li>
-      {# #### Format recipe ingredient strings #### #}
-      {# (1) Format numbers #}
-      {# ##      if greater than one, round to one decimal. #}
-      {# ##      if whole number, remove trailing zeroes #}
-      {# ##      if less than 1, display as fraction #}
-      {{ ri.amount|fractional|default_if_none:"" }}
-      {# (2) Pluralize units, if they exist #}
-      {# ##      manually specify any units that should be pluralized #}
-      {# ##      if "cup", pluralize depending on "amount" #}
-      {% if ri.unit == "cup" %}
-        cup{{ ri.amount|pluralize:'s' }}
-      {% else %}
-        {{ ri.unit|default_if_none:"" }}
-      {% endif %}
-      {# If there is a unit, add "of" #}
-      {% if ri.unit is not None %}
-        of
-      {% endif %}
-      {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
-      {# (3a) If there is no unit, don't pluralize ingredient name. #}
-      {% if ri.unit is None %}
-        {{ ri.ingredient_id }}{{ ri.amount|pluralize }}
-      {% else %}
-        {{ ri.ingredient_id }}
-      {% endif %}
-      {# (3b) If there is a unit, pluralize it. #}
-      {% if ri.description is not None %}
-        ({{ ri.description }})
-      {% endif %}
-    </li>
-    </li>
+<body>
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  <h1> {{ recipe.title }} </h1>
+  <div class="description">
+    <i> {{ recipe.description }} </i>
+  </div>
+
+  <h5> Introduction </h5>
+  <p> {{ recipe.introduction }} </p>
+  <h5> Variations </h5>
+  <p> {{  recipe.variations }} </p>
+  Prep time: {{ recipe.prep_time }} |
+  Cook time: {{  recipe.cook_time }} <br>
+  <hr/>
+  <div class="flex-container">
+    <div class="instructions">
+      <h5> Directions </h5>
+      <p> {{ recipe.instructions|linebreaks }} </p>
+    </div>
+    <div class="ingredients">
+      <ul>
+        <h5> Ingredients </h5>
+        <br>
+        <i>Serves {{  recipe.servings|fractional }}</i>
+        {% for ri in recipe.recipeingredient_set.all %}
+          <li>
+            {# #### Format recipe ingredient strings #### #}
+            {# (1) Format numbers #}
+            {# ##      if greater than one, round to one decimal. #}
+            {# ##      if whole number, remove trailing zeroes #}
+            {# ##      if less than 1, display as fraction #}
+            {{ ri.amount|fractional|default_if_none:"" }}
+            {# (2) Pluralize units, if they exist #}
+            {# ##      manually specify any units that should be pluralized #}
+            {# ##      if "cup", pluralize depending on "amount" #}
+            {% if ri.unit == "cup" %}
+              cup{{ ri.amount|pluralize:'s' }}
+            {% else %}
+              {{ ri.unit|default_if_none:"" }}
+            {% endif %}
+            {# If there is a unit, add "of" #}
+            {% if ri.unit is not None %}
+              of
+            {% endif %}
+            {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
+            {# (3a) If there is no unit, don't pluralize ingredient name. #}
+            {% if ri.unit is None %}
+              {{ ri.ingredient_id }}{{ ri.amount|pluralize }}
+            {% else %}
+              {{ ri.ingredient_id }}
+            {% endif %}
+            {# (3b) If there is a unit, pluralize it. #}
+            {% if ri.description is not None %}
+              ({{ ri.description }})
+            {% endif %}
+          </li>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <hr/>
+
+  Tags:
+  {% for tag in recipe.tags.all %}
+    <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
+    {% if not forloop.last %}|{% endif %}
   {% endfor %}
-</ul>
-<p> {{ recipe.instructions|linebreaks }} </p>
-<br>
-
-Tags:
-{% for tag in recipe.tags.all %}
-  <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
-  {% if not forloop.last %}|{% endif %}
-{% endfor %}
+</body>
 
 
+
+<p style=" position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;">
+<i>
+  Published {{ recipe.created_at.date }}
+  (Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }} UTC)
+</i>
+</p>
