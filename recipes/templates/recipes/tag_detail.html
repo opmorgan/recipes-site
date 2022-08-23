@@ -1,0 +1,18 @@
+{% load recipe_extras %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+Tag: {{ tag.name }}
+
+{# {{ tag.name|mycut:"y" }} #}
+
+
+{# {{ Recipe.objects.filter(tags__name__in=taglist) }} #}
+{# {% expr Recipe.objects.filter(tags__name__in="breakfast") as var3 %} #}
+{# {{ var3 }} #}
+
+{{ tag.recipes.title }}
+
+{# {{ recipes|in_category:tag }} #}
+{# {% for recipe in recipes|in_category:tag %} #}
+{#   {{ recipe }} #}
+{# {% endfor %} #}
