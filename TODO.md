@@ -3,6 +3,9 @@
 - In tag index view, sort tags by number of recipes
 - Add search function
 - Add weight-volume conversion
+- Tool for user to create recipe collections
+- Subfolders for collections
+- Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
 - Add tool to halve/double recipes
 - Use current time zone to display published times
 - Sort recipe index by tag, with headers
