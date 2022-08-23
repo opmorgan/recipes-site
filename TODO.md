@@ -4,6 +4,7 @@
 - Add tool to halve/double recipes
 - Use current time zone to display published times.
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
+- Dark mode
 - Use slugs for tag, recipe (maybe) urls
 - Optimize django: replace wsgi (maybe)
 
