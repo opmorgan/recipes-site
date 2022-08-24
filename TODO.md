@@ -28,6 +28,7 @@
 - Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
 - Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
 - Combine "Introduction" and "Variations" intro one field (maybe)
+- Add optional equipment/hardware section
 
 ## Recipe collections
 - Tool for user to create recipe collections
