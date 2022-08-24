@@ -23,12 +23,13 @@
 - Add hit counter to recipes index, display hits after recipe name (maybe)
 - Use slugs for tag, recipe (maybe) urls
 
-## Recipe detail page
+## Recipe detail page/Recipe modelling
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
 - Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
 - Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
 - Combine "Introduction" and "Variations" intro one field (maybe)
 - Add optional equipment/hardware section
+- Add "source" for recipes from external websites, cookbooks
 
 ## Recipe collections
 - Tool for user to create recipe collections
