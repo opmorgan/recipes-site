@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipes.apps.RecipesConfig',
+    'base', #TODO is this good practice?
     'django_humanize',
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'base.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['base/templates'], # Why isn't this auto in "APP_DIRS?"
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

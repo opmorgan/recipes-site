@@ -1,22 +1,48 @@
-- Style detail page
-- Add count to tag index display (e.g., breakfast [2])
-- In tag index view, sort tags by number of recipes
+# Styling
+- Style recipe detail page
+- Recipe detail page: remove bullet symbols, or make them prettier.
+- Recipe detail page: Bold ingredient name.
+- Recipe detail page: try putting ingredients on the left (with no bullet symbols)
+- Style home page
+
+# Features
+
+## Home page
+- Display recipes, tags
+- Add filtering by tag, ingredients
 - Add search function
 - Add weight-volume conversion
-- Tool for user to create recipe collections
-- Subfolders for collections
-- Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
 - Add tool to halve/double recipes
-- Use current time zone to display published times
+- Figure out how to set homepage View without adding to "DIR" in settings
+- Move homepage to separate app? Or, figure out how to put in recipes app. (Ask Josh what is better) More general question: where should i put (1) the homepage template/views/url, and (2) base-level static stuff. In base/, in new apps homepage/ and layout/?
+
+## Index pages
+- Add count to tag index display (e.g., breakfast [2])
+- In tag index view, sort tags by number of recipes
 - Sort recipe index by tag, with headers
+- Add hit counter to recipes index, display hits after recipe name (maybe)
+- Use slugs for tag, recipe (maybe) urls
+
+## Recipe detail page
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
 - Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
 - Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
-- Dark mode
 - Combine "Introduction" and "Variations" intro one field (maybe)
-- Add hit counter to recipes index, display hits after recipe name (maybe)
-- Use slugs for tag, recipe (maybe) urls
-- Optimize django: replace wsgi (maybe)
+
+## Recipe collections
+- Tool for user to create recipe collections
+- Subfolders for collections
+
+## Print tools
+- Tool to print current recipe
+- Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
+
+## Global
+- Use current time zone to display published times
+- Dark mode
+
+# Optimizations
+- Set up asgi
 
 - [done] Make it so that recipe ingredients can be edited in Admin, by editing Recipe (need many-to-many mapping of ingredients-recipes): https://docs.djangoproject.com/en/4.1/intro/tutorial07/ https://docs.djangoproject.com/en/4.1/topics/db/examples/many_to_many/
 - [done] Require unique name for Ingredient
@@ -26,3 +52,4 @@
 - [done] Fix admin entry for instructions: should be able to enter multiple lines (or, use tabular entry)
 - [done] Add tags (Consider using django-taggit)
 - [done] On recipe details page, add hyperlinks for tags
+- [done] Create home page
