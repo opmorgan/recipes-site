@@ -6,10 +6,12 @@
 
 <body>
 
-  <div class = "recipe-grid">
-    <div>
+  <div class="recipe-grid">
+    <div class="recipe-grid__body">
       {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-      <h1> {{ recipe.title }} </h1>
+      <div class="recipe-title">
+        <h1> {{ recipe.title }} </h1>
+      </div>
       <div class="description">
         <i> {{ recipe.description }} </i>
       </div>
