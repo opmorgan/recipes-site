@@ -17,7 +17,7 @@
 - Move homepage to separate app? Or, figure out how to put in recipes app. (Ask Josh what is better) More general question: where should i put (1) the homepage template/views/url, and (2) base-level static stuff. In base/, in new apps homepage/ and layout/theme?
 
 ## Index pages
-- Add count to tag index display (e.g., breakfast [2])
+- Add count to tag index display (e.g., breakfast [2]) [@Max]
 - In tag index view, sort tags by number of recipes
 - Sort recipe index by tag, with headers
 - Add hit counter to recipes index, display hits after recipe name (maybe)

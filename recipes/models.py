@@ -60,11 +60,6 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-# class RecipeTag(models.Model):
-#     """ A tag, associated with a recipe """
-#     recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-#     tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE)
-
 
 class RecipeIngredient(models.Model):
     """ An ingredient, with an amount, used in one recipe """
