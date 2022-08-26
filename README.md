@@ -5,7 +5,7 @@ A simple website for family recipes, made with django.
 - Installed in project's python virtual environment: ```django```, ```psycopg2```, ```Pillow```
 
 ## To set up testing environment
-1. ```sudo docker compose up``` (Run the docker container)
+1. ```sudo docker-compose up``` (Run the docker container)
 2. ```source env/bin/activate``` (Enter python virutal environment)
 3. ```pip install -r requirements.txt``` (Install required python packages)
 4. ```python manage.py runserver```
