@@ -8,13 +8,11 @@
 # Features
 
 ## Home page
-- Display recipes, tags
 - Add filtering by tag, ingredients
 - Add search function
 - Add weight-volume conversion
 - Add tool to halve/double recipes
-- Figure out how to set homepage View without adding to "DIR" in settings
-- Move homepage to separate app? Or, figure out how to put in recipes app. (Ask Josh what is better) More general question: where should i put (1) the homepage template/views/url, and (2) base-level static stuff. In base/, in new apps homepage/ and layout/theme?
+- Add date last updated to homepage
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
@@ -55,3 +53,6 @@
 - [done] Add tags (Consider using django-taggit)
 - [done] On recipe details page, add hyperlinks for tags
 - [done] Create home page
+- [done] Home page: Display recipes, tags
+- [done] Figure out how to set homepage View without adding to "DIR" in settings [okay to add to view]
+- [done] Move homepage to separate app? Or, figure out how to put in recipes app. (Ask Josh what is better) More general question: where should i put (1) the homepage template/views/url, and (2) base-level static stuff. In base/, in new apps homepage/ and layout/theme? [the way I had it was right!]

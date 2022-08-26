@@ -8,7 +8,7 @@
 {% if latest_tag_list %}
   <ul>
   {% for tag in latest_tag_list %}
-  <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }} {{ "[count]" }}</a></li>
+  <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a></li>
   {% endfor %}
   </ul>
 {% else %}
