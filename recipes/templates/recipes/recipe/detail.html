@@ -4,76 +4,86 @@
 <link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
 
 <body>
-  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-  <h1> {{ recipe.title }} </h1>
-  <div class="description">
-    <i> {{ recipe.description }} </i>
-  </div>
-  <p> {{ recipe.introduction }} </p>
-  <p> <b>Variations:</b> {{  recipe.variations }} </p>
-  Prep time: {{ recipe.prep_time }} |
-  Cook time: {{  recipe.cook_time }} <br>
-  <hr/>
-  <div class="flex-container">
-    <div class="instructions">
-      <h3> Directions </h3>
-      <p> {{ recipe.instructions|linebreaks }} </p>
+
+  <div class = "recipe-grid">
+    <div>
+      {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+      <h1> {{ recipe.title }} </h1>
+      <div class="description">
+        <i> {{ recipe.description }} </i>
+      </div>
+      <p> {{ recipe.introduction }} </p>
+      <p> <b>Variations:</b> {{  recipe.variations }} </p>
+      Prep time: {{ recipe.prep_time }} |
+      Cook time: {{  recipe.cook_time }} <br>
+      <hr/>
+      <div class="flex-container">
+        <div class="instructions">
+          <h3> Directions </h3>
+          <p> {{ recipe.instructions|linebreaks }} </p>
+        </div>
+        <div class="ingredients">
+          <ul>
+            <h3> Ingredients </h3>
+            <br>
+            <i>Serves {{  recipe.servings|fractional }}</i>
+            {% for ri in recipe.recipeingredient_set.all %}
+              <li>
+                {# #### Format recipe ingredient strings #### #}
+                {# (1) Format numbers #}
+                {# ##      if greater than one, round to one decimal. #}
+                {# ##      if whole number, remove trailing zeroes #}
+                {# ##      if less than 1, display as fraction #}
+                {{ ri.amount|fractional|default_if_none:"" }}
+                {# (2) Pluralize units, if they exist #}
+                {# ##      manually specify any units that should be pluralized #}
+                {# ##      if "cup", pluralize depending on "amount" #}
+                {% if ri.unit == "cup" %}
+                  cup{{ ri.amount|pluralize:'s' }}
+                {% else %}
+                  {{ ri.unit|default_if_none:"" }}
+                {% endif %}
+                {# If there is a unit, add "of" #}
+                {% if ri.unit is not None %}
+                  of
+                {% endif %}
+                {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
+                {# (3a) If there is no unit, don't pluralize ingredient name. #}
+                {% if ri.unit is None %}
+                  {{ ri.ingredient_id }}{{ ri.amount|pluralize }}
+                {% else %}
+                  {{ ri.ingredient_id }}
+                {% endif %}
+                {# (3b) If there is a unit, pluralize it. #}
+                {% if ri.description is not None %}
+                  ({{ ri.description }})
+                {% endif %}
+              </li>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      Tags:
+      {% for tag in recipe.tags.all %}
+        <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
+        {% if not forloop.last %}|{% endif %}
+      {% endfor %}
+
     </div>
-    <div class="ingredients">
-      <ul>
-        <h3> Ingredients </h3>
-        <br>
-        <i>Serves {{  recipe.servings|fractional }}</i>
-        {% for ri in recipe.recipeingredient_set.all %}
-          <li>
-            {# #### Format recipe ingredient strings #### #}
-            {# (1) Format numbers #}
-            {# ##      if greater than one, round to one decimal. #}
-            {# ##      if whole number, remove trailing zeroes #}
-            {# ##      if less than 1, display as fraction #}
-            {{ ri.amount|fractional|default_if_none:"" }}
-            {# (2) Pluralize units, if they exist #}
-            {# ##      manually specify any units that should be pluralized #}
-            {# ##      if "cup", pluralize depending on "amount" #}
-            {% if ri.unit == "cup" %}
-              cup{{ ri.amount|pluralize:'s' }}
-            {% else %}
-              {{ ri.unit|default_if_none:"" }}
-            {% endif %}
-            {# If there is a unit, add "of" #}
-            {% if ri.unit is not None %}
-              of
-            {% endif %}
-            {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
-            {# (3a) If there is no unit, don't pluralize ingredient name. #}
-            {% if ri.unit is None %}
-              {{ ri.ingredient_id }}{{ ri.amount|pluralize }}
-            {% else %}
-              {{ ri.ingredient_id }}
-            {% endif %}
-            {# (3b) If there is a unit, pluralize it. #}
-            {% if ri.description is not None %}
-              ({{ ri.description }})
-            {% endif %}
-          </li>
-          </li>
-        {% endfor %}
-      </ul>
+
+
+    <div class="recipe-grid__footer">
+      <p>
+      <em>
+        Published {{ recipe.created_at.date }}
+        (Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }} UTC)
+      </em>
+      </p>
     </div>
+
   </div>
-  <hr/>
-  Tags:
-  {% for tag in recipe.tags.all %}
-    <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
-    {% if not forloop.last %}|{% endif %}
-  {% endfor %}
+
+
 </body>
-
-
-
-<p style=" position: absolute; bottom: 0; left: 0; width: 100%; text-align: center;">
-<i>
-  Published {{ recipe.created_at.date }}
-  (Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }} UTC)
-</i>
-</p>
