@@ -1,11 +1,8 @@
 # Styling
 - Style home page
+- Style lists on index pages, homepage
 ## Recipe detail page
-- Style recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
-- Recipe detail page: Add conditional to date: only show date updated if different from date published.
-- Recipe detail page: Set defaults for flex box ratio (ingredients/directions)
-- Recipe detail page: Reduce paragraph space between instructions and variations.
 
 # Features
 
@@ -15,7 +12,8 @@
 - Add search function
 - Add weight-volume conversion
 - Add tool to halve/double recipes
-- Add date last updated to homepage
+- Add date last updated to homepage?
+- Add link to homepage on other pages
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
@@ -34,6 +32,8 @@
 - Add "source" for recipes from external websites, cookbooks
 - Rename "instructions" to "directions"
 - Make sure each optional section tests for existence before printing (e.g., introduction, variations.)
+- Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast."
+- Make directions optional.
 
 ## Recipe collections
 - Tool for user to create recipe collections
@@ -67,3 +67,6 @@
 - [done] Recipe detail page: remove bullet symbols, or make them prettier.
 - [done] Recipe detail page: Bold ingredient name.
 - [done] Recipe detail page: try putting ingredients on the left (with no bullet symbols)
+- [done] Recipe detail page: Add conditional to date: only show date updated if different from date published.
+- [done] Recipe detail page: Set defaults for flex box ratio (ingredients/directions)
+- [done] Recipe detail page: Reduce paragraph space between instructions and variations.

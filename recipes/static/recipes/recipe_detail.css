@@ -1,9 +1,9 @@
 .recipe-title h1{
-  margin: 0;
+  line-height: 1em;
+  margin: 0 0 1rem;
   padding: 0;
   text-align: left;
 }
-
 
 .recipe-grid {
   display: grid;
@@ -14,6 +14,100 @@
 }
 
 .recipe-grid__body {
+  margin: 0;
+  padding: 0;
+}
+
+.description {
+  margin-bottom: 30px;
+}
+
+.introduction-variations {
+  display: inline-block;
+  margin: 0 0 0;
+  /* Control space between intro+variations and title, prep time with margin here: */
+  margin: .382rem 0 .382rem;
+}
+
+.prep-cook-time {
+  /* Control distance between prep time, top separator in margin here: */
+  margin: 0 0 .618rem;
+  padding: 0;
+  line-height: 1em;
+}
+
+.introduction-variations p{
+  line-height: 1rem;
+  margin: 0;
+  /* Control space between intro and variations text with bottom padding here: */
+  padding: 0 0 .618rem;
+}
+
+.ingredients-directions-container {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  max-width: 800px;
+  justify-content: left;
+}
+
+.ingredients {
+  flex: 0 1 38.2%;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  margin-left: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.directions {
+  flex: 0 1 61.8%;
+}
+
+.servings {
+  margin: 0;
+  padding: .382rem 0 0;
+}
+
+.ingredients-list {
+  list-style: none;
+  margin: 0rem .618rem 0;
+  padding: 0;
+}
+
+.ingredients-directions-header {
+  margin: 0;
+  padding: 0;
+}
+
+.directions p{
+  margin: 0;
+  padding: .382rem 0 0;
+}
+
+.separator {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #888888;
+    margin: 0rem 0 .618rem 0;
+    padding: 0;
+}
+
+.separator-top {
+    margin: 0rem 0 .618rem 0;
+    padding: 0;
+}
+
+.separator-bottom {
+    margin: 1rem 0 .618rem 0;
+}
+
+.tags {
+  margin: 0;
+  padding: 0;
 }
 
 .recipe-grid__footer {
@@ -29,77 +123,3 @@
   margin: 0;
   padding: 0;
 }
-
-.description {
-  margin-bottom: 30px;
-}
-
-.prep-cook-time {}
-
-
-.ingredients-directions-container {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0rem;
-  max-width: 800px;
-  justify-content: right;
-  align-items: flex-start;
-}
-
-.ingredients-directions-header {
-  margin: 0;
-  padding: 0;
-}
-
-.ingredients {
-  padding-bottom: 0px;
-  padding-top: 0px;
-  margin-left: 0px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.servings {
-  margin: 0;
-  padding: .382rem 0 0;
-}
-
-.ingredients-list {
-  list-style: none;
-  margin: 0rem .618rem 0;
-  padding: 0;
-}
-
-.directions p{
-  margin: 0;
-  padding: .382rem 0 0;
-}
-
-.separator-top {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #111111;
-    margin: 1rem 0 .618rem 0;
-    padding: 0;
-}
-
-.separator-bottom {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #111111;
-    margin: 1rem 0 .618rem 0;
-    padding: 0;
-}
-
-.tags {
-  margin: 0;
-  padding: 0;
-}
-
-/* .ingredients ul{ */
-/*   list-style: none; */
-/*   padding: 0; */
-/* } */
-/*  */
