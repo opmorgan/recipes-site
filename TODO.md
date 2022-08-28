@@ -1,14 +1,16 @@
 # Styling
-- Style recipe detail page
-- Recipe detail page: remove description (make optional, only use for index)
-- Recipe detail page: remove bullet symbols, or make them prettier.
-- Recipe detail page: Bold ingredient name.
-- Recipe detail page: try putting ingredients on the left (with no bullet symbols)
 - Style home page
+## Recipe detail page
+- Style recipe detail page
+- Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
+- Recipe detail page: Add conditional to date: only show date updated if different from date published.
+- Recipe detail page: Set defaults for flex box ratio (ingredients/directions)
+- Recipe detail page: Reduce paragraph space between instructions and variations.
 
 # Features
 
 ## Home page
+- Add hyperlink to "see all" recipes, tags.
 - Add filtering by tag, ingredients
 - Add search function
 - Add weight-volume conversion
@@ -23,12 +25,15 @@
 - Use slugs for tag, recipe (maybe) urls
 
 ## Recipe detail page/Recipe modelling
+- Remodel "instructions" so that you can enter each step by line.
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
 - Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
 - Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
 - Combine "Introduction" and "Variations" intro one field (maybe)
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
+- Rename "instructions" to "directions"
+- Make sure each optional section tests for existence before printing (e.g., introduction, variations.)
 
 ## Recipe collections
 - Tool for user to create recipe collections
@@ -58,3 +63,7 @@
 - [done] Figure out how to set homepage View without adding to "DIR" in settings [okay to add to view]
 - [done] Move homepage to separate app? Or, figure out how to put in recipes app. (Ask Josh what is better) More general question: where should i put (1) the homepage template/views/url, and (2) base-level static stuff. In base/, in new apps homepage/ and layout/theme? [the way I had it was right!]
 - [done] Show last updated in EST
+- [done] Recipe detail page: remove description (make optional, only use for index)
+- [done] Recipe detail page: remove bullet symbols, or make them prettier.
+- [done] Recipe detail page: Bold ingredient name.
+- [done] Recipe detail page: try putting ingredients on the left (with no bullet symbols)

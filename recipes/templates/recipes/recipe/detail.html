@@ -10,26 +10,33 @@
     <div class="recipe-grid__body">
       {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
       <div class="recipe-title">
-        <h1> {{ recipe.title }} </h1>
+        <h1>{{ recipe.title }}</h1>
       </div>
-      <div class="description">
-        <i> {{ recipe.description }} </i>
+      {% if recipe.introduction is not None %}
+        <p> {{ recipe.introduction }} </p>
+      {% endif %}
+      {% if recipe.variations is not None %}
+        <p> <strong>Variations:</strong> {{  recipe.variations }} </p>
+      {% endif %}
+      <div class="prep-cook-time">
+        {% if recipe.prep_time is not None %}
+          Prep time: {{ recipe.prep_time }}
+        {% endif %}
+        {% if recipe.prep_time is not None and recipe.cook_time is not None %}
+          |
+        {% endif %}
+        {% if recipe.cook_time is not None %}
+          Cook time: {{  recipe.cook_time }}
+        {% endif %}
       </div>
-      <p> {{ recipe.introduction }} </p>
-      <p> <b>Variations:</b> {{  recipe.variations }} </p>
-      Prep time: {{ recipe.prep_time }} |
-      Cook time: {{  recipe.cook_time }} <br>
-      <hr/>
-      <div class="flex-container">
-        <div class="instructions">
-          <h3> Directions </h3>
-          <p> {{ recipe.instructions|linebreaks }} </p>
-        </div>
+      <hr class = "separator-top"/>
+      <div class="ingredients-directions-container ">
         <div class="ingredients">
-          <ul>
-            <h3> Ingredients </h3>
-            <br>
-            <i>Serves {{  recipe.servings|fractional }}</i>
+          <h3 class="ingredients-directions-header"> Ingredients </h3>
+          <p class = "servings">
+          <i>Serves {{  recipe.servings|fractional }}</i>
+          </p>
+          <ul class="ingredients-list">
             {% for ri in recipe.recipeingredient_set.all %}
               <li>
                 {# #### Format recipe ingredient strings #### #}
@@ -39,7 +46,7 @@
                 {# ##      if less than 1, display as fraction #}
                 {{ ri.amount|fractional|default_if_none:"" }}
                 {# (2) Pluralize units, if they exist #}
-                {# ##      manually specify any units that should be pluralized #}
+                {# ##  Manually specify any units that should be pluralized #}
                 {# ##      if "cup", pluralize depending on "amount" #}
                 {% if ri.unit == "cup" %}
                   cup{{ ri.amount|pluralize:'s' }}
@@ -53,27 +60,31 @@
                 {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
                 {# (3a) If there is no unit, don't pluralize ingredient name. #}
                 {% if ri.unit is None %}
-                  {{ ri.ingredient_id }}{{ ri.amount|pluralize }}
+                  <strong>{{ ri.ingredient_id }}{{ ri.amount|pluralize }}</strong>
                 {% else %}
-                  {{ ri.ingredient_id }}
+                  <strong>{{ ri.ingredient_id }}</strong>
                 {% endif %}
                 {# (3b) If there is a unit, pluralize it. #}
                 {% if ri.description is not None %}
                   ({{ ri.description }})
                 {% endif %}
               </li>
-              </li>
             {% endfor %}
           </ul>
         </div>
+        <div class="directions">
+          <h3 class="ingredients-directions-header"> Directions </h3>
+          {{ recipe.instructions|linebreaks }}
+        </div>
       </div>
-      <hr/>
-      Tags:
-      {% for tag in recipe.tags.all %}
-        <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
-        {% if not forloop.last %}|{% endif %}
-      {% endfor %}
-
+      <hr class = "separator-bottom"/>
+      <div class="tags">
+        Tags:
+        {% for tag in recipe.tags.all %}
+          <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+      </div>
     </div>
 
 
@@ -82,15 +93,12 @@
       <em>
         {% load tz %}
         {% timezone "US/Eastern" %}
-        Published {{ recipe.created_at.date }}
-        | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
+          Published {{ recipe.created_at.date }}
+          | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
         {% endtimezone %}
-        <br>
       </em>
       </p>
     </div>
-
   </div>
-
 
 </body>

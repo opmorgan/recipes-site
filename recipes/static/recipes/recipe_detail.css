@@ -1,27 +1,7 @@
-@import "base.css";
-
-h3 {
-  margin-top: -10px;
-  margin-bottom: -12px;
-}
-
-ul {
+.recipe-title h1{
   margin: 0;
-}
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #111111;
-    margin: 1em 0;
-    padding: 0;
-}
-
-.recipe-title h1 {
-  margin: 0;
-  margin-top: 0;
   padding: 0;
+  text-align: left;
 }
 
 
@@ -50,39 +30,76 @@ hr {
   padding: 0;
 }
 
-
 .description {
   margin-bottom: 30px;
 }
 
-.flex-container {
+.prep-cook-time {}
+
+
+.ingredients-directions-container {
   display: flex;
   flex-wrap: nowrap;
   gap: 0rem;
   max-width: 800px;
-  /* border: 1px solid #111111; */
   justify-content: right;
   align-items: flex-start;
 }
 
-.instructions {
-  /* flex: 1 1 400px; */
-  /* border-right: 2px solid #111111; */
-  /* padding-right: 15px; */
-  /* border: 1px solid #111111; */
+.ingredients-directions-header {
+  margin: 0;
+  padding: 0;
 }
 
-
 .ingredients {
-  /* flex: 1 0 200px; */
-  /* order: 1; */
-  /* padding-left: 20px; */
-  /* border-left: 2px solid #111111; */
   padding-bottom: 0px;
   padding-top: 0px;
   margin-left: 0px;
   margin-top: 0;
   margin-bottom: 0;
-  /* border: 1px solid #111111; */
 }
 
+.servings {
+  margin: 0;
+  padding: .382rem 0 0;
+}
+
+.ingredients-list {
+  list-style: none;
+  margin: 0rem .618rem 0;
+  padding: 0;
+}
+
+.directions p{
+  margin: 0;
+  padding: .382rem 0 0;
+}
+
+.separator-top {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #111111;
+    margin: 1rem 0 .618rem 0;
+    padding: 0;
+}
+
+.separator-bottom {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #111111;
+    margin: 1rem 0 .618rem 0;
+    padding: 0;
+}
+
+.tags {
+  margin: 0;
+  padding: 0;
+}
+
+/* .ingredients ul{ */
+/*   list-style: none; */
+/*   padding: 0; */
+/* } */
+/*  */

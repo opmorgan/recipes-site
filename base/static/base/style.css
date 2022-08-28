@@ -1,9 +1,8 @@
 body {
   margin: 0;
-  # margin-left: 30px;
-  # margin-right: 30px;
+  padding: 0;
   font-size: 15px;
-  padding: 1.854rem 3rem 1rem;
+  padding: 1.618rem 3rem 1rem;
   background-color: #FFFFeb;
 }
 
@@ -25,4 +24,12 @@ a:hover {
 /* selected link */
 a:active {
   color: #b30000;
+}
+
+.nolist {
+  list-style: none;
+}
+
+.flushleft-list {
+  list-style: none;
 }
