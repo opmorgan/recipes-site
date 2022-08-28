@@ -80,8 +80,12 @@
     <div class="recipe-grid__footer">
       <p>
       <em>
+        {% load tz %}
+        {% timezone "US/Eastern" %}
         Published {{ recipe.created_at.date }}
-        (Last updated {{ recipe.updated_at.date }}, {{ recipe.updated_at.time }} UTC)
+        | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
+        {% endtimezone %}
+        <br>
       </em>
       </p>
     </div>
