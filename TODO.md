@@ -1,6 +1,7 @@
 # Styling
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
+- Recipe detail page: Fix defaults for flex box ratio (ingredients/directions)
 
 # Features
 
@@ -10,7 +11,7 @@
 - Add weight-volume conversion
 - Add tool to halve/double recipes
 - Add date last updated to homepage?
-- Add link to homepage on other pages
+- Add link to homepage on other pages (can put in footer, above date updated)
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
@@ -65,7 +66,6 @@
 - [done] Recipe detail page: Bold ingredient name.
 - [done] Recipe detail page: try putting ingredients on the left (with no bullet symbols)
 - [done] Recipe detail page: Add conditional to date: only show date updated if different from date published.
-- [done] Recipe detail page: Set defaults for flex box ratio (ingredients/directions)
 - [done] Recipe detail page: Reduce paragraph space between instructions and variations.
 - [done] Add hyperlink to "see all" recipes, tags.
 - [done] Style lists on index pages, homepage
