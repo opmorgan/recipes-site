@@ -4,27 +4,37 @@
 
 <body>
 
-  <h1>Wholesome recipes!</h1>
-
-  <h2>Recipes</h2>
+  <div class="index-header">
+    <div class="header-link">
+      <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
+    </div>
+  </div>
 
   {% if latest_recipe_list %}
-    <ul>
-      {% for recipe in latest_recipe_list %}
-        <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+    <ul class="index-list">
+      {% for recipe in latest_recipe_list|dictsort:"title" %}
+        <li>
+          <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
+          <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
+        </li>
       {% endfor %}
     </ul>
   {% else %}
     <p>No recipes are available.</p>
   {% endif %}
 
-  <h2>Tags</h2>
+  <div class="index-header">
+    <div class="header-link">
+      <a href="{% url 'recipes:recipe_index' %}">Tags</a>
+    </div>
+  </div>
 
   {% if latest_tag_list %}
-    {% for tag in latest_tag_list %}
-      <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
-      {% if not forloop.last %}|{% endif %}
-    {% endfor %}
+    <ul class="index-list">
+      {% for tag in latest_tag_list|dictsort:"name" %}
+        <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
+      {% endfor %}
+    </ul>
   {% else %}
     <p>No tags are available.</p>
   {% endif %}

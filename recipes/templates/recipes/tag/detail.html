@@ -5,24 +5,13 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<h1>Tag: {{ tag.name }}</h1>
 
-<ul>
-{% for recipe in recipes %}
-  <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
-{% endfor %}
+<div class="index-header">
+{{ tag.name|capfirst }} recipes
+</div>
+
+<ul class="index-list">
+  {% for recipe in recipes %}
+    <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+  {% endfor %}
 </ul>
-
-{# {{ tag.name|mycut:"y" }} #}
-
-
-{# {{ Recipe.objects.filter(tags__name__in=taglist) }} #}
-{# {% expr Recipe.objects.filter(tags__name__in="breakfast") as var3 %} #}
-{# {{ var3 }} #}
-
-{{ tag.recipes.title }}
-
-{# {{ recipes|in_category:tag }} #}
-{# {% for recipe in recipes|in_category:tag %} #}
-{#   {{ recipe }} #}
-{# {% endfor %} #}

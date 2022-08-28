@@ -1,4 +1,5 @@
 .recipe-title h1{
+  font-size: 24px;
   line-height: 1em;
   margin: 0 0 1rem;
   padding: 0;
@@ -26,7 +27,7 @@
   display: inline-block;
   margin: 0 0 0;
   /* Control space between intro+variations and title, prep time with margin here: */
-  margin: .382rem 0 .382rem;
+  margin: .618rem 0 1.618rem;
 }
 
 .prep-cook-time {
@@ -37,10 +38,12 @@
 }
 
 .introduction-variations p{
-  line-height: 1rem;
+  /* line-height: 1.2rem; */
+  line-height: 1.25rem;
   margin: 0;
   /* Control space between intro and variations text with bottom padding here: */
-  padding: 0 0 .618rem;
+  padding: 0 0 0rem;
+  /* padding: 0 0 .618rem; */
 }
 
 .ingredients-directions-container {
@@ -55,11 +58,8 @@
 
 .ingredients {
   flex: 0 1 38.2%;
-  padding-bottom: 0px;
-  padding-top: 0px;
-  margin-left: 0px;
-  margin-top: 0;
-  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .directions {
@@ -75,6 +75,9 @@
   list-style: none;
   margin: 0rem .618rem 0;
   padding: 0;
+  /* Hack to get second-line indent */
+  text-indent: -1.618rem;
+  margin-left: 1.618rem;
 }
 
 .ingredients-directions-header {

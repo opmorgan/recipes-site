@@ -3,13 +3,19 @@
 <link rel="stylesheet" href="{% static 'base/style.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/index.css' %}">
 
-<h1>Recipes</h1>
+
+<div class="index-header">
+  Recipes
+</div>
 
 {% if latest_recipe_list %}
-  <ul>
-  {% for recipe in latest_recipe_list %}
-  <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
-  {% endfor %}
+  <ul class="index-list">
+    {% for recipe in latest_recipe_list|dictsort:"title" %}
+      <li>
+        <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
+        <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
+      </li>
+    {% endfor %}
   </ul>
 {% else %}
   <p>No recipes are available.</p>

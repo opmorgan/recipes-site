@@ -19,7 +19,7 @@
             <p> {{ recipe.introduction }} </p>
           {% endif %}
           {% if recipe.variations is not None %}
-            <p> <strong>Variations:</strong> {{  recipe.variations }} </p>
+            <p> <i>Variations.</i> {{  recipe.variations }} </p>
           {% endif %}
         </div>
       {% endif %}
@@ -99,7 +99,6 @@
 
       {% if recipe.tags.all %}
         <div class="tags">
-          Tags:
           {% for tag in recipe.tags.all %}
             <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
             {% if not forloop.last %}|{% endif %}

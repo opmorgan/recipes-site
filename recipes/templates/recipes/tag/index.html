@@ -3,13 +3,16 @@
 <link rel="stylesheet" href="{% static 'base/style.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/index.css' %}">
 
-<h1>Tags</h1>
+
+<div class="index-header">
+  Tags
+</div>
 
 {% if latest_tag_list %}
-  <ul>
-  {% for tag in latest_tag_list %}
-  <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a></li>
-  {% endfor %}
+  <ul class="index-list">
+    {% for tag in latest_tag_list %}
+      <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
+    {% endfor %}
   </ul>
 {% else %}
   <p>No tags are available.</p>

@@ -1,13 +1,10 @@
 # Styling
-- Style home page
-- Style lists on index pages, homepage
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 
 # Features
 
 ## Home page
-- Add hyperlink to "see all" recipes, tags.
 - Add filtering by tag, ingredients
 - Add search function
 - Add weight-volume conversion
@@ -20,7 +17,7 @@
 - In tag index view, sort tags by number of recipes
 - Sort recipe index by tag, with headers
 - Add hit counter to recipes index, display hits after recipe name (maybe)
-- Use slugs for tag, recipe (maybe) urls
+- Use slugs for tag urls. consider for recipes, too.
 
 ## Recipe detail page/Recipe modelling
 - Remodel "instructions" so that you can enter each step by line.
@@ -70,3 +67,5 @@
 - [done] Recipe detail page: Add conditional to date: only show date updated if different from date published.
 - [done] Recipe detail page: Set defaults for flex box ratio (ingredients/directions)
 - [done] Recipe detail page: Reduce paragraph space between instructions and variations.
+- [done] Add hyperlink to "see all" recipes, tags.
+- [done] Style lists on index pages, homepage
