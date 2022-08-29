@@ -31,8 +31,8 @@
 }
 
 .prep-cook-time {
-  /* Control distance between prep time, top separator in margin here: */
-  margin: 0 0 .618rem;
+  /* Control distance between prep time, top separator/box in margin here: */
+  margin: 0 0 1rem;
   padding: 0;
   line-height: 1em;
 }
@@ -46,17 +46,41 @@
   /* padding: 0 0 .618rem; */
 }
 
+/* Try: same color, with border */
+/* Try: diff color */
+/* Try: separator between ingredients, directions */
+/* https://ishadeed.com/article/flexbox-separator/ */
 .ingredients-directions-container {
-  /* background-color: #f2f2de; */
+  background-color: #f2f2de;
   display: flex;
   flex-direction: row; /* default: wrap into rows */
-  flex-wrap: wrap; /* how to wrap at a lower bound width? */
+  flex-wrap: wrap;
   justify-content: flex-start; /* flush boxes to left */
   align-items: auto; /* fill container top-bottom. flush text to top */
   align-content: stretch; /* default */
-  gap: 1rem 1rem; /* how to set width between rows? */
+  gap: 1rem 1rem;
+  border-top: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  padding: .618rem .2rem 1rem; /* t lr b */
+  margin: 0rem 0 .8rem; /* match bottom margin with prep-cook-time's. */
 }
 
+.ingredients-directions-separator {
+  content: "";
+  border-left: 1px solid #888888;
+  border-bottom: 1px solid #888888;
+  align-self: stretch;
+}
+
+/* Define max width for columns (needed to make separator work) */
+@media (max-width: 600px) {
+  .ingredients-directions-container {
+    flex-direction: column;
+  }
+  .ingredients-directions-container .ingredients-directions-separator {
+    margin: 0 1rem 0; /* Match padding for ingredients, directions. */
+  }
+}
 
 /* Goal: */
 /* Ingredients should be exactly x (12rem) wide, and never smaller, when columns. */
@@ -64,14 +88,15 @@
 /* directions should fill the remaining space, as long as there are y (500?) pixels. */
 /* https://stackoverflow.com/questions/63052778/css-flexbox-wrap-item-with-width */
 .ingredients {
+  order: -1; /* for separator */
   flex: 1 1 max(30%, 12rem);
-  padding: 0;
+  padding: 0 1rem 0;
   margin: 0;
 }
 
 .directions {
-  flex: 1 1 60%;
-  padding: 0;
+  flex: 20 1 min(60%, 200px);
+  padding: 0 1rem 0;
   margin: 0;
 }
 

@@ -38,11 +38,11 @@
       {% endif %}
 
       {% if recipe.ingredients is not None or recipe.instructions is not None %}
-        <hr class = "separator separator-top"/>
+        {# <hr class = "separator separator-top"/> #}
 
         <div class="ingredients-directions-container">
           {% if recipe.ingredients.all %} {# Test if there are any ingredients #}
-            <div class="ingredients">
+            <div class="ingredients ingredients">
               <h3 class="ingredients-directions-header"> Ingredients </h3>
               <p class = "servings">
               <i>Serves {{  recipe.servings|fractional }}</i>
@@ -86,6 +86,10 @@
               </ul>
             </div>
           {% endif %}
+          {% if recipe.ingredients.all and recipe.instructions %}
+            <div class="ingredients-directions-separator">
+            </div>
+          {%endif %}
           {% if recipe.instructions is not None %}
             <div class="directions">
               <h3 class="ingredients-directions-header"> Directions </h3>
@@ -94,7 +98,7 @@
           {% endif %}
         </div>
 
-        <hr class = "separator separator-bottom"/>
+        {# <hr class = "separator separator-bottom"/> #}
       {% endif %}
 
       {% if recipe.tags.all %}
