@@ -5,6 +5,9 @@
 
 # Features
 
+## Data entry
+- Create user friendly form to enter new recipes
+
 ## Home page
 - Add filtering by tag, ingredients
 - Add search function
@@ -29,21 +32,27 @@
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
 - Rename "instructions" to "directions"
-- Make sure each optional section tests for existence before printing (e.g., introduction, variations.)
+- Add labelled sections to ingredients lists. E.g., "Sauce", "bowl 1"
 - Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast."
 - Make directions optional.
 
 ## Recipe collections
-- Tool for user to create recipe collections
-- Subfolders for collections
+- Tool for user to create recipe collections (should be able to add with a button)
+- Each collection should have a url for its index
 
 ## Print tools
 - Tool to print current recipe
 - Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
 
+## Other tools
+- Recipe scraper (try hhurev/recipe-scrapers) (see ios app "recipe keeper" for inspiration)
+- Buttons to mark as "have made it", "want to make" (like youtube's "already watched", "want to watch"). And, if "have made it", "liked it" and "didn't like it."
+- Donations button
+
 ## Global
 - Use current time zone to display published times
 - Dark mode
+- Accessibility mode (large font, simple layout)
 
 # Optimizations
 - Set up asgi
@@ -69,3 +78,4 @@
 - [done] Recipe detail page: Reduce paragraph space between instructions and variations.
 - [done] Add hyperlink to "see all" recipes, tags.
 - [done] Style lists on index pages, homepage
+- [done] Make sure each optional section tests for existence before printing (e.g., introduction, variations.)
