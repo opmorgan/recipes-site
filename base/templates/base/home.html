@@ -15,7 +15,9 @@
       {% for recipe in latest_recipe_list|dictsort:"title" %}
         <li>
           <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
-          <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
+          {% if recipe.description %}
+            <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>

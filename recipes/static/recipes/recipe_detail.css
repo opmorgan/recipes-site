@@ -47,23 +47,32 @@
 }
 
 .ingredients-directions-container {
+  /* background-color: #f2f2de; */
   display: flex;
-  flex: 0 1 auto;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  max-width: 800px;
-  justify-content: left;
+  flex-direction: row; /* default: wrap into rows */
+  flex-wrap: wrap; /* how to wrap at a lower bound width? */
+  justify-content: flex-start; /* flush boxes to left */
+  align-items: auto; /* fill container top-bottom. flush text to top */
+  align-content: stretch; /* default */
+  gap: 1rem 1rem; /* how to set width between rows? */
 }
 
+
+/* Goal: */
+/* Ingredients should be exactly x (12rem) wide, and never smaller, when columns. */
+/* When the screen expands, ingredients should stay at x pixels, and */
+/* directions should fill the remaining space, as long as there are y (500?) pixels. */
+/* https://stackoverflow.com/questions/63052778/css-flexbox-wrap-item-with-width */
 .ingredients {
-  flex: 0 1 38.2%;
+  flex: 1 1 max(30%, 12rem);
   padding: 0;
   margin: 0;
 }
 
 .directions {
-  flex: 0 1 61.8%;
+  flex: 1 1 60%;
+  padding: 0;
+  margin: 0;
 }
 
 .servings {
@@ -91,21 +100,21 @@
 }
 
 .separator {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #888888;
-    margin: 0rem 0 .618rem 0;
-    padding: 0;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #888888;
+  margin: 0rem 0 .618rem 0;
+  padding: 0;
 }
 
 .separator-top {
-    margin: 0rem 0 .618rem 0;
-    padding: 0;
+  margin: 0rem 0 .618rem 0;
+  padding: 0;
 }
 
 .separator-bottom {
-    margin: 1rem 0 .618rem 0;
+  margin: 1rem 0 .618rem 0;
 }
 
 .tags {

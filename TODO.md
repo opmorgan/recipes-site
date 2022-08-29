@@ -1,7 +1,8 @@
 # Styling
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
-- Recipe detail page: Fix defaults for flex box ratio (ingredients/directions)
+- Recipe detail page: create borders on ingredients/direction flex box object, not separators? See how this looks with tags
+- Recipe detail page: add collapse button for introduction + variations, hide them by defulat
 
 # Features
 
@@ -24,6 +25,7 @@
 - Use slugs for tag urls. consider for recipes, too.
 
 ## Recipe detail page/Recipe modelling
+- Make more fields optional -- only require title
 - Remodel "instructions" so that you can enter each step by line.
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
 - Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
@@ -79,3 +81,4 @@
 - [done] Add hyperlink to "see all" recipes, tags.
 - [done] Style lists on index pages, homepage
 - [done] Make sure each optional section tests for existence before printing (e.g., introduction, variations.)
+- [done] Recipe detail page: Fix defaults for flex box ratio (ingredients/directions)
