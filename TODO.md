@@ -1,6 +1,7 @@
 # Styling
 - Consider adding default font
 - Style prep time
+- Define common colors in base/style.css (background, plate, lines)
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
@@ -36,7 +37,7 @@
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
 - Rename "instructions" to "directions"
-- Add labelled sections to ingredients lists. E.g., "Sauce", "bowl 1"
+- Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
 - Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast."
 - Make directions optional.
 
