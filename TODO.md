@@ -5,6 +5,7 @@
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
+- Recipe detail page: put "servings" to the right of the ingredients box, flush right in vertical line with the headers.
 
 # Features
 
@@ -30,8 +31,8 @@
 - Make more fields optional -- only require title
 - Remodel "instructions" so that you can enter each step by line.
 - Remodel "instructions" so that each step has a number which can be linked to an image for that step
-- Or, just create a collapsible section that can go after ingredients/directions, for images with captions. And, add "image" attributes, with linked "captions."
-- Associate each instructions with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
+- Or, for images: just create a collapsible section that can go after ingredients/directions, for images with captions. And, add "image" attributes, with linked "captions."
+- Associate each instruction with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
 - Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
 - Combine "Introduction" and "Variations" intro one field (maybe)
 - Add optional equipment/hardware section
@@ -49,15 +50,16 @@
 - Tool to print current recipe
 - Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
 
-## Other tools
-- Recipe scraper (try hhurev/recipe-scrapers) (see ios app "recipe keeper" for inspiration)
-- Buttons to mark as "have made it", "want to make" (like youtube's "already watched", "want to watch"). And, if "have made it", "liked it" and "didn't like it."
-- Donations button
-
 ## Global
 - Use current time zone to display published times
 - Dark mode
 - Accessibility mode (large font, simple layout)
+
+## Other tools and features
+- Recipe scraper (try hhurev/recipe-scrapers) (see ios app "recipe keeper" for inspiration)
+- Buttons to mark as "have made it", "want to make" (like youtube's "already watched", "want to watch"). And, if "have made it", "liked it" and "didn't like it."
+- Donations button
+- Comments
 
 # Optimizations
 - Set up asgi
