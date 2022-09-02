@@ -45,17 +45,25 @@ class Recipe(models.Model):
     introduction = models.CharField("Introduction", max_length = 20000, default=None, blank=True, null=True)
     variations = models.CharField('Variations', max_length = 20000, default=None, blank=True, null=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    title_image = models.ImageField(default=None, blank=True, null=True)
+    title_image = models.ImageField(default=None, blank=True, null=True, upload_to="title_images")
     instructions = models.TextField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
     tags = models.ManyToManyField(Tag)
 
-    def print_created_at(self):
-        return self.created_at.strftime('%B %d, %Y')
+    @property
+    def has_intro(self):
+        return (self.introduction or self.variations)
+
+    @property
+    def has_prep(self):
+        return (self.prep_time or self.cook_time)
 
     @property
     def print_updated_at(self):
         return self.updated_at.strftime('%B %d, %Y, %-H:%M %p')
+
+    def print_created_at(self):
+        return self.created_at.strftime('%B %d, %Y')
 
     def __str__(self):
         return self.title
@@ -65,7 +73,7 @@ class RecipeIngredient(models.Model):
     """ An ingredient, with an amount, used in one recipe """
     recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient_id = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    amount = models.FloatField()
+    amount = models.FloatField(default=None, null=True, blank=True)
     unit = models.CharField(max_length = 50, null=True, blank=True)
     description = models.CharField(max_length = 400, default=None, null=True, blank=True) # e.g., "freshly squeezed"
 

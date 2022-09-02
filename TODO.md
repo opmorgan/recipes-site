@@ -2,6 +2,7 @@
 - Consider adding default font
 - Style prep time
 - Define common colors in base/style.css (background, plate, lines)
+- Set max width for whole page
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
@@ -29,11 +30,6 @@
 
 ## Recipe detail page/Recipe modelling
 - Make more fields optional -- only require title
-- Remodel "instructions" so that you can enter each step by line.
-- Remodel "instructions" so that each step has a number which can be linked to an image for that step
-- Or, for images: just create a collapsible section that can go after ingredients/directions, for images with captions. And, add "image" attributes, with linked "captions."
-- Associate each instruction with a set of recipe ingredients (so that mousing over an instruction step can highlight the ingredients)
-- Add sections to recipe ingredients (e.g., wet bowl, dry bowl)
 - Combine "Introduction" and "Variations" intro one field (maybe)
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
@@ -41,6 +37,25 @@
 - Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
 - Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast."
 - Make directions optional.
+
+### Images
+- Make title images render in a nice way
+- In data entry form, include an "Add image tool" item
+- "Add image" creates a file in a storage location, resizes it
+(Before data entry form is live)
+First pass
+- Use django admin
+Second pass
+- Use django image file uploads, with custom url.
+- Then, manually point to django image urls in markdown.
+Third pass
+- Create storage tool (Down the line, can use Cloudinary, an image processing pipeline and CDN). CDNs are SAASes, with lean servers. You can upload an image, stored in multiple servers, which can be accessed quickly. So, the user can see the image very quickly. And, if the service has a processing pipeline, you can manipulate the imagers (e.g., enforcing size).
+- Then, point to image urls from storage tool in directions markdown
+
+### Directions - use markdown
+- Allow markdown input in directions
+- use a django markdown interpreter in views.py/templates to render directions
+- Enable markdown decorators for ingredients, images.
 
 ## Recipe collections
 - Tool for user to create recipe collections (should be able to add with a button)

@@ -10,19 +10,42 @@
   <div class="recipe-grid">
     <div class="recipe-grid__body">
       {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-      <div class="recipe-title">
-        <h1>{{ recipe.title }}</h1>
-      </div>
-      {% if  recipe.introduction is not None or recipe.variations is not None %}
-        <div class="introduction-variations">
-          {% if recipe.introduction is not None %}
-            <p> {{ recipe.introduction }} </p>
+
+      <div class="title-image-grid">
+        <div class="title-image_grid__text">
+          <div class="recipe-title">
+            <h1>{{ recipe.title }}</h1>
+          </div>
+
+          {% if recipe.has_prep is True %}
+            gooch is poop
           {% endif %}
-          {% if recipe.variations is not None %}
-            <p> <i>Variations.</i> {{  recipe.variations }} </p>
+          {# {% include "../partials/recipe_image.html" with no_intro=has_intro no_prep=has_prep_time %} #}
+
+          {% if not recipe.has_intro %}
+            {% include "../partials/recipe_image.html" with has_intro=False has_prep=recipe.has_prep %}
+          {% endif %}
+
+          {% if recipe.has_intro %}
+            <div class="introduction-variations">
+              {% if recipe.introduction is not None %}
+                <p> {{ recipe.introduction }} </p>
+              {% endif %}
+              {% if recipe.variations is not None %}
+                <p> <i>Variations.</i> {{  recipe.variations }} </p>
+              {% endif %}
+            </div>
           {% endif %}
         </div>
-      {% endif %}
+
+        {# This exists outside the title image grid IFF a recipe intro is present. #}
+        {% if  recipe.has_intro %}
+          {% include "../partials/recipe_image.html" with no_intro=False %}
+        {% endif %}
+
+
+      </div>
+
       {% if recipe.prep_time is not None or recipe.cook_time is not None %}
         <div class="prep-cook-time">
           {% if recipe.prep_time is not None %}
@@ -42,7 +65,7 @@
 
         <div class="ingredients-directions-container">
           {% if recipe.ingredients.all %} {# Test if there are any ingredients #}
-            <div class="ingredients ingredients">
+            <div class="ingredients ingredients"> {# IS THIS RIGHT? #}
               <h3 class="ingredients-directions-header"> Ingredients </h3>
               <p class = "servings">
               <i>Serves {{  recipe.servings|fractional }}</i>
@@ -56,18 +79,22 @@
                       {# ##      if greater than one, round to one decimal. #}
                       {# ##      if whole number, remove trailing zeroes #}
                       {# ##      if less than 1, display as fraction #}
-                      {{ ri.amount|fractional|default_if_none:"" }}
-                      {# (2) Pluralize units, if they exist #}
-                      {# ##  Manually specify any units that should be pluralized #}
-                      {# ##      if "cup", pluralize depending on "amount" #}
-                      {% if ri.unit == "cup" %}
-                        cup{{ ri.amount|pluralize:'s' }}
-                      {% else %}
-                        {{ ri.unit|default_if_none:"" }}
-                      {% endif %}
-                      {# If there is a unit, add "of" #}
-                      {% if ri.unit is not None %}
-                        of
+                      {% if ri.amount is not None %}
+                        {{ ri.amount|fractional|default_if_none:"" }}
+                        {# (2) Pluralize units, if they exist #}
+                        {# ##  Manually specify any units that should be pluralized #}
+                        {# ##      if "cup", pluralize depending on "amount" #}
+
+                        {% if ri.unit == "cup" %}
+                          cup{{ ri.amount|pluralize:'s' }}
+                        {% else %}
+                          {{ ri.unit|default_if_none:"" }}
+                        {% endif %}
+                        {# If there is a unit, add "of" #}
+                        {% if ri.unit is not None %}
+                          of
+                        {% endif %}
+
                       {% endif %}
                       {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
                       {# (3a) If there is no unit, don't pluralize ingredient name. #}
@@ -110,6 +137,8 @@
         </div>
       {% endif %}
     </div>
+
+
 
     <div class="recipe-grid__footer">
       {% timezone "US/Eastern" %}

@@ -36,6 +36,13 @@ class RecipeDetailView(generic.DetailView):
     template_name = 'recipes/recipe/detail.html'
     model = Recipe
 
+    def get_context_data(self, **kwargs):
+        context = super(RecipeDetailView, self).get_context_data(**kwargs)
+
+        has_prep = self.object.prep_time or self.object.cook_time
+        has_intro = self.object.introduction or self.object.variations
+        context["has_prep"] = has_prep
+        return context
 
 class TagDetailView(generic.DetailView):
     template_name = 'recipes/tag/detail.html'
