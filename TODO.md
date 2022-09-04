@@ -1,3 +1,10 @@
+# CI/CD
+- Set up pg database on vultr vps (with user, password)
+- Write a docker-compose that spins up a prod-only database, pointing to a directory on the server.
+- write yaml commands
+- nginx: set up reverse proxy that will transfer requests from public url to local port
+
+
 # Styling
 - Consider adding default font
 - Style prep time
