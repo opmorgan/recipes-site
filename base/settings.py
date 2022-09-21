@@ -34,7 +34,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-        "localhost"
+        "localhost",
         "honeybit.xyz",
         "www.honeybit.xyz",
         "honeybit.cooking",
