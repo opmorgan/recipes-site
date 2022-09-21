@@ -37,10 +37,8 @@ ALLOWED_HOSTS = [
         "localhost",
         "honeybit.xyz",
         "www.honeybit.xyz",
-        "https://www.honeybit.xyz",
         "honeybit.cooking",
-        "www.honeybit.cooking",
-        "https://www.honeybit.cooking"
+        "www.honeybit.cooking"
         ]
 
 
@@ -146,5 +144,9 @@ MEDIA_ROOT = BASE_DIR/'assets'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_TRUSTED_ORIGINS = ['https://*.honeybit.com','https://*.127.0.0.1']
+
 
 
