@@ -37,8 +37,10 @@ ALLOWED_HOSTS = [
         "localhost",
         "honeybit.xyz",
         "www.honeybit.xyz",
+        "https://www.honeybit.xyz",
         "honeybit.cooking",
-        "www.honeybit.cooking"
+        "www.honeybit.cooking",
+        "https://www.honeybit.cooking"
         ]
 
 
