@@ -33,7 +33,12 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+        "honeybit.xyz",
+        "www.honeybit.xyz",
+        "honeybit.cooking",
+        "www.honeybit.cooking"
+        ]
 
 
 # Application definition
