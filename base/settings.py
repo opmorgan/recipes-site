@@ -146,7 +146,7 @@ MEDIA_ROOT = BASE_DIR/'assets'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://*.honeybit.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.honeybit.xyz','https://*.127.0.0.1']
 
 
 
