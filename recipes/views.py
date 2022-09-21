@@ -39,8 +39,10 @@ class RecipeDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(RecipeDetailView, self).get_context_data(**kwargs)
 
-        has_prep = self.object.prep_time or self.object.cook_time
+        # has_prep = self.object.prep_time is not None or self.object.cook_time is not None
+        has_prep = True
         has_intro = self.object.introduction or self.object.variations
+        has_title_image = self.object.title_image
         context["has_prep"] = has_prep
         return context
 

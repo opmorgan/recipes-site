@@ -4,6 +4,9 @@
 - write yaml commands
 - nginx: set up reverse proxy that will transfer requests from public url to local port
 
+# Bugs
+- Recipes with no title do not render, because partials/recipe_image.html expects an image
+
 
 # Styling
 - Consider adding default font
@@ -11,6 +14,8 @@
 - Define common colors in base/style.css (background, plate, lines)
 - Set max width for whole page
 ## Recipe detail page
+- Recipe detail page: put padding after tags, so it doesn't get so close to the date published
+- Make date published/updated a flex box, so that "Published..." stays on one line and "Updated..." stays on another by default. Same with prep time/cook time.
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
 - Recipe detail page: put "servings" to the right of the ingredients box, flush right in vertical line with the headers.
