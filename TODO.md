@@ -15,7 +15,6 @@
 - Set max width for whole page
 ## Recipe detail page
 - Recipe detail page: set formatting of title image flexbox when there is no intro, but there is a prep time.
-- Recipe detail page: put padding after tags, so it doesn't get so close to the date published
 - Make date published/updated a flex box, so that "Published..." stays on one line and "Updated..." stays on another by default. Same with prep time/cook time.
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
