@@ -17,13 +17,6 @@
             <h1>{{ recipe.title }}</h1>
           </div>
 
-          TEST!!!
-          {{ recipe.has_prep }}
-          {% if recipe.has_prep is True %}
-            TEST!!!
-          {% endif %}
-          {# {% include "../partials/recipe_image.html" with no_intro=has_intro no_prep=has_prep_time %} #}
-
           {% if not recipe.has_intro %}
             {% include "../partials/recipe_image.html" with has_intro=False has_prep=recipe.has_prep %}
           {% endif %}
@@ -42,7 +35,7 @@
 
         {# This exists outside the title image grid IFF a recipe intro is present. #}
         {% if  recipe.has_intro %}
-          {% include "../partials/recipe_image.html" with no_intro=False %}
+          {% include "../partials/recipe_image.html" with has_intro=True %}
         {% endif %}
 
 

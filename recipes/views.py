@@ -44,6 +44,7 @@ class RecipeDetailView(generic.DetailView):
         has_intro = self.object.introduction or self.object.variations
         has_title_image = self.object.title_image
         context["has_prep"] = has_prep
+        context["has_intro"] = has_intro
         return context
 
 class TagDetailView(generic.DetailView):
