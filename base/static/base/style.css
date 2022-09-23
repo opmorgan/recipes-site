@@ -1,7 +1,15 @@
+@font-face {
+  font-family: 'Stix';
+  src: url("/static/base/fonts/STIXTwoText[wght].woff2") format("woff2 supports variations"),
+       url("/static/base/fonts/STIXTwoText[wght].woff2") format("woff2-variations");
+  font-weight: 100 1000;
+}
+
 body {
+  font-family: "Stix", monospace;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: #111111;
   padding: 1.618rem 3rem 1rem;
   background-color: #FFFFeb;
