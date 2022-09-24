@@ -109,11 +109,11 @@
               </ul>
             </div>
           {% endif %}
-          {% if recipe.ingredients.all and recipe.instructions %}
+          {% if has_ingredients and has_directions %}
             <div class="ingredients-directions-separator">
             </div>
           {%endif %}
-          {% if recipe.instructions %}
+          {% if has_instructions %}
             <div class="directions">
               <h3 class="ingredients-directions-header"> Directions </h3>
               {{ recipe.instructions|linebreaks }}
@@ -124,7 +124,7 @@
         {# <hr class = "separator separator-bottom"/> #}
       {% endif %}
 
-      {% if recipe.tags.all %}
+      {% if has_tags %}
         <div class="tags">
           {% for tag in recipe.tags.all %}
             <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
@@ -141,7 +141,7 @@
         <p>
         <em>
           {# Show date last updated, if different from date created #}
-          {% if recipe.created_at|date == recipe.updated_at|date and recipe.created_at|time == recipe.updated_at|time %}
+          {% if recipe.created_at|date == recipe.updated_at|date %}
             Published by {{ author_label }} {{ recipe.created_at.date }} {{ recipe.updated_at|time:"P" }}
           {% else %}
             Published by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
