@@ -55,7 +55,7 @@
         </div>
       {% endif %}
 
-      {% if recipe.ingredients is not None or recipe.instructions is not None %}
+      {% if recipe.ingredients or recipe.instructions %}
         {# <hr class = "separator separator-top"/> #}
 
         <div class="ingredients-directions-container">
@@ -112,7 +112,7 @@
             <div class="ingredients-directions-separator">
             </div>
           {%endif %}
-          {% if recipe.instructions is not None %}
+          {% if recipe.instructions %}
             <div class="directions">
               <h3 class="ingredients-directions-header"> Directions </h3>
               {{ recipe.instructions|linebreaks }}

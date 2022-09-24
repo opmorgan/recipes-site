@@ -19,6 +19,7 @@
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
 - Recipe detail page: put "servings" to the right of the ingredients box, flush right in vertical line with the headers.
+- Recipe detail page: show author in date published, modified.
 
 # Features
 
