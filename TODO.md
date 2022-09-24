@@ -42,8 +42,6 @@
 - Use slugs for tag urls. consider for recipes, too.
 
 ## Recipe detail page/Recipe modelling
-- Make more fields optional -- only require title
-- Combine "Introduction" and "Variations" intro one field (maybe)
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
 - Rename "instructions" to "directions"
