@@ -17,11 +17,13 @@
             <h1>{{ recipe.title }}</h1>
           </div>
 
-          {% if not recipe.has_intro %}
+          {# is there is no intro, put title image in grid with just tite #}
+          {#TODO: handle every combination of intro & prep. #}
+          {% if not has_intro %}
             {% include "../partials/recipe_image.html" with has_intro=False has_prep=recipe.has_prep %}
           {% endif %}
 
-          {% if recipe.has_intro %}
+          {% if has_intro %}
             <div class="introduction-variations">
               {% if recipe.introduction is not None %}
                 <p> {{ recipe.introduction }} </p>
@@ -33,15 +35,14 @@
           {% endif %}
         </div>
 
-        {# This exists outside the title image grid IFF a recipe intro is present. #}
-        {% if  recipe.has_intro %}
+        {# This (?) exists outside the title image grid IFF a recipe intro is present. #}
+        {% if  has_intro %}
           {% include "../partials/recipe_image.html" with has_intro=True %}
         {% endif %}
 
-
       </div>
 
-      {% if recipe.prep_time is not None or recipe.cook_time is not None %}
+      {% if has_prep %}
         <div class="prep-cook-time">
           {% if recipe.prep_time is not None %}
             Prep time: {{ recipe.prep_time }}
@@ -55,11 +56,11 @@
         </div>
       {% endif %}
 
-      {% if recipe.ingredients or recipe.instructions %}
-        {# <hr class = "separator separator-top"/> #}
+
+      {% if has_ingredients or has_directions %}
 
         <div class="ingredients-directions-container">
-          {% if recipe.ingredients.all %} {# Test if there are any ingredients #}
+          {% if has_ingredients %} {# Test if there are any ingredients #}
             <div class="ingredients ingredients"> {# IS THIS RIGHT? #}
               <h3 class="ingredients-directions-header"> Ingredients </h3>
               <p class = "servings">
@@ -141,9 +142,9 @@
         <em>
           {# Show date last updated, if different from date created #}
           {% if recipe.created_at|date == recipe.updated_at|date and recipe.created_at|time == recipe.updated_at|time %}
-            Published {{ recipe.created_at.date }} {{ recipe.updated_at|time:"P" }}
+            Published by {{ author_label }} {{ recipe.created_at.date }} {{ recipe.updated_at|time:"P" }}
           {% else %}
-            Published {{ recipe.created_at|date:"F j, o" }}
+            Published by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
             | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
           {% endif %}
         </em>

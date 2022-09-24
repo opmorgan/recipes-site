@@ -39,12 +39,24 @@ class RecipeDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(RecipeDetailView, self).get_context_data(**kwargs)
 
-        # has_prep = self.object.prep_time is not None or self.object.cook_time is not None
-        has_prep = True
-        has_intro = self.object.introduction or self.object.variations
-        has_title_image = self.object.title_image
+
+        has_title_image = self.object.title_image is not None
+        has_intro = self.object.introduction is not None or self.object.variations is not None
+        has_prep = self.object.prep_time is not None or self.object.cook_time is not None
+        has_ingredients = self.object.ingredients.exists()
+        has_directions = self.object.instructions is not None
+        has_tags = self.object.tags is not None
+
+        if self.object.author.get_full_name():
+            author_label = self.object.author.get_full_name()
+        else: author_label = self.object.author
+
         context["has_prep"] = has_prep
         context["has_intro"] = has_intro
+        context["has_ingredients"] = has_ingredients
+        context["has_directions"] = has_directions
+        context["has_tags"] = has_directions
+        context["author_label"] = author_label
         return context
 
 class TagDetailView(generic.DetailView):
