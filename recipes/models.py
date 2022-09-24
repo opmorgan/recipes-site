@@ -48,7 +48,7 @@ class Recipe(models.Model):
     title_image = models.ImageField(default=None, blank=True, null=True, upload_to="title_images")
     instructions = models.TextField(max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     @property
     def has_intro(self):
