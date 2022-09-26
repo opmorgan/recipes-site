@@ -134,10 +134,8 @@
     </div>
 
     <div class="recipe-grid__footer">
-      {# TODO: Ask Josh - what is the simplest, ebst way to add an element like this navbar, with a paragraph spave after it? #}
+      {# TODO: Ask Josh - what is the simplest, best way to add an element like this navbar, with a paragraph spave after it? #}
       <p>
-      <a href="/">Home</a>
-      <br>
       <em>
         {% timezone "US/Eastern" %}
           {# Show date last updated, if different from date created #}
@@ -148,6 +146,10 @@
             | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
           {% endif %}
       </em>
+      <br>
+      <a href="/">Home</a>
+      {# | <a href="{% url 'recipes:recipe_index' %}">All Recipes</a> #}
+      {# | <a href="{% url 'recipes:tag_index' %}">All Tags</a> #}
       </p>
     {% endtimezone %}
     </div>
