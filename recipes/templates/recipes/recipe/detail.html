@@ -140,7 +140,7 @@
         {% timezone "US/Eastern" %}
           {# Show date last updated, if different from date created #}
           {% if recipe.created_at|date == recipe.updated_at|date %}
-            Published by {{ author_label }} {{ recipe.created_at.date }} {{ recipe.updated_at|time:"P" }}
+            Published by {{ author_label }} {{ recipe.created_at.date }}
           {% else %}
             Published by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
             | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}

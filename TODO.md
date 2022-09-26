@@ -7,10 +7,7 @@
 - Recipes with no title do not render, because partials/recipe_image.html expects an image
 
 # Styling
-- Consider adding default font
 - Style prep time
-- Define common colors in base/style.css (background, plate, lines)
-- Set max width for whole page
 ## Recipe detail page
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
 - Recipe detail page: set formatting of title image flexbox when there is no intro, but there is a prep time.
@@ -21,14 +18,12 @@
 # Features
 
 ## Data entry
+- Admin: entry field for ingredient name should accept typing with autosuggestions (instead of dropdown)
 - Create user friendly form to enter new recipes
 
 ## Home page
 - Add filtering by tag, ingredients
 - Add search function
-- Add weight-volume conversion
-- Add tool to halve/double recipes
-- Add date last updated to homepage?
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
@@ -37,16 +32,15 @@
 - Add hit counter to recipes index, display hits after recipe name (maybe)
 - Use slugs for tag urls. consider for recipes, too.
 
-## Recipe detail page/Recipe modelling
+## Recipe detail page/Recipe modeling
+- Rename "instructions" to "directions"
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
-- Rename "instructions" to "directions"
 - Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
-- Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast."
-- Make directions optional.
+- Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast." (Or, just use "Tags", and sort by Tag categories on homepage?)
+- Make directions optional (once data entry form has a field showing example entry text)
 
 ### Images
-- Make title images render in a nice way
 - In data entry form, include an "Add image tool" item
 - "Add image" creates a file in a storage location, resizes it
 (Before data entry form is live)
@@ -82,6 +76,8 @@ Third pass
 - Buttons to mark as "have made it", "want to make" (like youtube's "already watched", "want to watch"). And, if "have made it", "liked it" and "didn't like it."
 - Donations button
 - Comments
+- Weight-volume conversion
+- Tool to halve/double recipes
 
 # Optimizations
 - Set up asgi
@@ -112,3 +108,7 @@ Third pass
 - [done] Recipe detail page: create borders on ingredients/direction flex box object, not separators? See how this looks with tags
 - [done] Recipe detail page: show author in date published, modified.
 - [done] Add link to homepage on other pages (can put in footer, above date updated)
+- [done] Add date last updated to homepage
+- [done] Make title images render in a nice way
+- [done] Add default font
+- [done] Define common colors in base/style.css (background, plate, lines)
