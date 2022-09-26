@@ -5,18 +5,30 @@
 
 <body>
 
-<div class="index-header">
-  Tags
-</div>
+  <div class="index-grid">
+    <div class="index-grid__body">
+      <div class="index-header">
+        Tags
+      </div>
 
-{% if latest_tag_list %}
-  <ul class="index-list">
-    {% for tag in latest_tag_list %}
-      <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No tags are available.</p>
-{% endif %}
+      {% if latest_tag_list %}
+        <ul class="index-list">
+          {% for tag in latest_tag_list %}
+            <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No tags are available.</p>
+      {% endif %}
+    </div>
+
+    <div class="index-grid__footer">
+      <p>
+      <a href="/">Home</a>
+      {# | <a href="{% url 'recipes:recipe_index' %}">All Recipes</a> #}
+      {# | <a href="{% url 'recipes:tag_index' %}">All Tags</a> #}
+      </p>
+    </div>
+  </div>
 
 </body>

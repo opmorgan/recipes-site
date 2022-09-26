@@ -81,3 +81,35 @@ h2 {
   margin: 0 0 .382rem;
   padding: 0;
 }
+
+.index-grid {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.index-grid__body {
+  margin: 0;
+  padding: 0;
+}
+
+.index-grid__footer {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.index-grid__footer p{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.index-grid__footer br{
+  margin: .618rem;
+  padding: 0;
+}
