@@ -29,7 +29,6 @@
 - Add weight-volume conversion
 - Add tool to halve/double recipes
 - Add date last updated to homepage?
-- ***Add link to homepage on other pages (can put in footer, above date updated)***
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
@@ -112,3 +111,4 @@ Third pass
 - [done] Recipe detail page: Fix defaults for flex box ratio (ingredients/directions)
 - [done] Recipe detail page: create borders on ingredients/direction flex box object, not separators? See how this looks with tags
 - [done] Recipe detail page: show author in date published, modified.
+- [done] Add link to homepage on other pages (can put in footer, above date updated)

@@ -60,8 +60,8 @@
       {% if has_ingredients or has_directions %}
 
         <div class="ingredients-directions-container">
-          {% if has_ingredients %} {# Test if there are any ingredients #}
-            <div class="ingredients ingredients"> {# IS THIS RIGHT? #}
+          {% if has_ingredients %}
+            <div class="ingredients">
               <h3 class="ingredients-directions-header"> Ingredients </h3>
               <p class = "servings">
               <i>Serves {{  recipe.servings|fractional }}</i>
@@ -121,7 +121,6 @@
           {% endif %}
         </div>
 
-        {# <hr class = "separator separator-bottom"/> #}
       {% endif %}
 
       {% if has_tags %}
@@ -134,12 +133,13 @@
       {% endif %}
     </div>
 
-
-
     <div class="recipe-grid__footer">
-      {% timezone "US/Eastern" %}
-        <p>
-        <em>
+      {# TODO: Ask Josh - what is the simplest, ebst way to add an element like this navbar, with a paragraph spave after it? #}
+      <p>
+      <a href="/">Home</a>
+      <br>
+      <em>
+        {% timezone "US/Eastern" %}
           {# Show date last updated, if different from date created #}
           {% if recipe.created_at|date == recipe.updated_at|date %}
             Published by {{ author_label }} {{ recipe.created_at.date }} {{ recipe.updated_at|time:"P" }}
@@ -147,9 +147,9 @@
             Published by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
             | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
           {% endif %}
-        </em>
-        </p>
-      {% endtimezone %}
+      </em>
+      </p>
+    {% endtimezone %}
     </div>
 
   </div>

@@ -197,3 +197,8 @@
   margin: 0;
   padding: 0;
 }
+
+.recipe-grid__footer br{
+  margin: .618rem;
+  padding: 0;
+}
