@@ -5,6 +5,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+<body>
 
 <div class="index-header">
 {{ tag.name|capfirst }} recipes
@@ -15,3 +16,5 @@
     <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
   {% endfor %}
 </ul>
+
+</body>
