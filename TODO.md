@@ -3,9 +3,6 @@
 - write yaml commands
 - nginx: set up reverse proxy that will transfer requests from public url to local port
 
-# Bugs
-- Recipes with no title do not render, because partials/recipe_image.html expects an image
-
 # Styling
 - Style prep time
 ## Recipe detail page
@@ -18,7 +15,7 @@
 # Features
 
 ## Data entry
-- Admin: entry field for ingredient name should accept typing with autosuggestions (instead of dropdown)
+- [!!!] Admin: entry field for ingredient name should accept typing with autosuggestions (instead of dropdown)
 - Create user friendly form to enter new recipes
 
 ## Home page
@@ -112,3 +109,4 @@ Third pass
 - [done] Make title images render in a nice way
 - [done] Add default font
 - [done] Define common colors in base/style.css (background, plate, lines)
+- [done] Recipes with no title do not render, because partials/recipe_image.html expects an image
