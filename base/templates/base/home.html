@@ -27,7 +27,7 @@
 
   <div class="index-header">
     <div class="header-link">
-      <a href="{% url 'recipes:tag_index' %}">Tags</a>
+      <a href="{% url 'recipes:tag_index' %}">Categories</a>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
       {% endfor %}
     </ul>
   {% else %}
-    <p>No tags are available.</p>
+    <p>No category tags are available.</p>
   {% endif %}
 
 </body>
