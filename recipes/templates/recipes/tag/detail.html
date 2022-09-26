@@ -22,9 +22,7 @@
 
     <div class="index-grid__footer">
       <p>
-      <a href="/">Home</a>
-      {# | <a href="{% url 'recipes:recipe_index' %}">All Recipes</a> #}
-      {# | <a href="{% url 'recipes:tag_index' %}">All Tags</a> #}
+      {% include "../partials/navbar_footer.html" %}
       </p>
     </div>
   </div>

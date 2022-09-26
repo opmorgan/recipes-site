@@ -147,11 +147,9 @@
           {% endif %}
       </em>
       <br>
-      <a href="/">Home</a>
-      {# | <a href="{% url 'recipes:recipe_index' %}">All Recipes</a> #}
-      {# | <a href="{% url 'recipes:tag_index' %}">All Tags</a> #}
-      </p>
+      {% include "../partials/navbar_footer.html" %}
     {% endtimezone %}
+      </p>
     </div>
 
   </div>
