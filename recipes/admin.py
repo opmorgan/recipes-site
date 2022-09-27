@@ -8,6 +8,7 @@ class RecipeIngredient_inline(admin.TabularInline):
     """ Create tabular form to manage recipe ingredient entry """
     model = RecipeIngredient
     extra = 3
+    insert_after = "instructions"
 
 class RecipeServingUnit_inline(admin.TabularInline):
     """ Create tabular form to manage recipe ingredient entry """
@@ -22,7 +23,8 @@ class RecipeAdmin(admin.ModelAdmin):
     readonly_fields = ("created_at","updated_at")
 
     fields = ("title", "description", "prep_time", "cook_time", "servings",
-            "introduction", "variations", "title_image")
+            "introduction", "variations", "title_image", "instructions",
+            "tags", "created_at", "updated_at", "author")
 
     ## Point to template to control order of fields, including inlines
     change_form_template = 'admin/custom/change_form.html'
