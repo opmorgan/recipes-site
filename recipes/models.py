@@ -33,6 +33,17 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+class ServingUnit(models.Model):
+    """
+    E.g., "cookie" or "stock" (makes 5 cups stock)
+    Each serving unit can map to many recipes.
+    Each recipe can map to many serving units.
+    """
+    ## Each ingredient must have a unique name
+    name = models.CharField(max_length=400, default="", unique=True)
+    def __str__(self):
+        return self.name
+
 
 class Recipe(models.Model):
     title = models.CharField(max_length=400, default="")
@@ -42,6 +53,7 @@ class Recipe(models.Model):
     prep_time = models.CharField('Prep time', max_length=3000, default=None, blank=True, null=True)
     cook_time = models.CharField('Cook time', max_length=3000, default=None, blank=True, null=True)
     servings = models.FloatField('Servings', max_length=3000, default=None, blank=True, null=True)
+    makes = models.ManyToManyField(ServingUnit, through='RecipeServingUnit')
     introduction = models.CharField("Introduction", max_length = 20000, default=None, blank=True, null=True)
     variations = models.CharField('Variations', max_length = 20000, default=None, blank=True, null=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -76,5 +88,13 @@ class RecipeIngredient(models.Model):
     amount = models.FloatField(default=None, null=True, blank=True)
     unit = models.CharField(max_length = 50, null=True, blank=True)
     description = models.CharField(max_length = 400, default=None, null=True, blank=True) # e.g., "freshly squeezed"
+
+class RecipeServingUnit(models.Model):
+    """ A serving unit, with an amount, used in one recipe """
+    recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    servingunit_id = models.ForeignKey(ServingUnit, on_delete=models.CASCADE)
+    amount = models.FloatField(default=None, null=True, blank=True)
+    unit = models.CharField(max_length = 50, null=True, blank=True)
+
 
 

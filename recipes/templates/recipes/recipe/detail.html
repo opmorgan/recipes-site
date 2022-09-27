@@ -68,6 +68,44 @@
                 <i>Serves {{  recipe.servings|fractional }}</i>
                 </p>
               {% endif %}
+              {% if has_makes %}
+                <p class = "makes">
+                {% if recipe.recipeservingunit_set.all is not None %}
+                  {% for rsu in recipe.recipeservingunit_set.all %}
+                    <i>Makes
+                      {# TODO: make this a partial #}
+                      {# #### Format serving units strings #### #}
+                      {# (1) Format numbers #}
+                      {# ##      if greater than one, round to one decimal. #}
+                      {# ##      if whole number, remove trailing zeroes #}
+                      {# ##      if less than 1, display as fraction #}
+                      {% if rsu.amount is not None %}
+                        {{ rsu.amount|fractional|default_if_none:"" }}
+                        {# (2) Pluralize units, if they exist #}
+                        {# ##  Manually specify any units that should be pluralized #}
+                        {# ##      if "cup", pluralize depending on "amount" #}
+                        {% if rsu.unit == "cup" %}
+                          cup{{ rsu.amount|pluralize:'s' }}
+                        {% else %}
+                          {{ rsu.unit|default_if_none:"" }}
+                        {% endif %}
+                        {# If there is a unit, add "of" #}
+                        {% if rsu.unit is not None %}
+                          of
+                        {% endif %}
+                      {% endif %}
+                      {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
+                      {# (3a) If there is no unit, don't pluralize ingredient name. #}
+                      {% if rsu.unit is None %}
+                        {{ rsu.servingunit_id }}{{ rsu.amount|pluralize }}
+                      {% else %}
+                        {{ rsu.servingunit_id }}
+                      {% endif %}
+                    </i>
+                  {% endfor %}
+                {% endif %}
+                </p>
+              {% endif %}
               <ul class="ingredients-list">
                 {% if recipe.recipeingredient_set.all is not None %}
                   {% for ri in recipe.recipeingredient_set.all %}
