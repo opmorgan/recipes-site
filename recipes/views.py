@@ -43,6 +43,7 @@ class RecipeDetailView(generic.DetailView):
         has_title_image = self.object.title_image is not None
         has_intro = self.object.introduction is not None or self.object.variations is not None
         has_prep = self.object.prep_time is not None or self.object.cook_time is not None
+        has_servings = self.object.servings is not None
         has_ingredients = self.object.ingredients.exists()
         has_directions = self.object.instructions is not None
         has_tags = self.object.tags is not None
@@ -53,6 +54,7 @@ class RecipeDetailView(generic.DetailView):
 
         context["has_prep"] = has_prep
         context["has_intro"] = has_intro
+        context["has_servings"] = has_servings
         context["has_ingredients"] = has_ingredients
         context["has_directions"] = has_directions
         context["has_tags"] = has_directions

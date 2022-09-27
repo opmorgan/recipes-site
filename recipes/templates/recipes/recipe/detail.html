@@ -63,9 +63,11 @@
           {% if has_ingredients %}
             <div class="ingredients">
               <h3 class="ingredients-directions-header"> Ingredients </h3>
-              <p class = "servings">
-              <i>Serves {{  recipe.servings|fractional }}</i>
-              </p>
+              {% if has_servings %}
+                <p class = "servings">
+                <i>Serves {{  recipe.servings|fractional }}</i>
+                </p>
+              {% endif %}
               <ul class="ingredients-list">
                 {% if recipe.recipeingredient_set.all is not None %}
                   {% for ri in recipe.recipeingredient_set.all %}
