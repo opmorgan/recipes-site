@@ -11,8 +11,10 @@ class TagField(models.CharField):
     def __init__(self, *args, **kwargs):
         super(TagField, self).__init__(*args, **kwargs)
 
-    def to_python(self, value):
-        return str(value).lower()
+    # def to_python(self, value):
+    #     return str(value).lower()
+    def __str__(self):
+        return self.name
 
 
 class Tag(models.Model):
