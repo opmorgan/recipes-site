@@ -44,7 +44,7 @@
 
       {% if latest_tags_list %}
         <ul class="index-list">
-          {% for tag in latest_tags_list|dictsort:"name" %}
+          {% for tag in latest_tags_list %}
             <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
           {% endfor %}
           {% if n_all_tags > n_recent_tags %}
