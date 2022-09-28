@@ -24,9 +24,7 @@
           {% endfor %}
           {% if latest_recipe_list.count >= n_recent_recipes %}
             <li>
-              <em>
-                <a href="{% url 'recipes:recipe_index' %}">... see all</a>
-              </em>
+              <a href="{% url 'recipes:recipe_index' %}"><em>—See all Recipes—</em></a>
             </li>
           {% endif %}
         </ul>
@@ -47,9 +45,8 @@
           {% endfor %}
           {% if latest_tag_list.count >= n_recent_tags %}
             <li>
-              {# TODO: only show this if there are more than n recipes #}
               <em>
-                <a href="{% url 'recipes:tag_index' %}">... see all</a>
+                <a href="{% url 'recipes:tag_index' %}"><em>—See all Categories—</em></a>
               </em>
             </li>
           {% endif %}
