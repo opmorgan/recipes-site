@@ -8,13 +8,13 @@
     <div class="index-grid__body">
       <div class="index-header">
         <div class="header-link">
-          <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
+          <a href="{% url 'recipes:recipe_index' %}">New Recipes</a>
         </div>
       </div>
 
       {% if latest_recipe_list %}
         <ul class="index-list">
-          {% for recipe in latest_recipe_list|dictsort:"title" %}
+          {% for recipe in latest_recipe_list %}
             <li>
               <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
               {% if recipe.description %}
@@ -22,6 +22,13 @@
               {% endif %}
             </li>
           {% endfor %}
+          {% if latest_recipe_list.count >= n_recent_recipes %}
+            <li>
+              <em>
+                <a href="{% url 'recipes:recipe_index' %}">... see all</a>
+              </em>
+            </li>
+          {% endif %}
         </ul>
       {% else %}
         <p>No recipes are available.</p>
@@ -29,7 +36,7 @@
 
       <div class="index-header">
         <div class="header-link">
-          <a href="{% url 'recipes:tag_index' %}">Categories</a>
+          <a href="{% url 'recipes:tag_index' %}">New Categories</a>
         </div>
       </div>
 
@@ -38,6 +45,14 @@
           {% for tag in latest_tag_list|dictsort:"name" %}
             <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
           {% endfor %}
+          {% if latest_tag_list.count >= n_recent_tags %}
+            <li>
+              {# TODO: only show this if there are more than n recipes #}
+              <em>
+                <a href="{% url 'recipes:tag_index' %}">... see all</a>
+              </em>
+            </li>
+          {% endif %}
         </ul>
       {% else %}
         <p>No category tags are available.</p>
@@ -48,7 +63,7 @@
       <p>
       <em>
         {% for recipe in latest_recipe %}
-        Updated {{ recipe.updated_at|date:"F j, o" }}
+          Updated {{ recipe.updated_at|date:"F j, o" }}
         {% endfor %}
 
       </em>
