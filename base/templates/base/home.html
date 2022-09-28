@@ -49,9 +49,11 @@
           {% endfor %}
           {% if n_all_tags > n_recent_tags %}
             <li>
-              <a href="{% url 'recipes:tag_index' %}">
-                <em>—See all {{ n_all_tags }} categories—</em>
-              </a>
+              <div class="see-all-link">
+                <a href="{% url 'recipes:tag_index' %}">
+                  <em>—See all {{ n_all_tags }} categories—</em>
+                </a>
+              </div>
             </li>
           {% endif %}
         </ul>
