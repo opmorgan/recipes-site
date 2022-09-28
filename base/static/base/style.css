@@ -68,6 +68,9 @@ a:active {
   list-style: none;
   margin: 0 .2rem 1.618rem;
   padding: 0 0 0;
+  /* Hack to get second-line indent */
+  text-indent: -1.618rem;
+  margin-left: 1.618rem;
 }
 
 h1 {
