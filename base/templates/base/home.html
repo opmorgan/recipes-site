@@ -24,7 +24,9 @@
           {% endfor %}
           {% if n_all_recipes >= n_recent_recipes %}
             <li>
-              <a href="{% url 'recipes:recipe_index' %}"><em>—See all recipes—</em></a>
+              <a href="{% url 'recipes:recipe_index' %}">
+                <em>—See all {{ n_all_recipes }} recipes—</em>
+              </a>
             </li>
           {% endif %}
         </ul>
@@ -45,9 +47,9 @@
           {% endfor %}
           {% if n_all_tags > n_recent_tags %}
             <li>
-              <em>
-                <a href="{% url 'recipes:tag_index' %}"><em>—See all categories—</em></a>
-              </em>
+              <a href="{% url 'recipes:tag_index' %}">
+                <em>—See all {{ n_all_tags }} categories—</em>
+              </a>
             </li>
           {% endif %}
         </ul>
