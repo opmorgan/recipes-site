@@ -9,11 +9,11 @@
   <div class="index-grid">
     <div class="index-grid__body">
       <div class="index-header">
-        Recipes
+        All Recipes
       </div>
-      {% if latest_recipe_list %}
+      {% if all_recipes_list %}
         <ul class="index-list">
-          {% for recipe in latest_recipe_list|dictsort:"title" %}
+          {% for recipe in all_recipes_list|dictsort:"title" %}
             <li>
               <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
               {% if recipe.description %}

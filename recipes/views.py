@@ -10,27 +10,49 @@ from .models import Recipe, Ingredient, RecipeIngredient, Tag
 
 class RecipeIndexView(generic.ListView):
     template_name = 'recipes/recipe/index.html'
-    context_object_name = 'latest_recipe_list'
+    queryset = Recipe
 
-    def get_queryset(self):
-        """ Return ten most recent recipes """
-        return Recipe.objects.filter(
-                created_at__lte=timezone.now()).order_by('-created_at')[:10]
-        ## Tests: should return a list
-        ## should not return recipes from future
-        ## should return 10 most recent recipes
+    def get_context_data(self, **kwargs):
+        context = super(RecipeIndexView, self).get_context_data(**kwargs)
+
+        n_recent_recipes = 10
+        latest_recipes_list = Recipe.objects.filter(
+                created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_recipes]
+        latest_recipe =  Recipe.objects.filter(
+                created_at__lte=timezone.now()).order_by('-created_at')[:1]
+        all_recipes_list = Recipe.objects.all()
+
+        # TODO: add "updated" date, like homepage has
+        context["latest_recipes_list"] = latest_recipes_list
+        context["latest_recipe"] = latest_recipe
+        context["n_recent_recipes"] = n_recent_recipes
+        context["all_recipes_list"] = all_recipes_list
+
+        return context
+
+
 
 class TagIndexView(generic.ListView):
     template_name = 'recipes/tag/index.html'
-    context_object_name = 'latest_tag_list'
+    queryset = Recipe, Tag
 
-    def get_queryset(self):
-        """ Return ten most recent tags """
-        return Tag.objects.filter(
-                created_at__lte=timezone.now()).order_by('-created_at')[:10]
-        ## Tests: should return a list
-        ## should not return tags from future
-        ## should return 10 most recent tags
+    def get_context_data(self, **kwargs):
+        context = super(TagIndexView, self).get_context_data(**kwargs)
+
+        n_recent_tags = 10
+        latest_tags_list = Tag.objects.filter(
+                created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_tags]
+        latest_tag =  Tag.objects.filter(
+                created_at__lte=timezone.now()).order_by('-created_at')[:1]
+        all_tags_list = Tag.objects.all()
+
+        # TODO: add "updated" date, like homepage has
+        context["latest_tags_list"] = latest_tags_list
+        context["latest_tag"] = latest_tag
+        context["n_recent_tags"] = n_recent_tags
+        context["all_tags_list"] = all_tags_list
+
+        return context
 
 class RecipeDetailView(generic.DetailView):
     template_name = 'recipes/recipe/detail.html'

@@ -15,15 +15,15 @@ class HomeView(generic.ListView):
 
         n_recent_recipes = 10
         n_recent_tags = 10
-        latest_recipe_list = Recipe.objects.filter(
+        latest_recipes_list = Recipe.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_recipes]
-        latest_tag_list = Tag.objects.filter(
+        latest_tags_list = Tag.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_tags]
         latest_recipe =  Recipe.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:1]
 
-        context["latest_recipe_list"] = latest_recipe_list
-        context["latest_tag_list"] = latest_tag_list
+        context["latest_recipes_list"] = latest_recipes_list
+        context["latest_tags_list"] = latest_tags_list
         context["latest_recipe"] = latest_recipe
         context["n_recent_recipes"] = n_recent_recipes
         context["n_recent_tags"] = n_recent_tags

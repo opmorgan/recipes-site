@@ -12,9 +12,9 @@
         </div>
       </div>
 
-      {% if latest_recipe_list %}
+      {% if latest_recipes_list %}
         <ul class="index-list">
-          {% for recipe in latest_recipe_list %}
+          {% for recipe in latest_recipes_list %}
             <li>
               <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
               {% if recipe.description %}
@@ -22,9 +22,9 @@
               {% endif %}
             </li>
           {% endfor %}
-          {% if latest_recipe_list.count >= n_recent_recipes %}
+          {% if latest_recipes_list.count >= n_recent_recipes %}
             <li>
-              <a href="{% url 'recipes:recipe_index' %}"><em>—See all Recipes—</em></a>
+              <a href="{% url 'recipes:recipe_index' %}"><em>—See all recipes—</em></a>
             </li>
           {% endif %}
         </ul>
@@ -38,15 +38,15 @@
         </div>
       </div>
 
-      {% if latest_tag_list %}
+      {% if latest_tags_list %}
         <ul class="index-list">
-          {% for tag in latest_tag_list|dictsort:"name" %}
+          {% for tag in latest_tags_list|dictsort:"name" %}
             <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
           {% endfor %}
-          {% if latest_tag_list.count >= n_recent_tags %}
+          {% if latest_tags_list.count >= n_recent_tags %}
             <li>
               <em>
-                <a href="{% url 'recipes:tag_index' %}"><em>—See all Categories—</em></a>
+                <a href="{% url 'recipes:tag_index' %}"><em>—See all categories—</em></a>
               </em>
             </li>
           {% endif %}
