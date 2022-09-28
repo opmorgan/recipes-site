@@ -22,7 +22,7 @@
               {% endif %}
             </li>
           {% endfor %}
-          {% if latest_recipes_list.count >= n_recent_recipes %}
+          {% if latest_recipes_list.count > n_recent_recipes %}
             <li>
               <a href="{% url 'recipes:recipe_index' %}"><em>—See all recipes—</em></a>
             </li>
@@ -43,7 +43,7 @@
           {% for tag in latest_tags_list|dictsort:"name" %}
             <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
           {% endfor %}
-          {% if latest_tags_list.count >= n_recent_tags %}
+          {% if latest_tags_list.count > n_recent_tags %}
             <li>
               <em>
                 <a href="{% url 'recipes:tag_index' %}"><em>—See all categories—</em></a>
