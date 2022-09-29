@@ -79,7 +79,7 @@
                   {% for rsu in recipe.recipeservingunit_set.all %}
                     <i>Makes
                       {% with item=rsu item_type="serving_unit" %}
-                        {% include "../partials/ingredient_with_amount.html" %}
+                        {% include "../partials/item_with_amount.html" %}
                       {% endwith %}
                     </i>
                   {% endfor %}
@@ -91,7 +91,7 @@
                   {% for ri in recipe.recipeingredient_set.all %}
                     <li>
                       {% with item=ri item_type="recipe_ingredient" %}
-                        {% include "../partials/ingredient_with_amount.html" %}
+                        {% include "../partials/item_with_amount.html" %}
                       {% endwith %}
                     </li>
                   {% endfor %}
