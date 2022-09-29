@@ -41,7 +41,7 @@
         </div>
 
         {# This (?) exists outside the title image grid IFF a recipe intro is present. #}
-        {% if  has_intro %}
+        {% if  has_intro or has_description %}
           {% include "../partials/recipe_image.html" with has_intro=True %}
         {% endif %}
 
@@ -124,7 +124,7 @@
     </div>
 
     <div class="recipe-grid__footer">
-      {# TODO: Ask Josh - what is the simplest, best way to add an element like this navbar, with a paragraph spave after it? #}
+      {# TODO: Ask Josh - what is the simplest, best way to add an element like this navbar, with a paragraph space after it? #}
       <p>
       <em>
         {% timezone "US/Eastern" %}
