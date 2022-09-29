@@ -8,12 +8,18 @@
   {# ##      if less than 1, display as fraction #}
   {% if item.amount is not None %}
     {{ item.amount|fractional|default_if_none:"" }}
-    {# (n) Enforce capitalization, e.g., for "Tbsp" #TODO: do this in views #}
-    {# (2) Pluralize units, if they exist #}
+    {# (2a) Pluralize units, if they exist #}
     {# ##  Manually specify any units that should be pluralized #}
     {# ##      if "cup", pluralize depending on "amount" #}
+    {# (2b) Enforce capitalization, e.g., for "Tbsp" #}
     {% if item.unit == "cup" %}
       cup{{ item.amount|pluralize:'s' }}
+    {% elif item.unit == "leaf" %}
+      lea{{ item.amount|pluralize:'f,ves' }}
+    {% elif item.unit == "pinch" %}
+      pinch{{ item.amount|pluralize:'es' }}
+    {% elif item.unit == "tbsp" %}
+      Tbsp
     {% else %}
       {{ item.unit|default_if_none:"" }}
     {% endif %}
