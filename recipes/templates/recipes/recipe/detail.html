@@ -19,17 +19,18 @@
 
           {# is there is no intro, put title image in grid with just tite #}
           {#TODO: handle every combination of intro & prep. #}
-          {% if not has_intro and not has_description %}
+          {% if not has_intro %}
             {% with has_intro=False has_prep=recipe.has_prep %}
               {% include "../partials/recipe_image.html" %}
             {% endwith %}
           {% endif %}
 
-          {% if has_intro or has_description %}
+          {#TODO: Make flexbox for description, intro, variations #}
+          {% if has_intro %}
             <div class="introduction-variations">
-              {% if has_description %}
-                <strong><em>{{ recipe.description }}</em></strong>
-              {% endif %}
+              {# {% if has_description %} #}
+              {#   {{ recipe.description }}. #}
+              {# {% endif %} #}
               {% if recipe.introduction is not None %}
                 <p> {{ recipe.introduction }} </p>
               {% endif %}
@@ -41,7 +42,7 @@
         </div>
 
         {# This (?) exists outside the title image grid IFF a recipe intro is present. #}
-        {% if  has_intro or has_description %}
+        {% if  has_intro %}
           {% include "../partials/recipe_image.html" with has_intro=True %}
         {% endif %}
 
