@@ -9,6 +9,12 @@ class RecipeIngredient_inline(admin.TabularInline):
     model = RecipeIngredient
     extra = 3
     insert_after = "instructions"
+    autocomplete_fields = ['ingredient_id']
+
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    ordering = ['name']
 
 class RecipeServingUnit_inline(admin.TabularInline):
     """ Create tabular form to manage recipe ingredient entry """
@@ -17,6 +23,12 @@ class RecipeServingUnit_inline(admin.TabularInline):
     extra = 1
     max_num = 1
     insert_after = "servings"
+    autocomplete_fields = ['servingunit_id']
+
+@admin.register(ServingUnit)
+class ServingUnitAdmin(admin.ModelAdmin):
+    search_fields = ['name']
+    ordering = ['name']
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = (RecipeIngredient_inline, RecipeServingUnit_inline)
@@ -61,7 +73,5 @@ class RecipeAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(Ingredient)
 admin.site.register(RecipeIngredient)
-admin.site.register(ServingUnit)
 admin.site.register(Tag)
