@@ -19,7 +19,7 @@
 
           {# is there is no intro, put title image in grid with just tite #}
           {#TODO: handle every combination of intro & prep. #}
-          {% if not has_intro %}
+          {% if not has_intro and not has_description %}
             {% with has_intro=False has_prep=recipe.has_prep %}
               {% include "../partials/recipe_image.html" %}
             {% endwith %}
