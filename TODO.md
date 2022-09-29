@@ -14,12 +14,10 @@
 - Make date published/updated a flex box, so that "Published..." stays on one line and "Updated..." stays on another by default. Same with prep time/cook time.
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
 - Recipe detail page: put "servings" to the right of the ingredients box, flush right in vertical line with the headers.
-- Recipe detail page: render "tbsp" as "Tbsp"
 
 # Features
 
 ## Data entry
-- [!!!] Admin: entry field for ingredient name should accept typing with autosuggestions (instead of dropdown)
 - Create user friendly form to enter new recipes
 
 ## Home page
@@ -114,3 +112,6 @@ Third pass
 - [done] Add default font
 - [done] Define common colors in base/style.css (background, plate, lines)
 - [done] Recipes with no title do not render, because partials/recipe_image.html expects an image
+- [done] Admin: entry field for ingredient name should accept typing with autosuggestions (instead of dropdown)
+- [done] Recipe detail page: render "tbsp" as "Tbsp"
+- [done] Pluralizations (leaf, pinch)

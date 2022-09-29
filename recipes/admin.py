@@ -6,6 +6,7 @@ from .models import Recipe, RecipeIngredient, Ingredient, Tag, ServingUnit, Reci
 
 class RecipeIngredient_inline(admin.TabularInline):
     """ Create tabular form to manage recipe ingredient entry """
+    verbose_name_plural = "Ingredients"
     model = RecipeIngredient
     extra = 3
     insert_after = "instructions"
@@ -27,6 +28,7 @@ class RecipeServingUnit_inline(admin.TabularInline):
 
 @admin.register(ServingUnit)
 class ServingUnitAdmin(admin.ModelAdmin):
+    verbose_name = "test"
     search_fields = ['name']
     ordering = ['name']
 
