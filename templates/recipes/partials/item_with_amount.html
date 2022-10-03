@@ -11,17 +11,17 @@
     {# (2a) Pluralize units, if they exist #}
     {# ##  Manually specify any units that should be pluralized #}
     {# ##      if "cup", pluralize depending on "amount" #}
-    {# (2b) Enforce capitalization, e.g., for "Tbsp" #}
     {% if item.unit == "cup" %}
       cup{{ item.amount|pluralize:'s' }}
-    {% if item.unit == "clove" %}
+    {% elif item.unit == "clove" %}
       clove{{ item.amount|pluralize:'s' }}
-    {% if item.unit == "drop" %}
+    {% elif item.unit == "drop" %}
       drop{{ item.amount|pluralize:'s' }}
     {% elif item.unit == "leaf" %}
       lea{{ item.amount|pluralize:'f,ves' }}
     {% elif item.unit == "pinch" %}
       pinch{{ item.amount|pluralize:'es' }}
+    {# (2b) Enforce capitalization, e.g., for "Tbsp" #}
     {% elif item.unit == "tbsp" %}
       Tbsp
     {% else %}
