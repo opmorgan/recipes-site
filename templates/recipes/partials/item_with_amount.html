@@ -14,6 +14,10 @@
     {# (2b) Enforce capitalization, e.g., for "Tbsp" #}
     {% if item.unit == "cup" %}
       cup{{ item.amount|pluralize:'s' }}
+    {% if item.unit == "clove" %}
+      clove{{ item.amount|pluralize:'s' }}
+    {% if item.unit == "drop" %}
+      drop{{ item.amount|pluralize:'s' }}
     {% elif item.unit == "leaf" %}
       lea{{ item.amount|pluralize:'f,ves' }}
     {% elif item.unit == "pinch" %}
