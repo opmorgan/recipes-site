@@ -81,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'base.context_processors.site_title',
             ],
         },
     },
@@ -148,6 +149,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = ['https://*.honeybit.xyz','https://*.honeybit.cooking', 'https://*.127.0.0.1']
-
-
 

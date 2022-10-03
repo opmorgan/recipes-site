@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="{% static 'base/style.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
 
+
+<title>{{ recipe.title|capfirst|truncatechars:40 }} | {{ SITE_TITLE_SHORT }}</title>
+
 <body>
 
   <div class="recipe-grid">
