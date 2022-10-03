@@ -20,10 +20,12 @@ from django.conf import settings
 
 from . import views
 
+
 urlpatterns = [
         path('', views.HomeView.as_view(), name = 'home'),
         path('admin/', admin.site.urls),
         path('recipes/', include('recipes.urls')),
+        path("favicon.ico", views.favicon),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

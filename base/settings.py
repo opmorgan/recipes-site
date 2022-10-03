@@ -73,7 +73,7 @@ ROOT_URLCONF = 'base.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['base/templates'], # Why isn't this auto in "APP_DIRS?"
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # To use base level "templates" folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),] # To use base level "static" directory
 MEDIA_URL = '/assets/'
 MEDIA_ROOT = BASE_DIR/'assets'
 

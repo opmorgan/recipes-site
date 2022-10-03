@@ -1,10 +1,22 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+# from django.shortcuts import render
 from django.views import generic
 from django.utils import timezone
+from django.conf import settings
+from django.http import FileResponse, HttpRequest, HttpResponse
+from django.views.decorators.cache import cache_control
+from django.views.decorators.http import require_GET
+
 
 from recipes.models import Recipe, Tag
 
+## Set up favicon
+## https://adamj.eu/tech/2022/01/18/how-to-add-a-favicon-to-your-django-site/
+## https://perma.cc/338Z-Z84G
+@require_GET
+@cache_control(max_age=60 * 60 * 24, immutable=True, public=True)  # one day
+def favicon(request: HttpRequest) -> HttpResponse:
+    file = (settings.BASE_DIR / "static" / "favicon.ico").open("rb")
+    return FileResponse(file)
 
 class HomeView(generic.ListView):
     template_name = 'base/home.html'
