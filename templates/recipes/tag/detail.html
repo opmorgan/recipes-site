@@ -17,10 +17,12 @@
 
       <ul class="index-list">
         {% for recipe in recipes|dictsort:"title" %}
+        <li>
           <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
           {% if recipe.description %}
             <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
           {% endif %}
+        </li>
         {% endfor %}
       </ul>
     </div>
