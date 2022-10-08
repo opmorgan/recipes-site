@@ -9,7 +9,7 @@ class RecipeIngredient_inline(admin.TabularInline):
     verbose_name_plural = "Ingredients"
     model = RecipeIngredient
     extra = 3
-    insert_after = "instructions"
+    insert_after = "directions"
     autocomplete_fields = ['ingredient_id']
 
 @admin.register(Ingredient)
@@ -37,7 +37,7 @@ class RecipeAdmin(admin.ModelAdmin):
     readonly_fields = ("created_at","updated_at")
 
     fields = ("title", "description", "prep_time", "cook_time", "servings",
-            "introduction", "variations", "title_image", "instructions",
+            "introduction", "variations", "title_image", "directions",
             "tags", "created_at", "updated_at", "author")
 
     ## Point to template to control order of fields, including inlines
