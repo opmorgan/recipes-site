@@ -6,7 +6,6 @@
 # Styling
 - Style prep time
 ## Index pages
-- [!!!] Index pages (tag index, tag detail): show recipe description
 ## Recipe detail page
 - Recipe detail page: show description (if no intro is present?)
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
@@ -66,6 +65,7 @@ Third pass
 - Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
 
 ## Global
+- [!!!] Make mobile friendly with meta tags (https://www.youtube.com/watch?v=o3Gfsc6kihk)
 - Use current time zone to display published times
 - Dark mode
 - Accessibility mode (large font, simple layout)
@@ -116,3 +116,4 @@ Third pass
 - [done] Recipe detail page: render "tbsp" as "Tbsp"
 - [done] Pluralizations (leaf, pinch)
 - [done] Rename "instructions" to "directions"
+- [done] Index pages (tag index, tag detail): show recipe description
