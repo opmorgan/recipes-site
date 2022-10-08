@@ -60,7 +60,7 @@ class Recipe(models.Model):
     variations = models.CharField('Variations', max_length = 20000, default=None, blank=True, null=True)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title_image = models.ImageField(default=None, blank=True, null=True, upload_to="title_images")
-    instructions = models.TextField("Directions", max_length = 20000, default="1. Churn the butter.")
+    directions = models.TextField("Directions", max_length = 20000, default="1. Churn the butter.")
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
     tags = models.ManyToManyField(Tag, blank=True)
 

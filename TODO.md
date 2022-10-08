@@ -6,7 +6,7 @@
 # Styling
 - Style prep time
 ## Index pages
-- Index pages (recipe index, tag detail): show recipe description
+- [!!!] Index pages (tag index, tag detail): show recipe description
 ## Recipe detail page
 - Recipe detail page: show description (if no intro is present?)
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
@@ -32,12 +32,12 @@
 - Use slugs for tag urls. consider for recipes, too.
 
 ## Recipe detail page/Recipe modeling
-- Rename "instructions" to "directions"
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
-- Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
+- [!!!] Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
 - Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast." (Or, just use "Tags", and sort by Tag categories on homepage?)
 - Make directions optional (once data entry form has a field showing example entry text)
+- Change "prep time" and "cook time" to just "time"
 
 ### Images
 - In data entry form, include an "Add image tool" item
@@ -115,3 +115,4 @@ Third pass
 - [done] Admin: entry field for ingredient name should accept typing with autosuggestions (instead of dropdown)
 - [done] Recipe detail page: render "tbsp" as "Tbsp"
 - [done] Pluralizations (leaf, pinch)
+- [done] Rename "instructions" to "directions"

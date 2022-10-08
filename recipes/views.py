@@ -69,7 +69,7 @@ class RecipeDetailView(generic.DetailView):
         has_servings = self.object.servings is not None
         has_makes = self.object.makes.exists()
         has_ingredients = self.object.ingredients.exists()
-        has_directions = self.object.instructions is not None
+        has_directions = self.object.directions is not None
         has_tags = self.object.tags is not None
 
         if self.object.author.get_full_name():
