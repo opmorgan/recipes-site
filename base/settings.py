@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'recipes.apps.RecipesConfig',
-    'base', #TODO is this good practice?
+    'base',
     'recipes',
     'django_humanize',
     'nested_admin',
