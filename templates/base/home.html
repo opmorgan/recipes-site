@@ -19,10 +19,9 @@
         <ul class="index-list">
           {% for recipe in latest_recipes_list %}
             <li>
-              <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
-              {% if recipe.description %}
-                <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
-              {% endif %}
+              {# {% include "../partials/recipe_index_list_entry.html" %} #}
+
+              {% include "base/partials/recipe_index_list_entry.html" %}
             </li>
           {% endfor %}
           {% if n_all_recipes >= n_recent_recipes %}

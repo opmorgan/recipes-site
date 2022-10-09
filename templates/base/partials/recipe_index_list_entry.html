@@ -1,0 +1,16 @@
+{% if recipe.title %}
+  <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
+  {% if recipe.description %}
+    {# &nbsp;&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;|&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;§&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;∮&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;∙&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;∾&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;∼&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;∽&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    {# &nbsp;⋯&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
+    &nbsp;−&nbsp;<em>{{ recipe.description|capfirst }}</em>
+    {# <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em> #}
+  {% endif %}
+{% endif %}
