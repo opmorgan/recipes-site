@@ -2,6 +2,8 @@
 {% load humanizelib %}
 {% load tz %}
 
+{% load recipes_customtags %}
+
 <link rel="stylesheet" href="{% static 'base/style.css' %}">
 <link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
 
@@ -91,7 +93,9 @@
                 </p>
               {% endif %}
 
-              {% for section in recipe.sections.all %}
+              {# TODO: pass in sorted list of sections, defined in views. #}
+
+              {% for section in recipe.sections.all|sort_by:'order' %}
                 {% if has_multiple_sections %}
                   <h4 class="ingredients-section-header">{{ section.name }}</h4>
                   {{ section.ingredients_set.all }}

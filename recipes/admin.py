@@ -3,17 +3,7 @@ from django.contrib.auth import get_user_model
 
 import nested_admin
 
-from .models import Recipe, RecipeIngredient, Ingredient, Tag, ServingUnit, RecipeServingUnit, Section, SectionIngredient
-
-
-
-class RecipeIngredient_inline(nested_admin.NestedTabularInline):
-    """ Create tabular form to manage recipe ingredient entry """
-    verbose_name_plural = "Ingredients"
-    model = RecipeIngredient
-    extra = 3
-    insert_after = "author"
-    autocomplete_fields = ['ingredient_id']
+from .models import Recipe, Ingredient, Tag, ServingUnit, RecipeServingUnit, Section, SectionIngredient
 
 @admin.register(Ingredient)
 class IngredientAdmin(nested_admin.NestedModelAdmin):
@@ -56,7 +46,7 @@ class Section_inline(nested_admin.NestedTabularInline):
     insert_after = "directions"
 
 class RecipeAdmin(nested_admin.NestedModelAdmin):
-    inlines = (RecipeIngredient_inline, RecipeServingUnit_inline, Section_inline)
+    inlines = (RecipeServingUnit_inline, Section_inline)
     readonly_fields = ("created_at","updated_at")
 
     fields = ("title", "description", "prep_time", "cook_time", "servings",
@@ -98,7 +88,6 @@ class RecipeAdmin(nested_admin.NestedModelAdmin):
 
 
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(RecipeIngredient)
 admin.site.register(Tag)
 
 admin.site.register(Section)

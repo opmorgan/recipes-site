@@ -79,7 +79,6 @@ class RecipeDetailView(generic.DetailView):
         ## has_multiple sections: the recipe has more than one section
         has_multiple_sections = (self.object.sections.count() > 1)
 
-
         ## Author label is full name, if available, or else user id.
         # author_fullname = self.object.author.get_full_name()
         # author_label = author_fullname if author_fullname else self.object.author
