@@ -149,16 +149,29 @@
 
 .ingredients-list {
   list-style: none;
-  margin: 0rem .618rem 0;
+  margin: .382rem .618rem 0;
   padding: 0;
   /* Hack to get second-line indent */
   text-indent: -1.618rem;
   margin-left: 1.618rem;
 }
 
+.ingredients-list-multiple-sections {
+  padding-left: .618rem;
+  margin-top: 0rem;
+}
+
 .ingredients-directions-header {
   margin: 0;
   padding: 0;
+}
+
+.ingredients-section-header {
+  margin: 0;
+  padding-top: 1rem;
+  padding-bottom: .15rem;
+  /* font-style: italic; */
+  /* font-weight: normal; */
 }
 
 .directions p{

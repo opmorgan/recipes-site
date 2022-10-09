@@ -25,6 +25,7 @@ urlpatterns = [
         path('', views.HomeView.as_view(), name = 'home'),
         path('admin/', admin.site.urls),
         path('recipes/', include('recipes.urls')),
+        # url(r'^_nested_admin/', include('nested_admin.urls')),
         path("favicon.ico", views.favicon),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

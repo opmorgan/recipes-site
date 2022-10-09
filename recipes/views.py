@@ -4,7 +4,7 @@ from django.views import generic
 from django.utils import timezone
 from django import template
 
-from .models import Recipe, Ingredient, RecipeIngredient, Tag
+from .models import Recipe, Ingredient, RecipeIngredient, Tag, Section, SectionIngredient
 
 # register = template.Library()
 
@@ -61,7 +61,6 @@ class RecipeDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(RecipeDetailView, self).get_context_data(**kwargs)
 
-
         has_title_image = self.object.title_image is not None
         has_description = self.object.description is not None
         has_intro = self.object.introduction is not None or self.object.variations is not None
@@ -72,9 +71,19 @@ class RecipeDetailView(generic.DetailView):
         has_directions = self.object.directions is not None
         has_tags = self.object.tags is not None
 
-        if self.object.author.get_full_name():
-            author_label = self.object.author.get_full_name()
-        else: author_label = self.object.author
+        ## has_ingredients: there is at least one section with at least one ingredient.
+        ## section_ingredients returns an object with length = number of ingredients (in all sections?)
+        section_ingredients = Section.objects.filter(recipe_id=self.object, sectioningredient__isnull=False)
+        has_ingredients = section_ingredients.exists()
+
+        ## has_multiple sections: the recipe has more than one section
+        has_multiple_sections = (self.object.sections.count() > 1)
+
+
+        ## Author label is full name, if available, or else user id.
+        # author_fullname = self.object.author.get_full_name()
+        # author_label = author_fullname if author_fullname else self.object.author
+        author_label = self.object.author.get_full_name() or self.object.author
 
         context["has_prep"] = has_prep
         context["has_description"] = has_description
@@ -83,8 +92,15 @@ class RecipeDetailView(generic.DetailView):
         context["has_makes"] = has_makes
         context["has_ingredients"] = has_ingredients
         context["has_directions"] = has_directions
-        context["has_tags"] = has_directions
+        context["has_multiple_sections"] = has_multiple_sections
+        context["has_tags"] = has_tags
         context["author_label"] = author_label
+
+
+        ## For testing:
+        context["section_count"] = self.object.sections.count()
+        section_test = self.object.sections.all()
+        context["section_test"] = section_test
         return context
 
 class TagDetailView(generic.DetailView):

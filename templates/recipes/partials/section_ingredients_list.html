@@ -1,0 +1,12 @@
+<ul class="ingredients-list {% if has_multiple_sections %}ingredients-list-multiple-sections{% endif %}">
+
+  {% if section_ingredients.exists %}
+    {% for section_ingredient in section_ingredients %}
+      <li>
+        {% with item=section_ingredient item_type="section_ingredient" %}
+          {% include "../partials/item_with_amount.html" %}
+        {% endwith %}
+      </li>
+    {% endfor %}
+  {% endif %}
+</ul>

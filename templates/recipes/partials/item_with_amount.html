@@ -1,6 +1,7 @@
 {% load humanizelib %}
+
+{# If there is an amount, display it, with units if they are available. #}
 {% if item.amount %}
-  {# TODO: make this a partial #}
   {# #### Format serving units strings #### #}
   {# (1) Format numbers #}
   {# ##      if greater than one, round to one decimal. #}
@@ -21,7 +22,7 @@
       lea{{ item.amount|pluralize:'f,ves' }}
     {% elif item.unit == "pinch" %}
       pinch{{ item.amount|pluralize:'es' }}
-    {# (2b) Enforce capitalization, e.g., for "Tbsp" #}
+      {# (2b) Enforce capitalization, e.g., for "Tbsp" #}
     {% elif item.unit == "tbsp" %}
       Tbsp
     {% else %}
@@ -33,26 +34,28 @@
     {% endif %}
   {% endif %}
 
-  {% if item_type == "serving_unit" %}
-    {# (3) Pluralize item name, if no units, depending on "amount" #}
-    {# (3a) If there is no unit, don't pluralize serving unit name. #}
-    {% if item.unit is None %}
-      {{ item.servingunit_id }}{{ rsu.amount|pluralize }}
-    {% else %}
-      {{ item.servingunit_id }}
-    {% endif %}
-  {% elif item_type == "recipe_ingredient" %}
-    {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
-    {# (3a) If there is no unit, don't pluralize ingredient name. #}
-    {% if ri.unit is None %}
-      <strong>{{ ri.ingredient_id }}{{ ri.amount|pluralize }}</strong>
-    {% else %}
-      <strong>{{ ri.ingredient_id }}</strong>
-    {% endif %}
-    {# (3b) If there is a unit, pluralize it. #}
-    {% if ri.description is not None %}
-      ({{ ri.description }})
-    {% endif %}
-  {% endif %}
-
 {% endif %}
+
+{# Print item name (bold if ingredient, don't bold if serving unit item) #}
+{% if item_type == "serving_unit" %}
+  {# (3) Pluralize item name, if no units, depending on "amount" #}
+  {# (3a) If there is no unit, don't pluralize serving unit name. #}
+  {% if item.unit is None %}
+    {{ item.servingunit_id }}{{ rsu.amount|pluralize }}
+  {% else %}
+    {{ item.servingunit_id }}
+  {% endif %}
+{% elif item_type == "section_ingredient" %}
+  {# (3) Pluralize ingredient name, if no units, depending on "amount" #}
+  {# (3a) If there is no unit, don't pluralize ingredient name. #}
+  {% if item.unit is None %}
+    <strong>{{ item.ingredient_id }}{{ item.amount|pluralize }}</strong>
+  {% else %}
+    <strong>{{ item.ingredient_id }}</strong>
+  {% endif %}
+  {# (3b) If there is a unit, pluralize it. #}
+  {% if item.description is not None %}
+    ({{ item.description }})
+  {% endif %}
+{% endif %}
+

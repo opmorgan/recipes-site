@@ -28,11 +28,11 @@
             {% endwith %}
           {% endif %}
 
-          {#TODO: Make flexbox for description, intro, variations #}
+          {#TODO: Make flexbox for description, intro, variations, prep time #}
           {% if has_intro %}
             <div class="introduction-variations">
               {# {% if has_description %} #}
-              {#   {{ recipe.description }}. #}
+                {#   {{ recipe.description }}. #}
               {# {% endif %} #}
               {% if recipe.introduction is not None %}
                 <p> {{ recipe.introduction }} </p>
@@ -90,17 +90,17 @@
                 {% endif %}
                 </p>
               {% endif %}
-              <ul class="ingredients-list">
-                {% if recipe.recipeingredient_set.all is not None %}
-                  {% for ri in recipe.recipeingredient_set.all %}
-                    <li>
-                      {% with item=ri item_type="recipe_ingredient" %}
-                        {% include "../partials/item_with_amount.html" %}
-                      {% endwith %}
-                    </li>
-                  {% endfor %}
+
+              {% for section in recipe.sections.all %}
+                {% if has_multiple_sections %}
+                  <h4 class="ingredients-section-header">{{ section.name }}</h4>
+                  {{ section.ingredients_set.all }}
                 {% endif %}
-              </ul>
+                {% with section_ingredients=section.sectioningredient_set.all %}
+                  {% include "../partials/section_ingredients_list.html" %}
+                {% endwith %}
+              {% endfor %}
+
             </div>
           {% endif %}
           {% if has_ingredients and has_directions %}

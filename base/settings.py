@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'base', #TODO is this good practice?
     'recipes',
     'django_humanize',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [

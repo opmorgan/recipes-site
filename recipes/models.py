@@ -61,8 +61,10 @@ class Recipe(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title_image = models.ImageField(default=None, blank=True, null=True, upload_to="title_images")
     directions = models.TextField("Directions", max_length = 20000, default="1. Churn the butter.")
-    ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
     tags = models.ManyToManyField(Tag, blank=True)
+
+    ## Remove this once section ingredients works:
+    ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
 
     @property
     def has_intro(self):
@@ -81,6 +83,25 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+class Section(models.Model):
+    """ An ingredients section for a recipe """
+    recipe_id = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="sections")
+    ingredients = models.ManyToManyField(Ingredient, through='SectionIngredient')
+    ## Each section can have any name (not unique)
+    name = models.CharField(max_length=400, default="Ingredients", unique=False)
+    order = models.FloatField(default=0)
+    def __str__(self):
+        return self.name
+
+class SectionIngredient(models.Model):
+    """ An ingredient, with an amount, used in one recipe """
+    section_id = models.ForeignKey(Section, on_delete=models.CASCADE)
+    ingredient_id = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    amount = models.FloatField(default=None, null=True, blank=True)
+    unit = models.CharField(max_length = 50, null=True, blank=True)
+    description = models.CharField(max_length = 400, default=None, null=True, blank=True) # e.g., "freshly squeezed"
+    order = models.FloatField(default=0)
 
 
 class RecipeIngredient(models.Model):
