@@ -15,14 +15,16 @@ def migrate_recipeingredients(apps, schema_editor):
     sections_to_create = []
     section_ingredients_to_create = []
     for r in all_recipes_list:
-        ingredients_to_move = []
         ri_list = RecipeIngredient.objects.filter(recipe_id = r.id)
-        for ri in ri_list:
-            ingredients_to_move.append(ri.ingredient_id)
-
         section = Section(name="Ingredients", order=0, recipe_id=r)
-        for ingredient_id in ingredients_to_move:
-            section_ingredient = SectionIngredient(ingredient_id=ingredient_id, section_id=section)
+
+        for ri in ri_list:
+            section_ingredient = SectionIngredient(
+                    ingredient_id=ri.ingredient_id,
+                    amount=ri.amount,
+                    unit=ri.unit,
+                    description=ri.description,
+                    section_id=section)
             section_ingredients_to_create.append(section_ingredient)
 
         sections_to_create.append(section)

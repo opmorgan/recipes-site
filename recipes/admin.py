@@ -43,7 +43,7 @@ class SectionIngredient_inline(nested_admin.NestedTabularInline):
     model = SectionIngredient
     min_num = 1
     extra = 0
-    autocomplete_fields = ['ingredient_id']
+    # autocomplete_fields = ['ingredient_id']
     sortable_field_name = "order"
 
 class Section_inline(nested_admin.NestedTabularInline):
