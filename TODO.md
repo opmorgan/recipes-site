@@ -33,7 +33,6 @@
 ## Recipe detail page/Recipe modeling
 - Add optional equipment/hardware section
 - Add "source" for recipes from external websites, cookbooks
-- [!!!] Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
 - Add attribute "category" to sort recipes on homepage. Each recipe will have one primary category, for sorting. Each category will also be a tag, which should automatically populate. For example, "breakfast." (Or, just use "Tags", and sort by Tag categories on homepage?)
 - Make directions optional (once data entry form has a field showing example entry text)
 - Change "prep time" and "cook time" to just "time"
@@ -117,3 +116,4 @@ Third pass
 - [done] Pluralizations (leaf, pinch)
 - [done] Rename "instructions" to "directions"
 - [done] Index pages (tag index, tag detail): show recipe description
+- [done] Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
