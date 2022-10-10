@@ -19,5 +19,5 @@ A simple website for family recipes, made with django.
 
 ## To run the frontend
 1. ```npm install -g elm elm-live``` (Install elm)
-2. ```cd frontend && elm-reactor``` (Ensure elm compiles)
+2. ```cd frontend && elm reactor``` (Ensure elm compiles)
 3. ```./cli --elm-start``` (Run elm-live for local development)
