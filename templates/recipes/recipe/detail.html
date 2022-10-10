@@ -93,19 +93,35 @@
                 </p>
               {% endif %}
 
+
+              {# loop through recipe ingredients #}
+              <ul class="ingredients-list">
+                {% if recipe.recipeingredient_set.all is not None %}
+                  {% for ri in recipe.recipeingredient_set.all|sort_by:"order" %}
+                    <li>
+                      {% with item=ri item_type="section_ingredient" %}
+                        {% include "../partials/item_with_amount.html" %}
+                      {% endwith %}
+                    </li>
+                  {% endfor %}
+                {% endif %}
+              </ul>
+            </div>
+
+              {# TODO: implement recipe sections #}
               {# TODO: pass in sorted list of sections, defined in views. #}
 
-              {% for section in recipe.sections.all|sort_by:'order' %}
-                {% if has_multiple_sections %}
-                  <h4 class="ingredients-section-header">{{ section.name }}</h4>
-                  {{ section.ingredients_set.all }}
-                {% endif %}
-                {% with section_ingredients=section.sectioningredient_set.all %}
-                  {% include "../partials/section_ingredients_list.html" %}
-                {% endwith %}
-              {% endfor %}
+              {# {% for section in recipe.sections.all|sort_by:'order' %} #}
+              {#   {% if has_multiple_sections %} #}
+              {#     <h4 class="ingredients-section-header">{{ section.name }}</h4> #}
+              {#     {{ section.ingredients_set.all }} #}
+              {#   {% endif %} #}
+              {#   {% with section_ingredients=section.sectioningredient_set.all %} #}
+              {#     {% include "../partials/section_ingredients_list.html" %} #}
+              {#   {% endwith %} #}
+              {# {% endfor %} #}
 
-            </div>
+            {# </div> #}
           {% endif %}
           {% if has_ingredients and has_directions %}
             <div class="ingredients-directions-separator">

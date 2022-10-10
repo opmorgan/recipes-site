@@ -73,11 +73,13 @@ class RecipeDetailView(generic.DetailView):
 
         ## has_ingredients: there is at least one section with at least one ingredient.
         ## section_ingredients returns an object with length = number of ingredients (in all sections?)
-        section_ingredients = Section.objects.filter(recipe_id=self.object, sectioningredient__isnull=False)
-        has_ingredients = section_ingredients.exists()
+        # section_ingredients = Section.objects.filter(recipe_id=self.object, sectioningredient__isnull=False)
+        # has_ingredients = section_ingredients.exists()
 
         ## has_multiple sections: the recipe has more than one section
-        has_multiple_sections = (self.object.sections.count() > 1)
+        # has_multiple_sections = (self.object.sections.count() > 1)
+        ## For now (until I fix sections)
+        has_multiple_sections = 0 # Hack
 
         ## Author label is full name, if available, or else user id.
         # author_fullname = self.object.author.get_full_name()
