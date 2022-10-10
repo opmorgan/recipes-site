@@ -3,12 +3,14 @@ A simple website for family recipes, made with django.
 ## Dependencies
 - System-wide: ```docker```, ```docker-compose```, ```python3```, ```django```
 
-## To set up testing environment
+## To set up backend
 1. ```sudo docker-compose up``` (Run the docker container)
-2. ```source env/bin/activate``` (Enter python virtual environment)
-3. ```pip install -r requirements.txt``` (Install required python packages)
-4. ```python manage.py runserver```
-5. Preview site in browser at localhost:8000
+1. ```python -m venv env``` (Create python virtual environment)
+1. ```source env/bin/activate``` (Enter python virtual environment)
+1. ```pip install -r requirements.txt``` (Install required python packages)
+1. ```python manage.py createsuperuser``` (Create an admin user)
+1. ```python manage.py runserver``` (Start the development server)
+1. Preview site in browser at localhost:8000
 
 ## To make model changes and migrations
 1. Change models (models.py)
