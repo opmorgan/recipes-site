@@ -2,9 +2,11 @@ A simple website for family recipes, made with django.
 
 ## Dependencies
 - System-wide: ```docker```, ```docker-compose```, ```python3```, ```django```
+- Python: See requirements.txt
 
 ## To set up testing environment
 1. ```sudo docker-compose up``` (Run the docker container)
+1. ```python -m venv env``` (Create python virtual environment)
 2. ```source env/bin/activate``` (Enter python virtual environment)
 3. ```pip install -r requirements.txt``` (Install required python packages)
 4. ```python manage.py runserver```
