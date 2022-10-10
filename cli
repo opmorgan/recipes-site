@@ -1,0 +1,25 @@
+#! /bin/bash
+
+SHORT=e
+LONG=elm-start
+OPTS=$(getopt -a -n weather --options $SHORT --longoptions $LONG -- "$@")
+
+eval set -- "$OPTS"
+
+while :
+do
+  case "$1" in
+    -e | --elm-start )
+      (cd frontend && elm-live src/Main.elm --port=3000 --pushstate --debug -- --output=../static/frontend/elm.js)
+      shift 2
+      ;;
+    --)
+      shift;
+      break
+      ;;
+    *)
+      echo "Unexpected option: $1"
+      ;;
+  esac
+done
+
