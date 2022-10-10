@@ -4,9 +4,21 @@ from django.views import generic
 from django.utils import timezone
 from django import template
 
+from rest_framework.views import APIView
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+from django.contrib.auth.models import User
+
 from .models import Recipe, Ingredient, RecipeIngredient, Tag, Section, SectionIngredient
+from .serializers import RecipeSerializer
 
 # register = template.Library()
+
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+
 
 class RecipeIndexView(generic.ListView):
     template_name = 'recipes/recipe/index.html'

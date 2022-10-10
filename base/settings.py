@@ -18,6 +18,8 @@ import os
 
 env = environ.Env()
 
+APPEND_SLASH = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,11 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'recipes.apps.RecipesConfig',
-    'base',
-    'recipes',
     'django_humanize',
     'nested_admin',
+    'base',
+    'recipes',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -151,4 +153,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = ['https://*.honeybit.xyz','https://*.honeybit.cooking', 'https://*.127.0.0.1']
+
 

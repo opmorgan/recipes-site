@@ -5,7 +5,7 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'recipes', views.RecipeViewSet)
 
-app_name = 'recipes'
+app_name = 'api'
 urlpatterns = [
         # /recipes/
         path('', include(router.urls)),

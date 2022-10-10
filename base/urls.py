@@ -14,19 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import re_path, path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import RedirectView
 
 from . import views
 
 
 urlpatterns = [
-        path('', views.HomeView.as_view(), name = 'home'),
-        path('admin/', admin.site.urls),
-        path('recipes/', include('recipes.urls')),
-        # url(r'^_nested_admin/', include('nested_admin.urls')),
+        re_path('^admin/', admin.site.urls),
+        path('admin', admin.site.urls),
+        re_path(r'^api$', RedirectView.as_view(url = '/api/')),
+        path('api/', include('api.urls')),
         path("favicon.ico", views.favicon),
         ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns = urlpatterns + [
+        re_path(r'^.*$', views.HomeView.as_view(), name = 'home'),
+        ]
 
 

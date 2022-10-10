@@ -1,0 +1,16 @@
+#! /bin/bash
+
+ACTION="${1:-"index"}"
+PORT="8000"
+ID="$2"
+
+#
+# GET /api/recipes
+# ================
+# Fetches all recipes from DB (no nested relations)
+#
+
+# TODO: Pass in a limit argument
+if [[ "$ACTION" == "index" ]]; then
+  curl -X GET http://localhost:$PORT/api/recipes/ | jq
+fi

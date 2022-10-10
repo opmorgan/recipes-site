@@ -9,16 +9,13 @@
 
   <body>
 
-    <div id="elm"></div>
-
    <script>
       var storageKey = "store";
       var flags = localStorage.getItem(storageKey);
       var app = Elm.Main.init({
           flags: flags,
-          node: document.getElementById("elm")
       });
-
+      /*
       app.ports.storeCache.subscribe(function(val) {
 
         if (val === null) {
@@ -37,6 +34,7 @@
           app.ports.onStoreChange.send(event.newValue);
         }
       }, false);
+      */
     </script>
   </body>
 </html>
