@@ -27,7 +27,7 @@ class ServingUnitAdmin(nested_admin.NestedModelAdmin):
 
 
 class SectionIngredient_inline(nested_admin.NestedTabularInline):
-    """ For nested-admin, needs to be defined aboce "Section_inline """
+    """ For nested-admin, needs to be defined above "Section_inline """
     """ Create tabular form to manage section ingredient entry """
     verbose_name_plural = "Ingredients"
     model = SectionIngredient
