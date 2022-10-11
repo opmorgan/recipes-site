@@ -8,7 +8,7 @@ import Http
 import Url
 import Json.Decode exposing (Decoder, map4, field, int, string, nullable)
 --NoRedInk/elm-json-decode-pipeline
-import Json.Decode.Pipeline exposing (optional)
+import Json.Decode.Pipeline as Pipeline exposing (optional)
 --justinmimbs/date/4.0.1
 import Date
 import Time
@@ -28,27 +28,21 @@ main =
   }
 
 
--- HELPER FUNCTIONS [Q] Is this the right place for these?
-viewLink : String -> Html msg
-viewLink path =
-  li [] [ a [ href path ] [ text path ] ]
-
 -- MODEL
 
 type alias Recipe =
-  {
-    id: Int,
-    title: String,
-    created_at: String,
-    updated_at: String,
-    description: Maybe String,
-    prep_time: Maybe String,
-    cook_time: Maybe String,
-    servings: Maybe String,
-    introduction: Maybe String,
-    variations: Maybe String,
-    title_image: Maybe String,
-    directions: Maybe String
+  { id: Int
+  , title: String
+  , created_at: String
+  , updated_at: String
+  , description: Maybe String
+  , prep_time: Maybe String
+  , cook_time: Maybe String
+  , servings: Maybe String
+  , introduction: Maybe String
+  , variations: Maybe String
+  , title_image: Maybe String
+  , directions: Maybe String
   }
 
 type RecipeResponse
@@ -76,7 +70,7 @@ init : () -> Url.Url -> Nav.Key -> (Model, Cmd Msg)
 -- return: a Model (with the url and key), that returns no command.
 -- (This just constructs a model with a url and key)
 init flags url key =
-  ( Model key url Loading, Cmd.none )
+  ( Model key url Loading, getAllRecipes )
 
 
 -- UPDATE
@@ -142,14 +136,21 @@ view model =
       [ viewLink "/"
       , viewLink "/recipes"
       , viewLink "/categories" ]
+    , hr [] []
+    , viewRecipes model
     ]
   }
 
 
-rowItem: String -> Html Msg
-rowItem id =
-    div []
-        [ text id ]
+
+viewLink : String -> Html msg
+viewLink path =
+  li [] [ a [ href path ] [ text path ] ]
+
+viewRecipeItem: Recipe -> Html Msg
+viewRecipeItem recipe =
+  div []
+    [ a [href ("/recipes/" ++ (String.fromInt recipe.id))] [text recipe.title] ]
 
 viewRecipes: Model -> Html Msg
 viewRecipes model =
@@ -161,15 +162,20 @@ viewRecipes model =
       div []
        []
     Success recipes ->
-      div [][]
-      --(List.map rowItem model.rows)
+      if List.isEmpty recipes then
+        div []
+          [ text "There are no recipes to display." ]
+      else
+        div []
+          (List.map viewRecipeItem recipes)
+
 
 -- HTTP
 
 getAllRecipes: Cmd Msg
 getAllRecipes =
   Http.get
-    { url = "localhost:8000/api/recipes/"
+    { url = "http://localhost:8000/api/recipes/"
     , expect = Http.expectJson GotRecipes recipeListDecoder
     }
 
@@ -180,29 +186,15 @@ recipeListDecoder =
 recipeDecoder: Decoder Recipe
 recipeDecoder =
   Json.Decode.succeed Recipe
-    |> Json.Decode.Pipeline.required "id" int
-    |> Json.Decode.Pipeline.required "title" string
-    |> Json.Decode.Pipeline.required "created_at" string
-    |> Json.Decode.Pipeline.required "updated_at" string
-    |> optional "description" (nullable string)
-    |> optional "prep_time" (nullable string)
-    |> optional "cook_time" (nullable string)
-    |> optional "servings" (nullable string)
-    |> optional "introduction" (nullable string)
-    |> optional "variations" (nullable string)
-    |> optional "title_image" (nullable string)
-    |> optional "directions" (nullable string)
-    {-
-    id: Int,
-    title: String,
-    created_at: String,
-    updated_at: String,
-    description: Maybe String,
-    prep_time: Maybe String,
-    cook_time: Maybe String,
-    servings: Maybe String,
-    introduction: Maybe String,
-    variations: Maybe String,
-    title_image: Maybe String,
-    directions: Maybe String
-    -}
+    |> Pipeline.required "id" int
+    |> Pipeline.required "title" string
+    |> Pipeline.required "created_at" string
+    |> Pipeline.required "updated_at" string
+    |> Pipeline.required "description" (nullable string)
+    |> Pipeline.required "prep_time" (nullable string)
+    |> Pipeline.required "cook_time" (nullable string)
+    |> Pipeline.required "servings" (nullable string)
+    |> Pipeline.required "introduction" (nullable string)
+    |> Pipeline.required "variations" (nullable string)
+    |> Pipeline.required "title_image" (nullable string)
+    |> Pipeline.required "directions" (nullable string)
