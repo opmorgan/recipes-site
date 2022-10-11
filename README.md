@@ -2,6 +2,7 @@ A simple website for family recipes, made with django.
 
 ## Dependencies
 - System-wide: ```docker```, ```docker-compose```, ```python3```, ```django```
+- Python: See requirements.txt
 
 ## To set up backend
 1. ```sudo docker-compose up``` (Run the docker container)

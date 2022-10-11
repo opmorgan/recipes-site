@@ -1,16 +1,24 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 
-import nested_admin
+# import nested_admin
 
-from .models import Recipe, Ingredient, Tag, ServingUnit, RecipeServingUnit, Section, SectionIngredient
+from .models import Recipe, Ingredient, Tag, ServingUnit, RecipeServingUnit, Section, SectionIngredient, RecipeIngredient
+
+class RecipeIngredient_inline(admin.TabularInline):
+    """ Create tabular form to manage recipe ingredient entry """
+    verbose_name_plural = "Ingredients"
+    model = RecipeIngredient
+    extra = 3
+    insert_after = "directions"
+    autocomplete_fields = ['ingredient_id']
 
 @admin.register(Ingredient)
-class IngredientAdmin(nested_admin.NestedModelAdmin):
+class IngredientAdmin(admin.ModelAdmin):
     search_fields = ['name']
     ordering = ['name']
 
-class RecipeServingUnit_inline(nested_admin.NestedTabularInline):
+class RecipeServingUnit_inline(admin.TabularInline):
     """ Create tabular form to manage recipe ingredient entry """
     model = RecipeServingUnit
     verbose_name_plural = "Makes (alternative to 'Servings')"
@@ -20,33 +28,33 @@ class RecipeServingUnit_inline(nested_admin.NestedTabularInline):
     autocomplete_fields = ['servingunit_id']
 
 @admin.register(ServingUnit)
-class ServingUnitAdmin(nested_admin.NestedModelAdmin):
+class ServingUnitAdmin(admin.ModelAdmin):
     verbose_name = "test"
     search_fields = ['name']
     ordering = ['name']
+#
+#
+# class SectionIngredient_inline(nested_admin.NestedTabularInline):
+#     """ For nested-admin, needs to be defined above "Section_inline """
+#     """ Create tabular form to manage section ingredient entry """
+#     verbose_name_plural = "Ingredients"
+#     model = SectionIngredient
+#     min_num = 1
+#     extra = 0
+#     # autocomplete_fields = ['ingredient_id']
+#     sortable_field_name = "order"
 
+# class Section_inline(admin.TabularInline):
+#     verbose_name_plural = "Ingredient Sections (e.g., 'Bowl one')"
+#     model = Section
+#     min_num = 1
+#     extra = 0
+#     inlines = [SectionIngredient_inline]
+#     sortable_field_name = "order"
+#     insert_after = "directions"
 
-class SectionIngredient_inline(nested_admin.NestedTabularInline):
-    """ For nested-admin, needs to be defined aboce "Section_inline """
-    """ Create tabular form to manage section ingredient entry """
-    verbose_name_plural = "Ingredients"
-    model = SectionIngredient
-    min_num = 1
-    extra = 0
-    # autocomplete_fields = ['ingredient_id']
-    sortable_field_name = "order"
-
-class Section_inline(nested_admin.NestedTabularInline):
-    verbose_name_plural = "Ingredient Sections (e.g., 'Bowl one')"
-    model = Section
-    min_num = 1
-    extra = 0
-    inlines = [SectionIngredient_inline]
-    sortable_field_name = "order"
-    insert_after = "directions"
-
-class RecipeAdmin(nested_admin.NestedModelAdmin):
-    inlines = (RecipeServingUnit_inline, Section_inline)
+class RecipeAdmin(admin.ModelAdmin):
+    inlines = (RecipeServingUnit_inline, RecipeIngredient_inline)
     readonly_fields = ("created_at","updated_at")
 
     fields = ("title", "description", "prep_time", "cook_time", "servings",
@@ -90,5 +98,7 @@ class RecipeAdmin(nested_admin.NestedModelAdmin):
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Tag)
 
-admin.site.register(Section)
-admin.site.register(SectionIngredient)
+# admin.site.register(Section)
+# admin.site.register(SectionIngredient)
+
+admin.site.register(RecipeIngredient)

@@ -111,6 +111,7 @@ class RecipeIngredient(models.Model):
     amount = models.FloatField(default=None, null=True, blank=True)
     unit = models.CharField(max_length = 50, null=True, blank=True)
     description = models.CharField(max_length = 400, default=None, null=True, blank=True) # e.g., "freshly squeezed"
+    order = models.SmallIntegerField(default=0)
 
 class RecipeServingUnit(models.Model):
     """ A serving unit, with an amount, used in one recipe """
