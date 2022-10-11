@@ -6,11 +6,13 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Http
 import Url
-import Json.Decode exposing (Decoder, map4, field, int, string)
+import Json.Decode exposing (Decoder, map4, field, int, string, nullable)
 --NoRedInk/elm-json-decode-pipeline
-import Json.Decode.Pipeline exposing (required)
+import Json.Decode.Pipeline exposing (optional)
 --justinmimbs/date/4.0.1
 import Date
+import Time
+import Json.Encode
 
 
 -- MAIN
@@ -41,6 +43,7 @@ type alias Recipe =
     updated_at: String,
     description: Maybe String,
     prep_time: Maybe String,
+    cook_time: Maybe String,
     servings: Maybe String,
     introduction: Maybe String,
     variations: Maybe String,
@@ -156,9 +159,10 @@ viewRecipes model =
       [ text "No recipes could be loaded."]
     Loading ->
       div []
+       []
     Success recipes ->
-      div []
-      (List.map rowItem model.rows)
+      div [][]
+      --(List.map rowItem model.rows)
 
 -- HTTP
 
@@ -166,27 +170,39 @@ getAllRecipes: Cmd Msg
 getAllRecipes =
   Http.get
     { url = "localhost:8000/api/recipes/"
-    , expect = Http.expectJson GotRecipes recipeDecoder
+    , expect = Http.expectJson GotRecipes recipeListDecoder
     }
 
-dateDecoder : Json.Decode.Decoder Date.Date
-dateDecoder =
-  string
-    |> Json.Decode.andThen ( \str ->
-          case Date.fromIsoString str of
-            Err err -> Json.Decode.fail err
-            Ok date -> Json.Decode.succeed date )
+recipeListDecoder: Decoder (List Recipe)
+recipeListDecoder =
+  Json.Decode.list recipeDecoder
 
 recipeDecoder: Decoder Recipe
 recipeDecoder =
-  Decode Recipe
-    |> required "id" int
-    |> required "created_at" dateDecoder
-    |> required "updated_at" dateDecoder
+  Json.Decode.succeed Recipe
+    |> Json.Decode.Pipeline.required "id" int
+    |> Json.Decode.Pipeline.required "title" string
+    |> Json.Decode.Pipeline.required "created_at" string
+    |> Json.Decode.Pipeline.required "updated_at" string
     |> optional "description" (nullable string)
+    |> optional "prep_time" (nullable string)
+    |> optional "cook_time" (nullable string)
     |> optional "servings" (nullable string)
-    |> optional "directions" string
-    |> optional "introduction" string
-    |> optional "variations" string
-    |> optional "cook_time" string
-    -- |> optional "title_image" (nullable string)
+    |> optional "introduction" (nullable string)
+    |> optional "variations" (nullable string)
+    |> optional "title_image" (nullable string)
+    |> optional "directions" (nullable string)
+    {-
+    id: Int,
+    title: String,
+    created_at: String,
+    updated_at: String,
+    description: Maybe String,
+    prep_time: Maybe String,
+    cook_time: Maybe String,
+    servings: Maybe String,
+    introduction: Maybe String,
+    variations: Maybe String,
+    title_image: Maybe String,
+    directions: Maybe String
+    -}
