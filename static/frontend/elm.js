@@ -6143,13 +6143,11 @@ var $author$project$Main$Recipe = function (id) {
 				return function (description) {
 					return function (prep_time) {
 						return function (cook_time) {
-							return function (servings) {
-								return function (introduction) {
-									return function (variations) {
-										return function (title_image) {
-											return function (directions) {
-												return {cook_time: cook_time, created_at: created_at, description: description, directions: directions, id: id, introduction: introduction, prep_time: prep_time, servings: servings, title: title, title_image: title_image, updated_at: updated_at, variations: variations};
-											};
+							return function (introduction) {
+								return function (variations) {
+									return function (title_image) {
+										return function (directions) {
+											return {cook_time: cook_time, created_at: created_at, description: description, directions: directions, id: id, introduction: introduction, prep_time: prep_time, title: title, title_image: title_image, updated_at: updated_at, variations: variations};
 										};
 									};
 								};
@@ -6200,37 +6198,33 @@ var $author$project$Main$recipeDecoder = A3(
 				$elm$json$Json$Decode$nullable($elm$json$Json$Decode$string),
 				A3(
 					$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-					'servings',
+					'cook_time',
 					$elm$json$Json$Decode$nullable($elm$json$Json$Decode$string),
 					A3(
 						$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-						'cook_time',
+						'prep_time',
 						$elm$json$Json$Decode$nullable($elm$json$Json$Decode$string),
 						A3(
 							$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-							'prep_time',
+							'description',
 							$elm$json$Json$Decode$nullable($elm$json$Json$Decode$string),
 							A3(
 								$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-								'description',
-								$elm$json$Json$Decode$nullable($elm$json$Json$Decode$string),
+								'updated_at',
+								$elm$json$Json$Decode$string,
 								A3(
 									$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-									'updated_at',
+									'created_at',
 									$elm$json$Json$Decode$string,
 									A3(
 										$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-										'created_at',
+										'title',
 										$elm$json$Json$Decode$string,
 										A3(
 											$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-											'title',
-											$elm$json$Json$Decode$string,
-											A3(
-												$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required,
-												'id',
-												$elm$json$Json$Decode$int,
-												$elm$json$Json$Decode$succeed($author$project$Main$Recipe)))))))))))));
+											'id',
+											$elm$json$Json$Decode$int,
+											$elm$json$Json$Decode$succeed($author$project$Main$Recipe))))))))))));
 var $author$project$Main$recipeListDecoder = $elm$json$Json$Decode$list($author$project$Main$recipeDecoder);
 var $author$project$Main$getAllRecipes = $elm$http$Http$get(
 	{
@@ -6394,6 +6388,14 @@ var $elm$core$List$isEmpty = function (xs) {
 		return false;
 	}
 };
+var $author$project$Main$maybeToString = function (maybe) {
+	if (maybe.$ === 'Nothing') {
+		return '';
+	} else {
+		var value = maybe.a;
+		return value;
+	}
+};
 var $author$project$Main$viewRecipeItem = function (recipe) {
 	return A2(
 		$elm$html$Html$div,
@@ -6410,7 +6412,9 @@ var $author$project$Main$viewRecipeItem = function (recipe) {
 				_List_fromArray(
 					[
 						$elm$html$Html$text(recipe.title)
-					]))
+					])),
+				$elm$html$Html$text(
+				' -- ' + $author$project$Main$maybeToString(recipe.description))
 			]));
 };
 var $author$project$Main$viewRecipes = function (model) {
