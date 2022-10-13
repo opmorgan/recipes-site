@@ -6388,6 +6388,7 @@ var $elm$core$List$isEmpty = function (xs) {
 		return false;
 	}
 };
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $author$project$Main$descriptionString = function (maybe) {
 	if (maybe.$ === 'Nothing') {
 		return '';
@@ -6396,6 +6397,7 @@ var $author$project$Main$descriptionString = function (maybe) {
 		return ' — ' + value;
 	}
 };
+var $elm$html$Html$span = _VirtualDom_node('span');
 var $author$project$Main$viewRecipeItem = function (recipe) {
 	return A2(
 		$elm$html$Html$div,
@@ -6413,8 +6415,17 @@ var $author$project$Main$viewRecipeItem = function (recipe) {
 					[
 						$elm$html$Html$text(recipe.title)
 					])),
-				$elm$html$Html$text(
-				$author$project$Main$descriptionString(recipe.description))
+				A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('index-description')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						$author$project$Main$descriptionString(recipe.description))
+					]))
 			]));
 };
 var $author$project$Main$viewRecipes = function (model) {

@@ -152,9 +152,11 @@ viewRecipeItem recipe =
   div []
     [
       a [href ("/recipes/" ++ (String.fromInt recipe.id))] [text recipe.title]
-      , text (
+      , span [class "index-description"] [
+      text (
         (descriptionString recipe.description)
         )
+        ]
     ]
 
 

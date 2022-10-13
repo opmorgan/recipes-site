@@ -49,6 +49,7 @@ a:active {
         text-decoration: underline;
         }
 
+
 .header-link a:link{
         color: var(--dark-gray);
         text-decoration: none;
@@ -123,6 +124,10 @@ a:active {
         color: var(--dark-gray);
         text-decoration: none;
         }
+
+.index-description {
+  font-style: italic;
+}
 
 h1 {
         line-height: 1em;
