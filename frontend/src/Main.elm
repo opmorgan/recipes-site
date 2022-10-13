@@ -38,7 +38,7 @@ type alias Recipe =
   , description: Maybe String
   , prep_time: Maybe String
   , cook_time: Maybe String
-  --, servings: Maybe String
+  --, servings: Maybe String -- Needs to be Int?
   , introduction: Maybe String
   , variations: Maybe String
   , title_image: Maybe String
@@ -150,19 +150,21 @@ viewLink path =
 viewRecipeItem: Recipe -> Html Msg
 viewRecipeItem recipe =
   div []
-    [ 
+    [
       a [href ("/recipes/" ++ (String.fromInt recipe.id))] [text recipe.title]
-      , text (" -- " ++ (maybeToString recipe.description))
+      , text (
+        (descriptionString recipe.description)
+        )
     ]
 
-maybeToString: Maybe String -> String
-maybeToString maybe =
-  case maybe of 
-    Nothing -> 
+
+descriptionString: Maybe String -> String
+descriptionString maybe =
+  case maybe of
+    Nothing ->
       ""
     Just value ->
-      value
-  
+      " — " ++ (value)
 
 
 viewRecipes: Model -> Html Msg

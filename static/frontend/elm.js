@@ -6388,12 +6388,12 @@ var $elm$core$List$isEmpty = function (xs) {
 		return false;
 	}
 };
-var $author$project$Main$maybeToString = function (maybe) {
+var $author$project$Main$descriptionString = function (maybe) {
 	if (maybe.$ === 'Nothing') {
 		return '';
 	} else {
 		var value = maybe.a;
-		return value;
+		return ' — ' + value;
 	}
 };
 var $author$project$Main$viewRecipeItem = function (recipe) {
@@ -6414,7 +6414,7 @@ var $author$project$Main$viewRecipeItem = function (recipe) {
 						$elm$html$Html$text(recipe.title)
 					])),
 				$elm$html$Html$text(
-				' -- ' + $author$project$Main$maybeToString(recipe.description))
+				$author$project$Main$descriptionString(recipe.description))
 			]));
 };
 var $author$project$Main$viewRecipes = function (model) {
