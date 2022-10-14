@@ -77,50 +77,51 @@ a:active {
 
 .index-list {
         list-style: none;
-        margin: 0 .2rem 1.618rem;
+        margin: 0 .2rem .618rem;
         padding: 0 0 0;
         /* Hack to get second-line indent */
         text-indent: -1.618rem;
         margin-left: 1.618rem;
         }
 
-.index-list li:not(:first-of-type) {
-            margin-top: .2em;
-        }
+.index-list li {
+    margin-bottom: .2rem;
+}
 
-.index-list a:link{
+.index-list li a:link{
         color: var(--light-red);
         text-decoration: none;
         }
-.index-list a:visited{
+.index-list li a:visited{
         color: var(--dark-red);
         text-decoration: none;
         }
-.index-list a:hover{
+.index-list li a:hover{
         color: var(--light-red);
         text-decoration: underline;
         }
-.index-list a:active{
+.index-list li a:active{
         color: var(--dark-gray);
         text-decoration: none;
         }
 
-.see-all-link {
-        padding: .382rem 0 0 0;
+a.see-all-link {
+        padding: 0;
         }
-.see-all-link a:link{
+
+a.see-all-link:link{
         color: var(--dark-gray);
         text-decoration: none;
         }
-.see-all-link a:visited{
+a.see-all-link:visited{
         color: var(--dark-gray);
         text-decoration: none;
         }
-.see-all-link a:hover{
+a.see-all-link:hover{
         color: var(--light-red);
         text-decoration: none;
         }
-.see-all-link a:active{
+a.see-all-link:active{
         color: var(--dark-gray);
         text-decoration: none;
         }
@@ -172,3 +173,6 @@ h2 {
         margin: .618rem;
         padding: 0;
         }
+
+/*
+ * <div id="id" class="class"></div> <a class="class"></a>

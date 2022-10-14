@@ -128,7 +128,7 @@ subscriptions _ = Sub.none
 -- [Q] why not Browser.application?
 view: Model -> Browser.Document Msg
 view model =
-  { title = "Url Interceptor"
+  { title = siteName ++ " | Home"
   , body =
     [ text "The current URL is: "
     , b [] [ text (Url.toString model.url) ]
@@ -141,6 +141,8 @@ view model =
     ]
   }
 
+siteName: String
+siteName = "Honeybit"
 
 
 viewLink : String -> Html msg
@@ -149,7 +151,7 @@ viewLink path =
 
 viewRecipeItem: Recipe -> Html Msg
 viewRecipeItem recipe =
-  div []
+  li []
     [
       a [href ("/recipes/" ++ (String.fromInt recipe.id))] [text recipe.title]
       , span [class "index-description"] [
@@ -179,12 +181,26 @@ viewRecipes model =
       div []
        []
     Success recipes ->
+
+      let
+          recipeList = (List.map viewRecipeItem recipes)
+          n_recipes = List.length recipeList
+      in
+
       if List.isEmpty recipes then
         div []
           [ text "There are no recipes to display." ]
-      else
+      else if not( List.isEmpty recipes ) && (List.length recipes > 10) then
+        -- If there are more than 10 recipes
         div []
-          (List.map viewRecipeItem recipes)
+          --(List.take 10 (recipeList))
+          [ul [class "index-list"] (List.take 10 (recipeList))
+          , a [href "/recipes/", class "see-all-link"] [text ("—See all " ++ String.fromInt(n_recipes) ++ " recipes—")]]
+
+      else
+        -- If there are fewer than 10 recipes
+        div[]
+        [ul [class "index-list"] recipeList]
 
 
 -- HTTP
