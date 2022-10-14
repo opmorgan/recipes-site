@@ -50,24 +50,24 @@ a:active {
         }
 
 
-.header-link a:link{
+.index-header a:link{
         color: var(--dark-gray);
         text-decoration: none;
         }
-.header-link a:visited{
+.index-header a:visited{
         color: var(--dark-gray);
         text-decoration: none;
         }
-.header-link a:hover{
+.index-header a:hover{
         color: var(--light-gray);
         text-decoration: none;
         }
-.header-link a:active{
+.index-header a:active{
         color: var(--dark-gray);
         text-decoration: none;
         }
 
-.index-header {
+h3.index-header {
         font-size: 22px;
         font-weight: bold;
         line-height: 1em;

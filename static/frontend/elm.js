@@ -6341,13 +6341,8 @@ var $author$project$Main$update = F2(
 				}
 		}
 	});
-var $elm$html$Html$b = _VirtualDom_node('b');
-var $elm$html$Html$hr = _VirtualDom_node('hr');
-var $author$project$Main$siteName = 'Honeybit';
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$html$Html$a = _VirtualDom_node('a');
+var $elm$html$Html$b = _VirtualDom_node('b');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -6356,12 +6351,19 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 			key,
 			$elm$json$Json$Encode$string(string));
 	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$html$Html$h3 = _VirtualDom_node('h3');
+var $elm$html$Html$hr = _VirtualDom_node('hr');
 var $elm$html$Html$Attributes$href = function (url) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
 };
+var $author$project$Main$siteName = 'Honeybit';
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $elm$html$Html$li = _VirtualDom_node('li');
 var $author$project$Main$viewLink = function (path) {
 	return A2(
@@ -6381,7 +6383,6 @@ var $author$project$Main$viewLink = function (path) {
 					]))
 			]));
 };
-var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$core$List$isEmpty = function (xs) {
 	if (!xs.b) {
@@ -6641,6 +6642,25 @@ var $author$project$Main$view = function (model) {
 						$author$project$Main$viewLink('/categories')
 					])),
 				A2($elm$html$Html$hr, _List_Nil, _List_Nil),
+				A2(
+				$elm$html$Html$h3,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('index-header')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$a,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$href('/recipes')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('New Recipes')
+							]))
+					])),
 				$author$project$Main$viewRecipes(model)
 			]),
 		title: $author$project$Main$siteName + ' | Home'

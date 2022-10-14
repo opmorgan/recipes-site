@@ -137,6 +137,8 @@ view model =
       , viewLink "/recipes"
       , viewLink "/categories" ]
     , hr [] []
+    , h3 [class "index-header"]
+      [a [href "/recipes"] [text "New Recipes"]]
     , viewRecipes model
     ]
   }
