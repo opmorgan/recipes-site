@@ -1,84 +1,89 @@
 {% load static %}
 
-<title>{{ SITE_TITLE }}: A simple site for family recipes | Home</title>
+<!DOCTYPE html>
+<html>
 
-<link rel="stylesheet" href="{% static 'base/style.css' %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ SITE_TITLE }}: A simple site for family recipes | Home</title>
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+  </head>
 
-
-<body>
-
-  <div class="index-grid">
-    <div class="index-grid__body">
-      <div class="index-header">
-        <div class="header-link">
-          <a href="{% url 'recipes:recipe_index' %}">New Recipes</a>
+  <body>
+    <div class="content-grid">
+      <div class="content-grid__main">
+        <div class="index-header">
+          <div class="header-link">
+            <a href="{% url 'recipes:recipe_index' %}">New Recipes</a>
+          </div>
         </div>
+
+        {% if latest_recipes_list %}
+          <ul class="index-list">
+            {% for recipe in latest_recipes_list %}
+              <li>
+                {# {% include "../partials/recipe_index_list_entry.html" %} #}
+
+                {% include "base/partials/recipe_index_list_entry.html" %}
+              </li>
+            {% endfor %}
+            {% if n_all_recipes >= n_recent_recipes %}
+              <li>
+                <div class="see-all-link">
+                  <a href="{% url 'recipes:recipe_index' %}">
+                    <em>—See all {{ n_all_recipes }} recipes—</em>
+                  </a>
+                </div>
+              </li>
+            {% endif %}
+          </ul>
+        {% else %}
+          <p>No recipes are available.</p>
+        {% endif %}
+
+        <div class="index-header">
+          <div class="header-link">
+            <a href="{% url 'recipes:tag_index' %}">New Categories</a>
+          </div>
+        </div>
+
+        {% if latest_tags_list %}
+          <ul class="index-list">
+            {% for tag in latest_tags_list %}
+              <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
+            {% endfor %}
+            {% if n_all_tags > n_recent_tags %}
+              <li>
+                <div class="see-all-link">
+                  <a href="{% url 'recipes:tag_index' %}">
+                    <em>—See all {{ n_all_tags }} categories—</em>
+                  </a>
+                </div>
+              </li>
+            {% endif %}
+          </ul>
+        {% else %}
+          <p>No category tags are available.</p>
+        {% endif %}
       </div>
 
-      {% if latest_recipes_list %}
-        <ul class="index-list">
-          {% for recipe in latest_recipes_list %}
-            <li>
-              {# {% include "../partials/recipe_index_list_entry.html" %} #}
-
-              {% include "base/partials/recipe_index_list_entry.html" %}
-            </li>
+      <div class="content-grid__footer">
+        <p>
+        <em>
+          {% for recipe in latest_recipe %}
+            Updated {{ recipe.updated_at|date:"F j, o" }}
           {% endfor %}
-          {% if n_all_recipes >= n_recent_recipes %}
-            <li>
-              <div class="see-all-link">
-                <a href="{% url 'recipes:recipe_index' %}">
-                  <em>—See all {{ n_all_recipes }} recipes—</em>
-                </a>
-              </div>
-            </li>
-          {% endif %}
-        </ul>
-      {% else %}
-        <p>No recipes are available.</p>
-      {% endif %}
 
-      <div class="index-header">
-        <div class="header-link">
-          <a href="{% url 'recipes:tag_index' %}">New Categories</a>
-        </div>
+        </em>
+        <br>
+        <a href="/">Home</a> {# TODO: change to "about", add "about" page. #}
+        | <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
+        | <a href="{% url 'recipes:tag_index' %}">Categories</a>
+        </p>
       </div>
 
-      {% if latest_tags_list %}
-        <ul class="index-list">
-          {% for tag in latest_tags_list %}
-            <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
-          {% endfor %}
-          {% if n_all_tags > n_recent_tags %}
-            <li>
-              <div class="see-all-link">
-                <a href="{% url 'recipes:tag_index' %}">
-                  <em>—See all {{ n_all_tags }} categories—</em>
-                </a>
-              </div>
-            </li>
-          {% endif %}
-        </ul>
-      {% else %}
-        <p>No category tags are available.</p>
-      {% endif %}
     </div>
+  </body>
 
-    <div class="index-grid__footer">
-      <p>
-      <em>
-        {% for recipe in latest_recipe %}
-          Updated {{ recipe.updated_at|date:"F j, o" }}
-        {% endfor %}
-
-      </em>
-      <br>
-      <a href="/">Home</a> {# TODO: change to "about", add "about" page. #}
-      | <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
-      | <a href="{% url 'recipes:tag_index' %}">Categories</a>
-      </p>
-    </div>
-
-  </div>
-
-</body>
+</html>

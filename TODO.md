@@ -1,5 +1,5 @@
 # CI/CD
-- Set up pg database on vultr vps (with user, password)
+- Set up pg database on vultr vps for testing (with user, password)
 - write yaml commands
 - nginx: set up reverse proxy that will transfer requests from public url to local port
 
@@ -22,6 +22,7 @@
 ## Home page
 - Add filtering by tag, ingredients
 - Add search function
+- Preview categories (top ten recipes in top 8 categories)
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
@@ -64,9 +65,8 @@ Third pass
 - Tool to print/export recipe collection as a cookbook (structured pdf, with title page and TOC, organized by structure of collection)
 
 ## Global
-- [!!!] Make mobile friendly with meta tags (https://www.youtube.com/watch?v=o3Gfsc6kihk)
 - Use current time zone to display published times
-- Dark mode
+- Dark mode?
 - Accessibility mode (large font, simple layout)
 
 ## Other tools and features
@@ -117,3 +117,5 @@ Third pass
 - [done] Rename "instructions" to "directions"
 - [done] Index pages (tag index, tag detail): show recipe description
 - [done] Add labeled sections to ingredients lists. E.g., "Sauce", "bowl 1"
+- [done] Make mobile friendly with meta tags (https://www.youtube.com/watch?v=o3Gfsc6kihk)
+- [done] Add Doctype headers to all pages

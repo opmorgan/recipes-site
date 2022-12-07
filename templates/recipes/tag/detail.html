@@ -1,34 +1,41 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'base/style.css' %}">
-<link rel="stylesheet" href="{% static 'recipes/index.css' %}">
+<!DOCTYPE html>
+<html>
 
-<title>{{ tag.name|capfirst|truncatechars:40}} recipes | {{ SITE_TITLE_SHORT }}</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ tag.name|capfirst|truncatechars:40}} recipes | {{ SITE_TITLE_SHORT }}</title>
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+  </head>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<body>
+  <body>
 
-  <div class="index-grid">
-    <div class="index-grid__body">
-      <div class="index-header">
-        {{ tag.name|capfirst }} recipes
+    <div class="content-grid">
+      <div class="content-grid__main">
+        <div class="index-header">
+          {{ tag.name|capfirst }} recipes
+        </div>
+
+        <ul class="index-list">
+          {% for recipe in recipes|dictsort:"title" %}
+            <li>
+              {% include "base/partials/recipe_index_list_entry.html" %}
+            </li>
+          {% endfor %}
+        </ul>
       </div>
 
-      <ul class="index-list">
-        {% for recipe in recipes|dictsort:"title" %}
-          <li>
-            {% include "base/partials/recipe_index_list_entry.html" %}
-          </li>
-        {% endfor %}
-      </ul>
+      <div class="content-grid__footer">
+        <p>
+        {% include "../partials/navbar_footer.html" %}
+        </p>
+      </div>
     </div>
 
-    <div class="index-grid__footer">
-      <p>
-      {% include "../partials/navbar_footer.html" %}
-      </p>
-    </div>
-  </div>
+  </body>
 
-</body>
+</html>

@@ -4,124 +4,132 @@
 
 {% load recipes_customtags %}
 
-<link rel="stylesheet" href="{% static 'base/style.css' %}">
-<link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ recipe.title|capfirst|truncatechars:40 }} | {{ SITE_TITLE_SHORT }}</title>
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+    <link rel="stylesheet" href="{% static 'recipes/recipe_detail.css' %}">
+  </head>
 
 
-<title>{{ recipe.title|capfirst|truncatechars:40 }} | {{ SITE_TITLE_SHORT }}</title>
 
-<body>
+  <body>
 
-  <div class="recipe-grid">
-    <div class="recipe-grid__body">
-      {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="content-grid">
+      <div class="content-grid__main">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-      <div class="title-image-grid">
-        <div class="title-image_grid__text">
-          <div class="recipe-title">
-            <h1>{{ recipe.title }}</h1>
+        <div class="title-image-grid">
+          <div class="title-image_grid__text">
+            <div class="recipe-title">
+              <h1>{{ recipe.title }}</h1>
+            </div>
+
+            {# is there is no intro, put title image in grid with just tite #}
+            {#TODO: handle every combination of intro & prep. #}
+            {% if not has_intro %}
+              {% with has_intro=False has_prep=recipe.has_prep %}
+                {% include "../partials/recipe_image.html" %}
+              {% endwith %}
+            {% endif %}
+
+            {#TODO: Make flexbox for description, intro, variations, prep time #}
+            {% if has_intro %}
+              <div class="introduction-variations">
+                {# {% if has_description %} #}
+                  {#   {{ recipe.description }}. #}
+                {# {% endif %} #}
+                {% if recipe.introduction is not None %}
+                  <p> {{ recipe.introduction }} </p>
+                {% endif %}
+                {% if recipe.variations is not None %}
+                  <p> <i>Variations.</i> {{  recipe.variations }} </p>
+                {% endif %}
+              </div>
+            {% endif %}
           </div>
 
-          {# is there is no intro, put title image in grid with just tite #}
-          {#TODO: handle every combination of intro & prep. #}
-          {% if not has_intro %}
-            {% with has_intro=False has_prep=recipe.has_prep %}
-              {% include "../partials/recipe_image.html" %}
-            {% endwith %}
+          {# This (?) exists outside the title image grid IFF a recipe intro is present. #}
+          {% if  has_intro %}
+            {% include "../partials/recipe_image.html" with has_intro=True %}
           {% endif %}
 
-          {#TODO: Make flexbox for description, intro, variations, prep time #}
-          {% if has_intro %}
-            <div class="introduction-variations">
-              {# {% if has_description %} #}
-                {#   {{ recipe.description }}. #}
-              {# {% endif %} #}
-              {% if recipe.introduction is not None %}
-                <p> {{ recipe.introduction }} </p>
-              {% endif %}
-              {% if recipe.variations is not None %}
-                <p> <i>Variations.</i> {{  recipe.variations }} </p>
-              {% endif %}
-            </div>
-          {% endif %}
         </div>
 
-        {# This (?) exists outside the title image grid IFF a recipe intro is present. #}
-        {% if  has_intro %}
-          {% include "../partials/recipe_image.html" with has_intro=True %}
+        {% if has_prep %}
+          <div class="prep-cook-time">
+            {% if recipe.prep_time is not None %}
+              Prep time: {{ recipe.prep_time }}
+            {% endif %}
+            {% if recipe.prep_time is not None and recipe.cook_time is not None %}
+              |
+            {% endif %}
+            {% if recipe.cook_time is not None %}
+              Cook time: {{  recipe.cook_time }}
+            {% endif %}
+          </div>
         {% endif %}
 
-      </div>
 
-      {% if has_prep %}
-        <div class="prep-cook-time">
-          {% if recipe.prep_time is not None %}
-            Prep time: {{ recipe.prep_time }}
-          {% endif %}
-          {% if recipe.prep_time is not None and recipe.cook_time is not None %}
-            |
-          {% endif %}
-          {% if recipe.cook_time is not None %}
-            Cook time: {{  recipe.cook_time }}
-          {% endif %}
-        </div>
-      {% endif %}
+        {% if has_ingredients or has_directions %}
 
-
-      {% if has_ingredients or has_directions %}
-
-        <div class="ingredients-directions-container">
-          {% if has_ingredients %}
-            <div class="ingredients">
-              <h3 class="ingredients-directions-header"> Ingredients </h3>
-              {% if has_servings %}
-                <p class = "servings">
-                <i>Serves {{  recipe.servings|fractional }}</i>
-                </p>
-              {% endif %}
-              {% if has_makes %}
-                <p class = "makes">
-                {% if recipe.recipeservingunit_set.all is not None %}
-                  {% for rsu in recipe.recipeservingunit_set.all %}
-                    <i>Makes
-                      {% with item=rsu item_type="serving_unit" %}
-                        {% include "../partials/item_with_amount.html" %}
-                      {% endwith %}
-                    </i>
-                  {% endfor %}
+          <div class="ingredients-directions-container">
+            {% if has_ingredients %}
+              <div class="ingredients">
+                <h3 class="ingredients-directions-header"> Ingredients </h3>
+                {% if has_servings %}
+                  <p class = "servings">
+                  <i>Serves {{  recipe.servings|fractional }}</i>
+                  </p>
                 {% endif %}
-                </p>
-              {% endif %}
-
-
-              {# loop through recipe ingredients #}
-              <ul class="ingredients-list">
-                {% if recipe.recipeingredient_set.all is not None %}
-                  {% for ri in recipe.recipeingredient_set.all|sort_by:"order" %}
-                    <li>
-                      {% with item=ri item_type="section_ingredient" %}
-                        {% include "../partials/item_with_amount.html" %}
-                      {% endwith %}
-                    </li>
-                  {% endfor %}
+                {% if has_makes %}
+                  <p class = "makes">
+                  {% if recipe.recipeservingunit_set.all is not None %}
+                    {% for rsu in recipe.recipeservingunit_set.all %}
+                      <i>Makes
+                        {% with item=rsu item_type="serving_unit" %}
+                          {% include "../partials/item_with_amount.html" %}
+                        {% endwith %}
+                      </i>
+                    {% endfor %}
+                  {% endif %}
+                  </p>
                 {% endif %}
-              </ul>
-            </div>
+
+
+                {# loop through recipe ingredients #}
+                <ul class="ingredients-list">
+                  {% if recipe.recipeingredient_set.all is not None %}
+                    {% for ri in recipe.recipeingredient_set.all|sort_by:"order" %}
+                      <li>
+                        {% with item=ri item_type="section_ingredient" %}
+                          {% include "../partials/item_with_amount.html" %}
+                        {% endwith %}
+                      </li>
+                    {% endfor %}
+                  {% endif %}
+                </ul>
+              </div>
 
               {# TODO: implement recipe sections #}
               {# TODO: pass in sorted list of sections, defined in views. #}
 
               {# {% for section in recipe.sections.all|sort_by:'order' %} #}
-              {#   {% if has_multiple_sections %} #}
-              {#     <h4 class="ingredients-section-header">{{ section.name }}</h4> #}
-              {#     {{ section.ingredients_set.all }} #}
-              {#   {% endif %} #}
-              {#   {% with section_ingredients=section.sectioningredient_set.all %} #}
-              {#     {% include "../partials/section_ingredients_list.html" %} #}
-              {#   {% endwith %} #}
+                {#   {% if has_multiple_sections %} #}
+                  {#     <h4 class="ingredients-section-header">{{ section.name }}</h4> #}
+                  {#     {{ section.ingredients_set.all }} #}
+                {#   {% endif %} #}
+                {#   {% with section_ingredients=section.sectioningredient_set.all %} #}
+                  {#     {% include "../partials/section_ingredients_list.html" %} #}
+                {#   {% endwith %} #}
               {# {% endfor %} #}
 
-            {# </div> #}
+              {# </div> #}
+
           {% endif %}
           {% if has_ingredients and has_directions %}
             <div class="ingredients-directions-separator">
@@ -133,21 +141,21 @@
               {{ recipe.directions|linebreaks }}
             </div>
           {% endif %}
-        </div>
+      </div>
 
-      {% endif %}
+    {% endif %}
 
-      {% if has_tags %}
-        <div class="tags">
-          {% for tag in recipe.tags.all %}
-            <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
-            {% if not forloop.last %}|{% endif %}
-          {% endfor %}
-        </div>
-      {% endif %}
+    {% if has_tags %}
+      <div class="tags">
+        {% for tag in recipe.tags.all %}
+          <a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a>
+          {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
     </div>
 
-    <div class="recipe-grid__footer">
+    <div class="content-grid__footer">
       {# TODO: Ask Josh - what is the simplest, best way to add an element like this navbar, with a paragraph space after it? #}
       <p>
       <em>
@@ -166,6 +174,8 @@
       </p>
     </div>
 
-  </div>
+    </div>
 
-</body>
+  </body>
+
+</html>

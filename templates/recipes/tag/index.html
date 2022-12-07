@@ -1,34 +1,41 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'base/style.css' %}">
-<link rel="stylesheet" href="{% static 'recipes/index.css' %}">
+<!DOCTYPE html>
+<html>
 
-<title>Categories | {{ SITE_TITLE_SHORT }}</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Categories | {{ SITE_TITLE_SHORT }}</title>
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+  </head>
 
-<body>
+  <body>
 
-  <div class="index-grid">
-    <div class="index-grid__body">
-      <div class="index-header">
-        All Categories
+    <div class="content-grid">
+      <div class="content-grid__main">
+        <div class="index-header">
+          All Categories
+        </div>
+
+        {% if all_tags_list %}
+          <ul class="index-list">
+            {% for tag in all_tags_list|dictsort:"name" %}
+              <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No category tags are available.</p>
+        {% endif %}
       </div>
 
-      {% if all_tags_list %}
-        <ul class="index-list">
-          {% for tag in all_tags_list|dictsort:"name" %}
-            <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name }}</a></li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>No category tags are available.</p>
-      {% endif %}
+      <div class="content-grid__footer">
+        <p>
+        {% include "../partials/navbar_footer.html" %}
+        </p>
+      </div>
     </div>
 
-    <div class="index-grid__footer">
-      <p>
-      {% include "../partials/navbar_footer.html" %}
-      </p>
-    </div>
-  </div>
+  </body>
 
-</body>
+</html>
