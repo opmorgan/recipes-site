@@ -136,14 +136,15 @@ h2 {
 }
 
 .content-grid {
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  min-height:100vh;
+  flex-direction: column;
   padding-left: 3rem;
   padding-right: 3rem;
 }
 
 .content-grid__main {
+  flex: 1;
   padding-top: 1.618rem;
 }
 
