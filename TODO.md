@@ -17,11 +17,11 @@
 # Features
 
 ## Data entry
-- Create user friendly form to enter new recipes
+- [js] Create user friendly form to enter new recipes (recipes/n/edit)
 
 ## Home page
-- Add filtering by tag, ingredients
-- Add search function
+- [js] Add filtering by tag, ingredients
+- [js] Add search function
 - Preview categories (top ten recipes in top 8 categories)
 
 ## Index pages
