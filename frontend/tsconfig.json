@@ -1,0 +1,25 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "outDir": "./static/scripts",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "Node",
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["esnext", "dom", "dom.iterable"]
+  }
+}

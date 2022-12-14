@@ -8,9 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ SITE_TITLE }}: A simple site for family recipes | Home</title>
     <link rel="stylesheet" href="{% static 'base/style.css' %}">
+
+    <!-- Only import the scripts below if the current environment is development -->
+    {% if debug %}
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module" src="http://localhost:5173/src/index.ts"></script>
+    {% else %}
+      <!-- Only import the scripts below if the current environment is production -->
+      <script type="module" src="{% static 'scripts/frontend.mjs' %}"></script>
+    {% endif %}
+
   </head>
 
   <body>
+
+    <!-- Home page search (lit) -->
+    <hb-recipes-search recipes="{{ all_recipes_json }}"></hb-recipes-search>
+
+    <!-- Home page content -->
     <div class="content-grid">
       <div class="content-grid__main">
         <div class="index-header">
