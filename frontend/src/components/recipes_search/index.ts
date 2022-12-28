@@ -15,6 +15,7 @@ type RecipeQueryObject = {
     prep_time: string;
     cook_time: string;
     servings: number;
+    author: string;
   };
 };
 
@@ -73,7 +74,7 @@ export class RecipesSearch extends LitElement {
         <input
           class="recipes-search__input"
           type="text"
-          placeholder="Search"
+          placeholder="Search all recipes"
           .value=${this.query}
           @input=${(e: Event) => {
             this.query = (e.target as HTMLInputElement).value || '';
