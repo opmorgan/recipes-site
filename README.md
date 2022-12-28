@@ -5,6 +5,7 @@ A simple website for family recipes, made with django.
 - Python: See requirements.txt
 
 ## To set up development environment
+1. Create file ```.env```, hidden from version control, which sets the variables ```POSTGRES_USER```, ```POSTGRES_PASSWORD```, ```POSTGRESS_DB```, and ```SECRET_KEY```
 1. ```sudo docker-compose up``` (Run the docker container)
 1. ```python -m venv env``` (Create python virtual environment)
 1. ```source env/bin/activate``` (Enter python virtual environment)
