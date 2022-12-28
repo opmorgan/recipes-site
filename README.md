@@ -10,6 +10,7 @@ A simple website for family recipes, made with django.
 1. ```python -m venv env``` (Create python virtual environment)
 1. ```source env/bin/activate``` (Enter python virtual environment)
 1. ```pip install -r requirements.txt``` (Install required python packages)
+1. ```python manage.py migrate``` (Make initial migrations)
 1. ```python manage.py createsuperuser``` (Create an admin user)
 1. ```python manage.py runserver``` (Start the development server)
 1. From the "frontend" directory, ```npm run dev``` (Run the vite server for reactive elements)
