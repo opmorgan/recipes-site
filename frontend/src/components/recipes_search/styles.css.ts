@@ -63,7 +63,6 @@ export const styles = css`
 
 .recipes-search__results {
   border: 2px solid #404040;
-  /* [Q] how to hide the border when height is zero? */
   position: absolute;
   top: 4rem;
   margin: -6px;
