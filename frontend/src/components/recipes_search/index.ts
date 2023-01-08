@@ -101,8 +101,11 @@ export class RecipesSearch extends LitElement {
       // Check to see if a user clicked the box or not.
       const searchBox = document.getElementById("search_dropdown");
       let clickTarget = e.target;
+      // Why does clicking the dropdown box hide the box?
+      // Is the connected callback run before the element exists?
+      // Do I need to make the dropdown box its own element?
       if (clickTarget == searchBox) return;
-        this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
+      this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
     });
     // (Q) How would I add a function to change results state on keydown?
     // (Q) Why didn't it work as written?
