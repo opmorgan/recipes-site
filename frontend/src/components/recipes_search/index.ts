@@ -32,6 +32,7 @@ enum RecipeSearchResultsState {
   NO_QUERY,
   HAS_RESULTS,
   NO_RESULTS,
+  HIDDEN,
 }
 
 
@@ -54,6 +55,7 @@ type MsgVariant<V> = {
 type Msg =
   | MsgVariant<string>
   | MsgVariant<RecipeSearchResultsState>;
+
 // Define Msg variant for UPDATE_QUERY
 // This will have a "value" of a string -- this is what the user types
 // This value is the content that will be used when the query is updated.
@@ -62,7 +64,6 @@ const UpdateQuery = (value: string): MsgVariant<string> => ({
   value,
 });
 // Define Msg variant for UPDATE_RESULTS_STATE
-// (Q) Why does this one look so different from UpdateQuery?
 const UpdateResultsState =
   (value: RecipeSearchResultsState): MsgVariant<RecipeSearchResultsState> => ({
     action: Action.UPDATE_RESULTS_STATE,
@@ -91,17 +92,25 @@ export class RecipesSearch extends LitElement {
     return styles;
   }
 
-
   // TODO: handle button click outside visible search dropdown: hide dropdown
-  // (Q) how should I model/handle the possible states, "clickedOutside" vs. "notClickedOutside/default"?
-  // connectedCallback() {
-  //   window.addEventListner('click', (event: Event) => {
-  //     if (this.resultsState === RecipeSearchResultsState.NO_QUERY) return;
-  //     // Check to see if a user clicked the box or not.
-  //     // if (no) this.handleMsg(UpdateResultsState.HIDDEN);
-  //   });
-  // }
   //
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('click', (e: Event) => {
+      if (this.resultsState === RecipeSearchResultsState.NO_QUERY) return;
+      // Check to see if a user clicked the box or not.
+      const searchBox = document.getElementById("search_dropdown");
+      let clickTarget = e.target;
+      if (clickTarget == searchBox) return;
+        this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
+    });
+    // window.addEventListener('keydown', this._handleKeyDown)
+  }
+
+  // private _handleKeyDown() {
+  //     this.handleMsg(UpdateResultsState(RecipeSearchResultsState.NO_RESULTS))
+  // }
+
 
   //// HANDLE UPDATE MESSAGES - how should state be changed for each Msg action?
   // There are two possible update message actions: UPDATE_QUERY and UPDATE_RESULTS_STATE
@@ -111,6 +120,8 @@ export class RecipesSearch extends LitElement {
       case Action.UPDATE_QUERY: {
         // Get the value of the query, sent in the msg
         // For the update action, the msg's value is user input -- what they type in the search box
+        // I think this error is because msg.value isn't always a string: in principle, it could be a RecipeSearchResultsState
+        // So, let's check is msg.value is a string, and assign it only if so -- if it's not, throw an error.
         this.query = msg.value;
 
         // Set the model's state depending on the consequences of the query
@@ -194,7 +205,7 @@ export class RecipesSearch extends LitElement {
     // (Q) What is going on in this function?
     // How do templates work? Where does it get its content?
    const resultsWrapper = (markup: TemplateResult) => html`
-      <div class="recipes-search__results">
+      <div class="recipes-search__results" id = "search_dropdown">
         ${markup}
       </div>
     `;
@@ -209,6 +220,8 @@ export class RecipesSearch extends LitElement {
             <strong>There are no recipes matching '${this.query}'.</strong>
         `);
       case RecipeSearchResultsState.NO_QUERY:
+        return nothing;
+      case RecipeSearchResultsState.HIDDEN:
         return nothing;
       case RecipeSearchResultsState.HAS_RESULTS:
         return resultsWrapper(html`
