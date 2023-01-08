@@ -104,6 +104,8 @@ export class RecipesSearch extends LitElement {
       if (clickTarget == searchBox) return;
         this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
     });
+    // (Q) How would I add a function to change results state on keydown?
+    // (Q) Why didn't it work as written?
     // window.addEventListener('keydown', this._handleKeyDown)
   }
 
