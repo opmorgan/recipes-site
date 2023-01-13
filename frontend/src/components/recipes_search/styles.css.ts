@@ -3,8 +3,6 @@ import {css} from 'lit';
 /** Styles for recipes search. */
 export const styles = css`
 :host {
-  width: 100%;
-  display: block;
   display: flex;
   align-items: center;
 }

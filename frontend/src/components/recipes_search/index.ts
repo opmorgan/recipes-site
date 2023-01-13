@@ -9,7 +9,9 @@ export const RECIPES_SEARCH_TAG = 'hb-recipes-search';
 
 // Parse data from server
 type RecipeQueryObject = {
+  pk: number;
   fields: {
+    id: number;
     title: string;
     description: string;
     created_at: Date;
@@ -18,11 +20,13 @@ type RecipeQueryObject = {
     cook_time: string;
     servings: number;
     author: string;
+    url: string;
   };
 };
 
 type RecipePart = {
-  fields: Pick<RecipeQueryObject['fields'], 'title' | 'description'>;
+  pk: RecipeQueryObject['pk'];
+  fields: Pick<RecipeQueryObject['fields'], 'title' | 'description' | 'id'>;
 };
 
 // MODEL
@@ -98,13 +102,11 @@ export class RecipesSearch extends LitElement {
     super.connectedCallback();
     window.addEventListener('click', (e: Event) => {
       if (this.resultsState === RecipeSearchResultsState.NO_QUERY) return;
-      // Check to see if a user clicked the box or not.
-      const searchBox = document.getElementById("search_dropdown");
-      let clickTarget = e.target;
-      // Why does clicking the dropdown box hide the box?
-      // Is the connected callback run before the element exists?
-      // Do I need to make the dropdown box its own element?
-      if (clickTarget == searchBox) return;
+
+      if (Array.from(e.composedPath()).some(element => element instanceof RecipesSearch)) {
+        return;
+      }
+
       this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
     });
     // (Q) How would I add a function to change results state on keydown?
@@ -198,11 +200,13 @@ export class RecipesSearch extends LitElement {
 
   // helper VIEW functions
   private renderRecipe(recipe: RecipePart) {
+    const url = `/recipes/${recipe.pk}`;
+
     return html`
-      <div class="recipe-search-result">
+      <a class="recipe-search-result" .href=${url}>
         <h5>${recipe.fields.title}</h5>
         <p>${recipe.fields.description}</p>
-      </div>
+      </a>
     `;
   }
 
