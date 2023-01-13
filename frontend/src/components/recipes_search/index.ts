@@ -11,7 +11,6 @@ export const RECIPES_SEARCH_TAG = 'hb-recipes-search';
 type RecipeQueryObject = {
   pk: number;
   fields: {
-    id: number;
     title: string;
     description: string;
     created_at: Date;
@@ -26,7 +25,7 @@ type RecipeQueryObject = {
 
 type RecipePart = {
   pk: RecipeQueryObject['pk'];
-  fields: Pick<RecipeQueryObject['fields'], 'title' | 'description' | 'id'>;
+  fields: Pick<RecipeQueryObject['fields'], 'title' | 'description'>;
 };
 
 // MODEL
@@ -202,10 +201,18 @@ export class RecipesSearch extends LitElement {
   private renderRecipe(recipe: RecipePart) {
     const url = `/recipes/${recipe.pk}`;
 
+    let description_formatted: string;
+    if (recipe.fields.description) {
+      description_formatted = ` — ` + `${recipe.fields.description}`
+    } else {
+      description_formatted = ``
+    }
+
     return html`
-      <a class="recipe-search-result" .href=${url}>
-        <h5>${recipe.fields.title}</h5>
-        <p>${recipe.fields.description}</p>
+      <a class="recipe-search-result-container" .href=${url}>
+        <div class="recipe-search-result-content">
+            <p>${recipe.fields.title}<em>${description_formatted}</em></p>
+        </div>
       </a>
     `;
   }
@@ -226,7 +233,11 @@ export class RecipesSearch extends LitElement {
     switch (this.resultsState) {
       case RecipeSearchResultsState.NO_RESULTS:
         return resultsWrapper(html`
-            <strong>There are no recipes matching '${this.query}'.</strong>
+            <div class="recipe-search-result-content">
+              <p>
+                <strong>Found no recipes matching '${this.query}'.</strong>
+              </p>
+            </div>
         `);
       case RecipeSearchResultsState.NO_QUERY:
         return nothing;

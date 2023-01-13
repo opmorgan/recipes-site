@@ -23,8 +23,12 @@
   <body>
 
     <!-- Home page search (lit) -->
-    <header style="display: flex; align-items: center; justify-content: center; width: 100%">
+    {# TODO: try putting the search bar on the left, like on Craig's list. #}
+    {# Consider putting filters below search bar #}
+    <header style="display: flex; align-items: center; justify-content: center; width: 100%; margin-top: 1.618rem;">
+      {# <div>Home</div> #}
       <hb-recipes-search recipes="{{ all_recipes_json }}"></hb-recipes-search>
+      {# <div>Account</div> #}
     </header>
 
     <!-- Home page content -->

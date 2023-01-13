@@ -8,7 +8,9 @@ export const styles = css`
 }
 
 :root {
+  /* [Q] Why are new variables defined here not used? */
   --background: #FFFFeb;
+  --trans-black: #000000;
   --foreground: #111111;
   --dark-gray: #111111;
   --light-gray: #404040;
@@ -17,6 +19,7 @@ export const styles = css`
   --light-red: #b30000;
   --site-name: "honeybit.cooking"
 }
+
 
 .recipes-search {
   /* border: 2px solid green; */
@@ -31,7 +34,7 @@ export const styles = css`
 .recipes-search__input {
   /* [Q] Where is the color of the placeholder text set? */
   /* Margin above search box: */
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   border: 2px solid #404040;
   border-radius; 6px;
   outline: 0;
@@ -55,27 +58,81 @@ export const styles = css`
 }
 
 .recipes-search__input:hover {
-  border: 2px solid var(--light-red);
+  /* border: 2px solid black; */
   /* box-shadow: 0 0 2px black; */
 }
 
 .recipes-search__results {
-  border: 2px solid #404040;
+  border: 1px solid #404040;
   position: absolute;
-  top: 4rem;
+  top: 3rem;
   margin: -6px;
   width: 50%;
   /* [Q] Is this the best way to set a minimum width? How to prevent x overflow? */
   min-width: 300px;
   background-color: rgb(255, 255, 235, .85);
-  /* box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2); */
+  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
   z-index: 1;
   /* padding-top: 1rem; */
-  padding-left: 1rem;
   box-sizing: border-box;
   overflow: hidden;
   overflow-y: scroll;
   max-height: 500px;
 }
+
+
+a {
+  text-decoration: none;
+}
+
+
+.recipe-search-result-container {
+  display: inline-block;
+  width: 100%;
+  /* color: black; */
+  /* border: 2px solid red; */
+}
+
+.recipe-search-result-container:hover {
+  /* color: black; */
+  background: rgb(179, 0, 0, .15);
+}
+
+.recipe-search-result-content {
+  /* display: inline-block; */
+  font-size: .9rem;
+  color: black;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /* border: 2px solid green; */
+}
+
+
+
+
+/* /* unvisited link */ */
+/* a:link { */
+/*   color: var(--light-red); */
+/*   text-decoration: none; */
+/* } */
+/*  */
+/* /* visited link */ */
+/* a:visited { */
+/*   color: var(--dark-red); */
+/*   text-decoration: underline; */
+/* } */
+/*  */
+/* /* mouse over link */ */
+/* a:hover { */
+/*   color: var(--light-red); */
+/*   text-decoration: underline; */
+/* } */
+/*  */
+/* /* selected link */ */
+/* a:active { */
+/*   color: var(--light-red); */
+/*   text-decoration: underline; */
+/* } */
+
 
 `;
