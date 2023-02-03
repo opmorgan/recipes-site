@@ -107,32 +107,4 @@ a {
   /* border: 2px solid green; */
 }
 
-
-
-
-/* /* unvisited link */ */
-/* a:link { */
-/*   color: var(--light-red); */
-/*   text-decoration: none; */
-/* } */
-/*  */
-/* /* visited link */ */
-/* a:visited { */
-/*   color: var(--dark-red); */
-/*   text-decoration: underline; */
-/* } */
-/*  */
-/* /* mouse over link */ */
-/* a:hover { */
-/*   color: var(--light-red); */
-/*   text-decoration: underline; */
-/* } */
-/*  */
-/* /* selected link */ */
-/* a:active { */
-/*   color: var(--light-red); */
-/*   text-decoration: underline; */
-/* } */
-
-
 `;

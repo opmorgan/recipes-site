@@ -95,8 +95,6 @@ export class RecipesSearch extends LitElement {
     return styles;
   }
 
-  // TODO: handle button click outside visible search dropdown: hide dropdown
-  //
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('click', (e: Event) => {

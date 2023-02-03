@@ -22,7 +22,10 @@
 ## Home page
 - [js] Add filtering by tag, ingredients
 - [js] Add search function
+- Search: keypresses to navigate (tab, shift tab, arrow keys)
 - Preview categories (top ten recipes in top 8 categories)
+- {
+- See workflowy for more homepage ideas
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]
