@@ -19,7 +19,7 @@ body {
   font-family: "Stix";
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: #111111;
   background-color: #FFFFeb;
 }
@@ -66,7 +66,7 @@ a:active {
 }
 
 .index-header {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 1em;
   margin: 0 0 .382rem;
@@ -135,6 +135,7 @@ h2 {
   padding: 0;
 }
 
+
 .content-grid {
   display: flex;
   min-height:100vh;
@@ -143,12 +144,25 @@ h2 {
   padding-right: 3rem;
 }
 
+.content-grid__header {
+  display: flex;
+  color: green;
+}
+
+
+.content-grid__header__logo {
+}
+
+.content-grid__header__search {
+}
+
+.content-grid__header__navbuttons {
+}
+
+
 .content-grid__main {
   flex: 1;
   padding-top: 1.618rem;
-}
-
-.content-grid__footer {
 }
 
 .content-grid__footer p{
