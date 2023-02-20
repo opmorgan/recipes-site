@@ -5,56 +5,88 @@ export const styles = css`
 :host {
   display: flex;
   align-items: center;
+  /* Trying to control width of search bar: */
+  width: 100%;
 }
 
 :root {
   /* [Q] Why are new variables defined here not used? */
-  --background: #FFFFeb;
-  --trans-black: #000000;
-  --foreground: #111111;
-  --dark-gray: #111111;
-  --light-gray: #404040;
-  --lighter-gray: #646464;
-  --dark-red: #660000;
-  --light-red: #b30000;
-  --site-name: "honeybit.cooking"
+  /* [A]: put them in host in a component! */
+  /* --background: #FFFFeb; */
+  /* --background_dark: #F2F2DE; */
+  /* --trans-black: #000000; */
+  /* --foreground: #111111; */
+  /* --dark-gray: #111111; */
+  /* --light-gray: #404040; */
+  /* --lighter-gray: #646464; */
+  /* --dark-red: #660000; */
+  /* --light-red: #b30000; */
+  /* --site-name: "honeybit.cooking" */
 }
-
 
 .recipes-search {
   /* border: 2px solid green; */
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex: 0 0 100%;
+  box-sizing: border-box;
+  width: 100%;
+  /* box-shadow: -8px 0px 8px -8px rgba(0,0,0,0.2); */
 }
 
-.recipes-search__input {
+.recipes-search__input[type="text"] {
   /* [Q] Where is the color of the placeholder text set? */
   /* Margin above search box: */
-  /* margin-top: 1rem; */
-  border: 2px solid #404040;
-  border-radius; 6px;
+  float: left;
+  display: flex;
+  flex-direction: row;
+  border: 0px;
+  border-radius: 0px;
   outline: 0;
-  background: transparent;
-  font-size: 16px;
+  background-color: #F2F2DE;
+  /* font-size: 14px; */
+  font-family: "Sans";
   /* why does "--light-gray" look lighter here than on the border? */
   color: var(--light-gray);
   /* Padding around input text: */
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: 1rem;
+  padding-top: .618rem;
+  padding-bottom: .618rem;
+  padding-left: .618rem;
   box-sizing: border-box;
+  width: 100%;
   z-index: 2;
+  height: 2.618rem;
+}
+
+.recipes-search__input[type="submit"] {
+  /* font-family: "Material Symbols Outlined"; */
+  font-family: "Stix";
+  font-size: 12px;
+  border: 0 none;
+  /* border:1px solid black; */
+  background: #F2F2DE;
+  /* background: #F2F2DE url(https://img.icons8.com/material-outlined/256/search--v1.png); */
+  /* background-size: 1rem; */
+  /* background-repeat: no-repeat; */
+  /* background-position: right; */
+  box-sizing: border-box;
+  color: #909090;
+  text-align: right;
+  padding-right: 0rem;
+  font-family: "Sans";
+  height: 2.618rem;
+  width: 30px;
 }
 
 
-/* [Q] How to format both hover and focus? */
+
 .recipes-search__input:focus {
-  border: 2px solid var(--light-red);
-  box-shadow: 0 0 2px var(--light-red);
+  /* border: 2px solid var(--light-red); */
+  /* box-shadow: 0 0 2px var(--light-red); */
+  /* box-shadow: -8px 0px 8px -8px rgba(0,0,0,0.2); */
 }
 
 .recipes-search__input:hover {
@@ -63,21 +95,36 @@ export const styles = css`
 }
 
 .recipes-search__results {
-  border: 1px solid #404040;
+  /* border: 1px solid #404040; */
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  top: 3rem;
-  margin: -6px;
-  width: 50%;
+  top: 2.618rem;
+  /* margin: -6px; */
+  width: 100%;
   /* [Q] Is this the best way to set a minimum width? How to prevent x overflow? */
-  min-width: 300px;
-  background-color: rgb(255, 255, 235, .85);
+  /* min-width: 300px; */
+  background-color: rgb(255, 255, 235, 1);
   box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  /* padding-top: 1rem; */
   box-sizing: border-box;
+  /* TODO: fix scrollbar glitch (unwanted margin on bottom of dropdown) */
   overflow: hidden;
-  overflow-y: scroll;
-  max-height: 500px;
+  max-height: 80dvh;
+}
+
+.recipes-search__results--hidden {
+  display: none;
+}
+
+.recipe-result__title {
+  box-sizing: border-box;
+  padding-top: 1rem;
+}
+
+.recipe-result__description p {
+  box-sizing: border-box;
+  margin: 0;
 }
 
 

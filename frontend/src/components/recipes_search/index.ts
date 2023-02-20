@@ -1,6 +1,7 @@
 import {LitElement, html, css, nothing, TemplateResult} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
+import {classMap} from 'lit/directives/class-map.js';
 import {styles} from './styles.css'; // (Q) Why not "./syles.css.ts"?
 import Fuse from 'fuse.js'; // Fzf search library
 
@@ -14,7 +15,7 @@ type RecipeQueryObject = {
     title: string;
     description: string;
     created_at: Date;
-    updated_at?; Date;
+    updated_at?: Date;
     prep_time: string;
     cook_time: string;
     servings: number;
@@ -35,7 +36,12 @@ enum RecipeSearchResultsState {
   NO_QUERY,
   HAS_RESULTS,
   NO_RESULTS,
-  HIDDEN,
+  // HIDDEN,
+}
+
+enum RecipeSearchResultsVisibility {
+  VISIBLE,
+  HIDDEN
 }
 
 
@@ -46,6 +52,7 @@ enum RecipeSearchResultsState {
 enum Action {
   UPDATE_QUERY,
   UPDATE_RESULTS_STATE,
+  UPDATE_RESULTS_VISIBILITY,
 }
 // Each message will have an action (possible signal to change state)
 // and a "value" with content (e.g., the relevant search query or reuslts?)
@@ -57,7 +64,8 @@ type MsgVariant<V> = {
 };
 type Msg =
   | MsgVariant<string>
-  | MsgVariant<RecipeSearchResultsState>;
+  | MsgVariant<RecipeSearchResultsState>
+  | MsgVariant<RecipeSearchResultsVisibility>;
 
 // Define Msg variant for UPDATE_QUERY
 // This will have a "value" of a string -- this is what the user types
@@ -74,6 +82,13 @@ const UpdateResultsState =
   });
 
 
+const UpdateResultsVisibility =
+  (value: RecipeSearchResultsVisibility): MsgVariant<RecipeSearchResultsVisibility> => ({
+    action: Action.UPDATE_RESULTS_VISIBILITY,
+    value,
+  });
+
+
 @customElement(RECIPES_SEARCH_TAG)
 export class RecipesSearch extends LitElement {
   // Lit.js component boilerplate
@@ -86,15 +101,23 @@ export class RecipesSearch extends LitElement {
   query = '';
 
   // Define starting state (like Elm's initial MODEL)
-  @state()
   // Possible values of results state are enumerated in RecipeSearchResultsState's definition
+  @state()
   private resultsState: RecipeSearchResultsState = RecipeSearchResultsState.NO_QUERY;
 
+  // Possible values of results state are enumerated in RecipeSearchResultsVisibility's definition
+  @state()
+  private resultsVisibility: RecipeSearchResultsVisibility = RecipeSearchResultsVisibility.HIDDEN;
+
+  @state()
+  private selectedIndex?: number | null = null;
 
   static get styles() {
     return styles;
   }
 
+  // TODO: make search results display when you click on the search bar, after clicking away from it.
+  // (Q) How to do this??
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('click', (e: Event) => {
@@ -104,16 +127,38 @@ export class RecipesSearch extends LitElement {
         return;
       }
 
-      this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
+      // this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
+      this.handleMsg(UpdateResultsVisibility(RecipeSearchResultsVisibility.HIDDEN))
     });
-    // (Q) How would I add a function to change results state on keydown?
-    // (Q) Why didn't it work as written?
-    // window.addEventListener('keydown', this._handleKeyDown)
+
+    // Hide search results if escape is pressed
+   window.addEventListener('keydown', (e) => {
+          switch (e.key) {
+            case 'Escape': {
+             //if esc key was not pressed in combination with ctrl or alt or shift
+              const isNotCombinedKey = !(e.ctrlKey || e.altKey || e.shiftKey);
+              if (isNotCombinedKey) {
+                  // this.handleMsg(UpdateResultsState(RecipeSearchResultsState.HIDDEN))
+                  this.handleMsg(UpdateResultsVisibility(RecipeSearchResultsVisibility.HIDDEN))
+              }
+              break;
+            }
+
+            // TODO: arrow keys!
+            // case 'ArrowUp': {
+            //   this.selectedIndex ??= 0;
+            //   break;
+            // }
+            //
+            // case 'ArrowDown': {
+            // }
+          }
+      });
   }
 
-  // private _handleKeyDown() {
-  //     this.handleMsg(UpdateResultsState(RecipeSearchResultsState.NO_RESULTS))
-  // }
+  private onInputClick() {
+    this.handleMsg(UpdateResultsVisibility(RecipeSearchResultsVisibility.VISIBLE))
+  }
 
 
   //// HANDLE UPDATE MESSAGES - how should state be changed for each Msg action?
@@ -162,6 +207,14 @@ export class RecipesSearch extends LitElement {
         break;
       }
 
+      // Handle the action UPDATE_RESULTS_VISIBILITY
+      case Action.UPDATE_RESULTS_VISIBILITY: {
+        // Set the results state to the one set when there is a new query
+        // (This msg will be sent after a query is updated: after an UPDATE_QUERY)
+        this.resultsVisibility = msg.value;
+        break;
+      }
+
       // Make typescript throw an error unless all arms of Msg/Action are covered
       default:
         const exhaustive: never = msg.action;
@@ -207,9 +260,18 @@ export class RecipesSearch extends LitElement {
     }
 
     return html`
-      <a class="recipe-search-result-container" .href=${url}>
+      <a
+        tabindex="0"
+        class="recipe-search-result-container"
+        .href=${url}
+      >
         <div class="recipe-search-result-content">
-            <p>${recipe.fields.title}<em>${description_formatted}</em></p>
+            <div class="recipe-result__title">
+              <strong>${recipe.fields.title}</strong>
+            </div>
+            <p class="recipe-result__description">
+              <em>${description_formatted}</em>
+            </p>
         </div>
       </a>
     `;
@@ -219,7 +281,13 @@ export class RecipesSearch extends LitElement {
     // (Q) What is going on in this function?
     // How do templates work? Where does it get its content?
    const resultsWrapper = (markup: TemplateResult) => html`
-      <div class="recipes-search__results" id = "search_dropdown">
+      <div
+        class="recipes-search__results ${classMap({
+          'recipes-search__results--hidden':
+            this.resultsVisibility === RecipeSearchResultsVisibility.HIDDEN ||
+            this.resultsState === RecipeSearchResultsState.NO_QUERY,
+        })}"
+        id="search_dropdown">
         ${markup}
       </div>
     `;
@@ -233,13 +301,11 @@ export class RecipesSearch extends LitElement {
         return resultsWrapper(html`
             <div class="recipe-search-result-content">
               <p>
-                <strong>Found no recipes matching '${this.query}'.</strong>
+                <em>Found no recipes matching '${this.query}'.</em>
               </p>
             </div>
         `);
       case RecipeSearchResultsState.NO_QUERY:
-        return nothing;
-      case RecipeSearchResultsState.HIDDEN:
         return nothing;
       case RecipeSearchResultsState.HAS_RESULTS:
         return resultsWrapper(html`
@@ -256,20 +322,28 @@ export class RecipesSearch extends LitElement {
 
 
   //// VIEW
+
   render() {
     return html`
       <div class="recipes-search">
-        <input
-          class="recipes-search__input"
-          type="text"
-          placeholder="Search all recipes"
-          .value=${this.query}
-          @input=${(e: Event) => {
-            const query = (e.target as HTMLInputElement).value || '';
-            this.handleMsg(UpdateQuery(query));
-          }}
-        />
-        ${this.renderSearchResults()}
+          <input
+            class="recipes-search__input material-symbols-outlined",
+            type="submit",
+            value=🔎︎>
+          <input
+            class="recipes-search__input"
+            type="text"
+            placeholder="Search all recipes"
+            .value=${this.query}
+            @click=${(e: Event) => {
+              this.onInputClick();
+            }}
+            @input=${(e: Event) => {
+              const query = (e.target as HTMLInputElement).value || '';
+              this.handleMsg(UpdateQuery(query));
+            }}
+          />
+          ${this.renderSearchResults()}
       </div>
     `;
   }
