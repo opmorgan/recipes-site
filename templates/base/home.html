@@ -28,11 +28,35 @@
     <div class="content-grid">
 
 
-      {# Put the nav box here #}
-      <div class="content-grid__header" style="display: flex; align-items: center; justify-content: center; width: 100%; margin-top: 1.618rem">
-        {# <div>Home</div> #}
-        <hb-recipes-search recipes="{{ all_recipes_json }}"></hb-recipes-search>
-        {# <div>Account</div> #}
+      <div class="content-grid__header">
+        <div class="content-grid__header__container">
+          <div class="content-grid__header__content">
+
+            <div class="content-grid__header__logo">
+                <a href="/">honeybit</a>
+            </div>
+
+            <div class="content-grid__header__search">
+            <hb-recipes-search recipes="{{ all_recipes_json }}"></hb-recipes-search>
+            </div>
+
+            <div class="content-grid__header__navbuttons">
+              <div class="navbutton__home">
+                <a href="/">Home</a>
+              </div>
+              <div class="navbutton__recipes">
+                <a href="/">Recipes</a>
+              </div>
+              <div class="navbutton__categories">
+                <a href="/">Categories</a>
+              </div>
+              <div class="navbutton__add">
+                <a href="/">+</a>
+              </div>
+            </div>
+
+          </div>
+          </div>
       </div>
 
 

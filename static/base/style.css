@@ -31,11 +31,15 @@
 
 :root {
   --background: #FFFFeb;
+  --background-highlight: #f2f2de; /* E.g., search box */
+  --trans-black-light: rgba(0, 0, 0, 0.015);
   --foreground: #111111;
-  --dark-gray: #111111;
-  --light-gray: #404040;
+  --dark-gray: rgba(17, 17, 17);
+  --light-gray: rgba(17, 17, 17, 0.8);
+  --lighter-gray: rgba(17, 17, 17, 0.1);
   --dark-red: #660000;
-  --light-red: #b30000;
+  --light-red: rgba(179, 0, 0);
+  --lighter-red: rgba(179, 0, 0, 0.8);
   --site-name: "honeybit.cooking"
 }
 
@@ -164,29 +168,115 @@ h2 {
   display: flex;
   min-height:100vh;
   flex-direction: column;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
+
 .content-grid__header {
+}
+
+.content-grid__header__container {
+  background-color: var(--trans-black-light);
+  padding-top: .5rem;
+  padding-bottom: .6rem; /* [Q] Why does .5 look wrong? */
+  padding-left: 1rem;
+  padding-right: 1.618rem; /* [Q] How to make this look good with scrollbar? */
+  border-bottom: 1px solid var(--lighter-gray);
+  /* border-top: 1px solid var(--lighter-gray); */
+}
+
+.content-grid__header__content {
   display: flex;
-  color: green;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1rem;
+  /* background-color: var(--background-highlight); */
+  width; 100%;
+  /* border: 2px solid blue; */
+  margin: 0;
+  padding: 0;
+  /* TODO: flex direction column on wide screen; row with logo and navbuttons together on narrow. */
+  border: 0;
 }
 
 
 .content-grid__header__logo {
 }
 
+
 .content-grid__header__search {
+  flex-grow: 1;
+  /* border: 2px solid blue; */
 }
 
 .content-grid__header__navbuttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  /* margin-left: 1rem; */
+  /* margin-right: 1.618rem; */
+}
+
+.navbutton__home {
+  /* padding-left: .5rem; */
+  /* padding-right: .5rem; */
+}
+
+.navbutton__recipes {
+}
+
+.navbutton__categories {
+}
+
+.navbutton__add {
+}
+
+.content-grid__header a:link {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.content-grid__header a:visited {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.content-grid__header a:hover {
+  color: var(--light-gray);
+  text-decoration: none;
+}
+
+
+.content-grid__header .navbutton__home a:link {
+  color: var(--light-red);
+  text-decoration: none;
+}
+
+
+.content-grid__header .navbutton__home a:visited {
+  color: var(--light-red);
+  text-decoration: none;
+}
+
+
+.content-grid__header .navbutton__home a:hover {
+  color: var(--lighter-red);
+  text-decoration: none;
+}
+
+.content-grid__header__logo a:hover {
+  color: var(--dark-gray);
+  text-decoration: none;
 }
 
 
 .content-grid__main {
   flex: 1;
   padding-top: 1.618rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .content-grid__footer p{

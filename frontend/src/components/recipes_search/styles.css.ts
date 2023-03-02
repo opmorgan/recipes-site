@@ -11,7 +11,7 @@ export const styles = css`
 
 :root {
   /* [Q] Why are new variables defined here not used? */
-  /* [A]: put them in host in a component! */
+  /* [A]: put them in host when in a component! */
   /* --background: #FFFFeb; */
   /* --background_dark: #F2F2DE; */
   /* --trans-black: #000000; */
@@ -36,6 +36,9 @@ export const styles = css`
   width: 100%;
   /* box-shadow: -8px 0px 8px -8px rgba(0,0,0,0.2); */
 }
+.recipes-search__input {
+  height: 2rem;
+}
 
 .recipes-search__input[type="text"] {
   /* [Q] Where is the color of the placeholder text set? */
@@ -49,16 +52,16 @@ export const styles = css`
   background-color: #F2F2DE;
   /* font-size: 14px; */
   font-family: "Sans";
+  font-size: 12px;
   /* why does "--light-gray" look lighter here than on the border? */
   color: var(--light-gray);
   /* Padding around input text: */
   padding-top: .618rem;
   padding-bottom: .618rem;
-  padding-left: .618rem;
+  /* padding-left: .618rem; */
   box-sizing: border-box;
   width: 100%;
   z-index: 2;
-  height: 2.618rem;
 }
 
 .recipes-search__input[type="submit"] {
@@ -74,32 +77,21 @@ export const styles = css`
   /* background-position: right; */
   box-sizing: border-box;
   color: #909090;
-  text-align: right;
+  text-align: center;
   padding-right: 0rem;
   font-family: "Sans";
-  height: 2.618rem;
+  /* height: 2.618rem; */
   width: 30px;
 }
 
 
-
-.recipes-search__input:focus {
-  /* border: 2px solid var(--light-red); */
-  /* box-shadow: 0 0 2px var(--light-red); */
-  /* box-shadow: -8px 0px 8px -8px rgba(0,0,0,0.2); */
-}
-
-.recipes-search__input:hover {
-  /* border: 2px solid black; */
-  /* box-shadow: 0 0 2px black; */
-}
 
 .recipes-search__results {
   /* border: 1px solid #404040; */
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 2.618rem;
+  top: 2rem;
   /* margin: -6px; */
   width: 100%;
   /* [Q] Is this the best way to set a minimum width? How to prevent x overflow? */
@@ -117,22 +109,6 @@ export const styles = css`
   display: none;
 }
 
-.recipe-result__title {
-  box-sizing: border-box;
-  padding-top: 1rem;
-}
-
-.recipe-result__description p {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-
-a {
-  text-decoration: none;
-}
-
-
 .recipe-search-result-container {
   display: inline-block;
   width: 100%;
@@ -145,13 +121,32 @@ a {
   background: rgb(179, 0, 0, .15);
 }
 
+a {
+  text-decoration: none;
+}
+
 .recipe-search-result-content {
   /* display: inline-block; */
-  font-size: .9rem;
+  /* font-size: 1rem; */
   color: black;
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-top: .618rem;
+  padding-bottom: .618rem;
   /* border: 2px solid green; */
+}
+
+.recipe-result__title {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-result__description p {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
 }
 
 `;

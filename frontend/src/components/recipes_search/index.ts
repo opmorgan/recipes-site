@@ -252,12 +252,12 @@ export class RecipesSearch extends LitElement {
   private renderRecipe(recipe: RecipePart) {
     const url = `/recipes/${recipe.pk}`;
 
-    let description_formatted: string;
-    if (recipe.fields.description) {
-      description_formatted = ` — ` + `${recipe.fields.description}`
-    } else {
-      description_formatted = ``
-    }
+    // let description_formatted: string;
+    // if (recipe.fields.description) {
+    //   description_formatted = ` — ` + `${recipe.fields.description}`
+    // } else {
+    //   description_formatted = ``
+    // }
 
     return html`
       <a
@@ -269,9 +269,11 @@ export class RecipesSearch extends LitElement {
             <div class="recipe-result__title">
               <strong>${recipe.fields.title}</strong>
             </div>
-            <p class="recipe-result__description">
-              <em>${description_formatted}</em>
-            </p>
+            <div class="recipe-result__description">
+              <p>
+                <em>${recipe.fields.description}</em>
+              </p>
+            </div>
         </div>
       </a>
     `;
