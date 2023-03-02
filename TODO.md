@@ -9,7 +9,7 @@
 ## Recipe detail page
 - Recipe detail page: show description (if no intro is present?)
 - Recipe detail page: Try flex box for ingredients list, so that ingredient names are aligned
-- Recipe detail page: set formatting of title image flexbox when there is no intro, but there is a prep time (image should be flush with bottom of prep time)
+- Recipe detail page: set formatting of title image flexbox when there is no intro, but there is a prep time (image should be flush with bottom of prep time). To implement, try: flex box with two cells, one with title + intro/variations + prep time/cook time, the other with the image. Make sure title alignment is as expected on mobile.
 - Make date published/updated a flex box, so that "Published..." stays on one line and "Updated..." stays on another by default. Same with prep time/cook time.
 - Recipe detail page: add collapse button for introduction + variations, hide them by default
 - Recipe detail page: put "servings" to the right of the ingredients box, flush right in vertical line with the headers.
@@ -22,7 +22,10 @@
 ## Home page
 - [js] Add filtering by tag, ingredients
 - [js] Add search function
+- Search: keypresses to navigate (tab, shift tab, arrow keys)
 - Preview categories (top ten recipes in top 8 categories)
+- {
+- See workflowy for more homepage ideas
 
 ## Index pages
 - Add count to tag index display (e.g., breakfast [2]) [@Max]

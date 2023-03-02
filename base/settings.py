@@ -32,6 +32,9 @@ SECRET_KEY = env('SECRET_KEY')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
+INTERNAL_IPS = (
+    '127.0.0.1',
+)
 DEBUG = True
 
 ALLOWED_HOSTS = [

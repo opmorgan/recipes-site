@@ -5,13 +5,41 @@
   font-weight: 100 1000;
 }
 
+/* Google icons */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v88/kJEhBvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oFsI.woff2) format('woff2');
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
 :root {
   --background: #FFFFeb;
+  --background-highlight: #f2f2de; /* E.g., search box */
+  --trans-black-light: rgba(0, 0, 0, 0.018);
   --foreground: #111111;
-  --dark-gray: #111111;
-  --light-gray: #404040;
+  --dark-gray: rgba(17, 17, 17);
+  --light-gray: rgba(17, 17, 17, 0.8);
+  --lighter-gray: rgba(17, 17, 17, 0.1);
   --dark-red: #660000;
-  --light-red: #b30000;
+  --light-red: rgba(179, 0, 0);
+  --lighter-red: rgba(179, 0, 0, 0.8);
   --site-name: "honeybit.cooking"
 }
 
@@ -19,7 +47,7 @@ body {
   font-family: "Stix";
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: #111111;
   background-color: #FFFFeb;
 }
@@ -66,7 +94,7 @@ a:active {
 }
 
 .index-header {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 1em;
   margin: 0 0 .382rem;
@@ -91,12 +119,12 @@ a:active {
   text-decoration: none;
 }
 .index-list a:visited{
-  color: var(--dark-red);
+  color: var(--light-red);
   text-decoration: none;
 }
 .index-list a:hover{
-  color: var(--light-red);
-  text-decoration: underline;
+  color: var(--dark-red);
+  text-decoration: none;
 }
 .index-list a:active{
   color: var(--dark-gray);
@@ -115,7 +143,7 @@ a:active {
   text-decoration: none;
 }
 .see-all-link a:hover{
-  color: var(--light-red);
+  color: var(--light-gray);
   text-decoration: none;
 }
 .see-all-link a:active{
@@ -135,20 +163,122 @@ h2 {
   padding: 0;
 }
 
+
 .content-grid {
   display: flex;
   min-height:100vh;
   flex-direction: column;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
+
+
+.content-grid__header {
+}
+
+.content-grid__header__container {
+  background-color: var(--trans-black-light);
+  padding-top: .5rem;
+  padding-bottom: .6rem; /* [Q] Why does .5 look wrong? */
+  padding-left: 1rem;
+  padding-right: 1.618rem; /* [Q] How to make this look good with scrollbar? */
+  border-bottom: 1px solid var(--lighter-gray);
+}
+
+.content-grid__header__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1rem;
+  width; 100%;
+  margin: 0;
+  padding: 0;
+  /* TODO: flex direction column on wide screen; row with logo and navbuttons together on narrow. */
+  border: 0;
+}
+
+
+.content-grid__header__logo {
+}
+
+
+.content-grid__header__search {
+  flex-grow: 1;
+}
+
+.content-grid__header__navbuttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+}
+
+.navbutton__home {
+}
+
+.navbutton__recipes {
+}
+
+.navbutton__categories {
+}
+
+.navbutton__add {
+}
+
+.content-grid__header a:link {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.content-grid__header a:visited {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.content-grid__header a:hover {
+  color: var(--light-gray);
+  text-decoration: none;
+}
+
+
+.content-grid__header .navbutton__home a:link {
+  color: var(--light-red);
+  text-decoration: none;
+}
+
+
+.content-grid__header .navbutton__home a:visited {
+  color: var(--light-red);
+  text-decoration: none;
+}
+
+
+.content-grid__header .navbutton__home a:hover {
+  color: var(--lighter-red);
+  text-decoration: none;
+}
+
+.content-grid__header__logo a:link {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.content-grid__header__logo a:visited {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.content-grid__header__logo a:hover {
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
 
 .content-grid__main {
   flex: 1;
   padding-top: 1.618rem;
-}
-
-.content-grid__footer {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .content-grid__footer p{

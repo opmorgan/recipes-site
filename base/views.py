@@ -5,9 +5,11 @@ from django.conf import settings
 from django.http import FileResponse, HttpRequest, HttpResponse
 from django.views.decorators.cache import cache_control
 from django.views.decorators.http import require_GET
-
+from django.core import serializers
 
 from recipes.models import Recipe, Tag
+
+import json
 
 ## Set up favicon
 ## https://adamj.eu/tech/2022/01/18/how-to-add-a-favicon-to-your-django-site/
@@ -25,6 +27,9 @@ class HomeView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
 
+        all_recipes_list = Recipe.objects.all()
+        all_recipes_json = serializers.serialize('json', all_recipes_list)
+
         n_recent_recipes = 10
         n_recent_tags = 10
         n_all_recipes = Recipe.objects.all().count()
@@ -36,6 +41,9 @@ class HomeView(generic.ListView):
         latest_recipe =  Recipe.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:1]
 
+
+        context["all_recipes_list"] = all_recipes_list
+        context["all_recipes_json"] = all_recipes_json
 
         context["latest_recipes_list"] = latest_recipes_list
         context["latest_tags_list"] = latest_tags_list
