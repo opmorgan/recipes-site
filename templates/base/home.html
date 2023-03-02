@@ -45,13 +45,13 @@
                 <a href="/">Home</a>
               </div>
               <div class="navbutton__recipes">
-                <a href="/">Recipes</a>
+                <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
               </div>
               <div class="navbutton__categories">
-                <a href="/">Categories</a>
+                <a href="{% url 'recipes:tag_index' %}">Categories</a>
               </div>
               <div class="navbutton__add">
-                <a href="/">+</a>
+                <a href="{% url 'admin:index' %}">+</a>
               </div>
             </div>
 

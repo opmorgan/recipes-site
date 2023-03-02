@@ -32,7 +32,7 @@
 :root {
   --background: #FFFFeb;
   --background-highlight: #f2f2de; /* E.g., search box */
-  --trans-black-light: rgba(0, 0, 0, 0.015);
+  --trans-black-light: rgba(0, 0, 0, 0.018);
   --foreground: #111111;
   --dark-gray: rgba(17, 17, 17);
   --light-gray: rgba(17, 17, 17, 0.8);
