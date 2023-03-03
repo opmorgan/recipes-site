@@ -1,4 +1,4 @@
-import {LitElement, html, css, nothing, TemplateResult} from 'lit';
+import {LitElement, html, nothing, TemplateResult} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
 import {classMap} from 'lit/directives/class-map.js';
@@ -109,8 +109,8 @@ export class RecipesSearch extends LitElement {
   @state()
   private resultsVisibility: RecipeSearchResultsVisibility = RecipeSearchResultsVisibility.HIDDEN;
 
-  @state()
-  private selectedIndex?: number | null = null;
+  // @state()
+  // private selectedIndex?: number | null = null;
 
   static get styles() {
     return styles;
@@ -171,7 +171,7 @@ export class RecipesSearch extends LitElement {
         // For the update action, the msg's value is user input -- what they type in the search box
         // I think this error is because msg.value isn't always a string: in principle, it could be a RecipeSearchResultsState
         // So, let's check is msg.value is a string, and assign it only if so -- if it's not, throw an error.
-        this.query = msg.value;
+        this.query = msg.value as string;
 
         // Set the model's state depending on the consequences of the query
         // There are three possible states that depend on the possible values of query:
@@ -203,7 +203,7 @@ export class RecipesSearch extends LitElement {
       case Action.UPDATE_RESULTS_STATE: {
         // Set the results state to the one set when there is a new query
         // (This msg will be sent after a query is updated: after an UPDATE_QUERY)
-        this.resultsState = msg.value;
+        this.resultsState = msg.value as RecipeSearchResultsState;
         break;
       }
 
@@ -211,7 +211,7 @@ export class RecipesSearch extends LitElement {
       case Action.UPDATE_RESULTS_VISIBILITY: {
         // Set the results state to the one set when there is a new query
         // (This msg will be sent after a query is updated: after an UPDATE_QUERY)
-        this.resultsVisibility = msg.value;
+        this.resultsVisibility = msg.value as RecipeSearchResultsVisibility;
         break;
       }
 
@@ -337,7 +337,7 @@ export class RecipesSearch extends LitElement {
             type="text"
             placeholder="Search all recipes"
             .value=${this.query}
-            @click=${(e: Event) => {
+            @click=${() => {
               this.onInputClick();
             }}
             @input=${(e: Event) => {

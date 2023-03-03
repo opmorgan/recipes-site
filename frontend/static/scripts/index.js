@@ -1,3 +1,3 @@
 import './components/my_element';
-console.log("Howdy");
+import './components/recipes_search';
 //# sourceMappingURL=index.js.map
