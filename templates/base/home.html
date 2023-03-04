@@ -7,6 +7,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ SITE_TITLE }}: A simple site for family recipes | Home</title>
+
+    <link rel="preload" href="{% static 'base/normalize.css' %}" as="style">
+    <link rel="preload" href="{% static 'base/style.css' %}" as="style">
+
+    <link rel="stylesheet" href="{% static 'base/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'base/style.css' %}">
 
     <!-- Only import the scripts below if the current environment is development -->
@@ -21,13 +26,7 @@
   </head>
 
   <body>
-
-    <!-- Home page search (lit) -->
-
-    <!-- Home page content -->
     <div class="content-grid">
-
-
       <div class="content-grid__header">
         <div class="content-grid__header__container">
           <div class="content-grid__header__content">

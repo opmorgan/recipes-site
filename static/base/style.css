@@ -43,6 +43,11 @@
   --site-name: "honeybit.cooking"
 }
 
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: "Stix";
   margin: 0;
@@ -180,7 +185,7 @@ h2 {
 .content-grid__header__container {
   background-color: var(--trans-black-light);
   padding-top: .5rem;
-  padding-bottom: .6rem; /* [Q] Why does .5 look wrong? */
+  padding-bottom: .5rem; /* [Q] Why does .5 look wrong? */
   padding-left: 1rem;
   padding-right: 1.618rem; /* [Q] How to make this look good with scrollbar? */
   border-bottom: 1px solid var(--lighter-gray);
