@@ -35,7 +35,8 @@ SECRET_KEY = env('SECRET_KEY')
 INTERNAL_IPS = (
     '127.0.0.1',
 )
-DEBUG = True
+
+DEBUG=os.getenv("DEBUG", 'False').lower() in ('true', '1', 't')
 
 ALLOWED_HOSTS = [
         "localhost",
