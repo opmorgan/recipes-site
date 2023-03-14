@@ -77,16 +77,18 @@
       </div>
 
       <div class="content-grid__footer">
-        <p>
-        <em>
+        <div class="content-grid__footer__note">
+          <p>
+          <em>
           {% for recipe in latest_recipe %}
             Updated {{ recipe.updated_at|date:"F j, o" }}
           {% endfor %}
-
-        </em>
-        <br>
+          </em>
+          </p>
+        </div>
+        <div class="content-grid__footer__navbuttons">
           {% include "base/partials/navbar_footer.html" %}
-        </p>
+        </div>
       </div>
 
     </div>

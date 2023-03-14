@@ -158,24 +158,26 @@
     {% endif %}
     </div>
 
-    <div class="content-grid__footer">
-      {# TODO: Ask Josh - what is the simplest, best way to add an element like this navbar, with a paragraph space after it? #}
-      <p>
-      <em>
-        {% timezone "US/Eastern" %}
+      <div class="content-grid__footer">
+        <div class="content-grid__footer__note">
+          <p>
+          <em>
           {# Show date last updated, if different from date created #}
+          {% timezone "US/Eastern" %}
           {% if recipe.created_at|date == recipe.updated_at|date %}
             Published by {{ author_label }} {{ recipe.created_at.date }}
           {% else %}
             Published by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
             | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
           {% endif %}
-      </em>
-      <br>
-      {# {% include "../partials/navbar_footer.html" %} #}
-    {% endtimezone %}
-      </p>
-    </div>
+          {% endtimezone %}
+          </em>
+          </p>
+        </div>
+        <div class="content-grid__footer__navbuttons">
+          {% include "base/partials/navbar_footer.html" %}
+        </div>
+      </div>
 
     </div>
 
