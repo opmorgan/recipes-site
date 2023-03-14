@@ -13,7 +13,7 @@ A simple website for family recipes, made with django.
 1. Make initial migrations: ```python manage.py migrate```
 1. Create an admin user for the local database: ```python manage.py createsuperuser```
 1. Start the development server: ```python manage.py runserver --settings base.settings.dev```
-1. Run the vite development server for js componenents: From the "frontend" directory, ```npm run dev```
+1. Start the vite development server for js componenents: From the "frontend" directory, run ```npm run dev```
 1. Preview site in browser at localhost:8000
 
 ## To make model changes and migrations
@@ -23,8 +23,8 @@ A simple website for family recipes, made with django.
 
 ## To deploy changes to production
 1. In a development environment, push changes to the dev branch. To push frontend changes, run ```npm run build``` and then push the automatically generated changes.
-1. On the production server, check out the dev branch (``git checkout dev```) and pull the latest changes (```git pull```).
-1. Enter python virtual environment: ```source env/bin/activate``
+1. On the production server, check out the dev branch (```git checkout dev```) and pull the latest changes (```git pull```).
+1. Enter python virtual environment: ```source env/bin/activate```
 1. Run the production server: ```python3 manage.py runserver --settings base.settings.production```
 1. Collect static files (so that nginx will manage them): ```python3 manage.py collectstatic --settings base.settings.production```
 1. If models have changed, make migrations (see "To make model changes and migrations").
