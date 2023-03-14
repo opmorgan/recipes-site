@@ -65,19 +65,19 @@ a:link {
 
 /* visited link */
 a:visited {
-  color: var(--dark-red);
-  text-decoration: underline;
+  color: var(--light-red);
+  text-decoration: none;
 }
 
 /* mouse over link */
 a:hover {
-  color: var(--light-red);
-  text-decoration: underline;
+  color: var(--lighter-red);
+  text-decoration: none;
 }
 
 /* selected link */
 a:active {
-  color: var(--light-red);
+  color: var(--lighter-red);
   text-decoration: underline;
 }
 
@@ -128,11 +128,11 @@ a:active {
   text-decoration: none;
 }
 .index-list a:hover{
-  color: var(--dark-red);
+  color: var(--lighter-red);
   text-decoration: none;
 }
 .index-list a:active{
-  color: var(--dark-gray);
+  color: var(--lighter-red);
   text-decoration: none;
 }
 
