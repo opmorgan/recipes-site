@@ -8,11 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Categories | {{ SITE_TITLE_SHORT }}</title>
     <link rel="stylesheet" href="{% static 'base/style.css' %}">
+    {% include "base/partials/base_style.html" %}
+    {% include "base/partials/frontend.html" %}
+
   </head>
 
   <body>
 
     <div class="content-grid">
+
+      <div class="content-grid__header">
+          {% include "base/partials/navbar.html" %}
+      </div>
+
       <div class="content-grid__main">
         <div class="index-header">
           All Categories
