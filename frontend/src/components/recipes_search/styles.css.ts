@@ -37,6 +37,7 @@ export const styles = css`
   /* box-shadow: -8px 0px 8px -8px rgba(0,0,0,0.2); */
 }
 .recipes-search__input {
+  -webkit-appearance: none;
   height: 2rem;
 }
 
