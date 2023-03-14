@@ -27,5 +27,5 @@ A simple website for family recipes, made with django.
 1. Enter python virtual environment: ```source env/bin/activate```
 1. Run the production server: ```python3 manage.py runserver --settings base.settings.production```
 1. Collect static files (so that nginx will manage them): ```python3 manage.py collectstatic --settings base.settings.production```
-1. If models have changed, make migrations (see "To make model changes and migrations").
+1. If models have changed, apply migrations: ```python3 manage.py migrate --settings base.settings.production```
 1. If everything looks good, check out the main branch on the production server (```git checkout main```) and merge changes from dev (```git merge dev```).
