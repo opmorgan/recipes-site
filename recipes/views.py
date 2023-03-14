@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.utils import timezone
 from django import template
+from django.core import serializers
 
 from .models import Recipe, Ingredient, RecipeIngredient, Tag, Section, SectionIngredient
 
@@ -20,7 +21,10 @@ class RecipeIndexView(generic.ListView):
                 created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_recipes]
         latest_recipe =  Recipe.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:1]
+
         all_recipes_list = Recipe.objects.all()
+        all_recipes_json = serializers.serialize('json', all_recipes_list)
+        context["all_recipes_json"] = all_recipes_json
 
         # TODO: add "updated" date, like homepage has
         context["latest_recipes_list"] = latest_recipes_list
@@ -45,6 +49,11 @@ class TagIndexView(generic.ListView):
         latest_tag =  Tag.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:1]
         all_tags_list = Tag.objects.all()
+
+
+        all_recipes_list = Recipe.objects.all()
+        all_recipes_json = serializers.serialize('json', all_recipes_list)
+        context["all_recipes_json"] = all_recipes_json
 
         # TODO: add "updated" date, like homepage has
         context["latest_tags_list"] = latest_tags_list
@@ -102,6 +111,13 @@ class RecipeDetailView(generic.DetailView):
         context["section_count"] = self.object.sections.count()
         section_test = self.object.sections.all()
         context["section_test"] = section_test
+
+
+
+        all_recipes_list = Recipe.objects.all()
+        all_recipes_json = serializers.serialize('json', all_recipes_list)
+        context["all_recipes_json"] = all_recipes_json
+
         return context
 
 class TagDetailView(generic.DetailView):
@@ -114,4 +130,10 @@ class TagDetailView(generic.DetailView):
         recipes_list = Recipe.objects.filter(tags=(self.object))
         # Then return
         context["recipes"] = recipes_list
+
+
+        all_recipes_list = Recipe.objects.all()
+        all_recipes_json = serializers.serialize('json', all_recipes_list)
+        context["all_recipes_json"] = all_recipes_json
+
         return context

@@ -773,7 +773,6 @@ const Bt = ft(class extends gt {
   /* box-shadow: -8px 0px 8px -8px rgba(0,0,0,0.2); */
 }
 .recipes-search__input {
-  -webkit-appearance: none;
   height: 2rem;
 }
 
@@ -803,6 +802,8 @@ const Bt = ft(class extends gt {
 
 .recipes-search__input[type="submit"] {
   /* font-family: "Material Symbols Outlined"; */
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: "Stix";
   font-size: 12px;
   border: 0 none;

@@ -1,0 +1,9 @@
+{% load static %}
+<!-- Only import the scripts below if the current environment is development -->
+{% if debug %}
+  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module" src="http://localhost:5173/src/index.ts"></script>
+{% else %}
+  <!-- Only import the scripts below if the current environment is production -->
+  <script type="module" src="{% static 'scripts/frontend.mjs' %}"></script>
+{% endif %}
