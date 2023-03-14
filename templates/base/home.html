@@ -85,9 +85,7 @@
 
         </em>
         <br>
-        <a href="/">Home</a> {# TODO: change to "about", add "about" page. #}
-        | <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
-        | <a href="{% url 'recipes:tag_index' %}">Categories</a>
+          {% include "base/partials/navbar_footer.html" %}
         </p>
       </div>
 
