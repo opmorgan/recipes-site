@@ -2,6 +2,7 @@
 - Set up pg database on vultr vps for testing (with user, password)
 - write yaml commands
 - nginx: set up reverse proxy that will transfer requests from public url to local port
+- Write script to set config (dev or production) depending on variable set in .env
 
 # Styling
 - Style prep time
