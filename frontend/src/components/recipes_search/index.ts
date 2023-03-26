@@ -267,7 +267,7 @@ export class RecipesSearch extends LitElement {
       >
         <div class="recipe-search-result-content">
             <div class="recipe-result__title">
-              <strong>${recipe.fields.title}</strong>
+              ${recipe.fields.title}
             </div>
             <div class="recipe-result__description">
               <p>
