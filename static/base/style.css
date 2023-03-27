@@ -375,8 +375,8 @@ h2 {
   margin-top: 3rem;
   margin-bottom: 3rem;
   grid-row-gap: 3rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
   /* padding-top: 1.618rem; */
   /* padding-left: 3rem; */
   /* padding-right: 3rem; */
@@ -469,7 +469,7 @@ h2 {
 .index-block__content-item:hover {
   padding-left: .618rem;
   margin-left: -.618rem;
-  padding-right: .618rem;
+  /* padding-right: .618rem; */
   margin-right: -.618rem;
   background-color: rgb(179, 0, 0, .1);
 }
