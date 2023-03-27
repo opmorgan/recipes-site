@@ -1,6 +1,22 @@
 {% if recipe.title %}
-  <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a>
-  {% if recipe.description %}
+  <div class="index-block__content-item">
+    <a href="{% url 'recipes:recipe_detail' recipe.id %}">
+
+      <div class="index-block__content-title">
+        {{ recipe.title }}
+        {# <a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.title }}</a> #}
+      </div>
+
+      {% if recipe.description %}
+        <div class="index-block__content-description">
+          {{ recipe.description|capfirst }}
+        </div>
+      {% endif %}
+
+    </a>
+
+  </div>
+  {# {% if recipe.description %} #}
     {# &nbsp;&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
     {# &nbsp;|&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
     {# &nbsp;§&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
@@ -13,7 +29,7 @@
     {# <em>&nbsp;−&nbsp;{{ recipe.description|capfirst }}</em> #}
     {# <em>&nbsp;−&nbsp;{{ recipe.description|capfirst }}</em> #}
     {# &nbsp;−&nbsp;<em>{{ recipe.description|capfirst }}</em> #}
-    <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em>
+    {# <em>&nbsp;—&nbsp;&nbsp;{{ recipe.description|capfirst }}</em> #}
     {# &nbsp;<em>({{ recipe.description|capfirst }})</em> #}
-  {% endif %}
+  {# {% endif %} #}
 {% endif %}

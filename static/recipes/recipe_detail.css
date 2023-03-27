@@ -1,3 +1,12 @@
+.content-grid__main--recipe {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  flex: 1 0 auto;
+}
+
+
 .recipe-grid {
   display: grid;
   grid-template-rows: auto 1fr;

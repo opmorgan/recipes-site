@@ -23,7 +23,7 @@
           {% include "base/partials/navbar_minimal.html" %}
       </div>
 
-      <div class="content-grid__main">
+      <div class="content-grid__main--recipe">
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
         <div class="title-image-grid">
@@ -165,9 +165,9 @@
           {# Show date last updated, if different from date created #}
           {% timezone "US/Eastern" %}
           {% if recipe.created_at|date == recipe.updated_at|date %}
-            Published by {{ author_label }} {{ recipe.created_at.date }}
+            Added by {{ author_label }} {{ recipe.created_at.date }}
           {% else %}
-            Published by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
+            Added by {{ author_label }} {{ recipe.created_at|date:"F j, o" }}
             | Updated {{ recipe.updated_at|date:"F j, o" }} {{ recipe.updated_at|time:"P" }}
           {% endif %}
           {% endtimezone %}

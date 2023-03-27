@@ -21,59 +21,78 @@
       </div>
 
       <div class="content-grid__main">
-        <div class="index-header">
-          <div class="header-link">
-            <a href="{% url 'recipes:recipe_index' %}">New Recipes</a>
+        <div class="index-block">
+          <div class="index-block__header">
+            <div class="header-link">
+              <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
+            </div>
+            <hr/>
           </div>
+
+          {% if latest_recipes_list %}
+            <ul class="index-block__content">
+              {% for recipe in latest_recipes_list %}
+                <li>
+                  {# {% include "../partials/recipe_index_list_entry.html" %} #}
+
+                  {% include "base/partials/recipe_index_list_entry.html" %}
+                </li>
+              {% endfor %}
+              {% if n_all_recipes >= n_recent_recipes %}
+                <li>
+                  <div class="index-block__content-item">
+                    <a href="{% url 'recipes:recipe_index' %}">
+                      <div class="see-all-link">
+                        <em>—See all {{ n_all_recipes }} recipes—</em>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+
+
+              {% endif %}
+            </ul>
+          {% else %}
+            <p>No recipes are available.</p>
+          {% endif %}
         </div>
 
-        {% if latest_recipes_list %}
-          <ul class="index-list">
-            {% for recipe in latest_recipes_list %}
-              <li>
-                {# {% include "../partials/recipe_index_list_entry.html" %} #}
 
-                {% include "base/partials/recipe_index_list_entry.html" %}
-              </li>
-            {% endfor %}
-            {% if n_all_recipes >= n_recent_recipes %}
-              <li>
-                <div class="see-all-link">
-                  <a href="{% url 'recipes:recipe_index' %}">
-                    <em>—See all {{ n_all_recipes }} recipes—</em>
-                  </a>
-                </div>
-              </li>
-            {% endif %}
-          </ul>
-        {% else %}
-          <p>No recipes are available.</p>
-        {% endif %}
-
-        <div class="index-header">
-          <div class="header-link">
-            <a href="{% url 'recipes:tag_index' %}">New Categories</a>
+        <div class="index-block">
+          <div class="index-block__header">
+            <div class="header-link">
+              <a href="{% url 'recipes:tag_index' %}">Categories</a>
+            </div>
+              <hr/>
           </div>
-        </div>
 
-        {% if latest_tags_list %}
-          <ul class="index-list">
-            {% for tag in latest_tags_list %}
-              <li><a href="{% url 'recipes:tag_detail' tag.id %}">{{ tag.name|capfirst }}</a></li>
-            {% endfor %}
-            {% if n_all_tags > n_recent_tags %}
-              <li>
-                <div class="see-all-link">
-                  <a href="{% url 'recipes:tag_index' %}">
-                    <em>—See all {{ n_all_tags }} categories—</em>
-                  </a>
-                </div>
-              </li>
-            {% endif %}
-          </ul>
-        {% else %}
-          <p>No category tags are available.</p>
-        {% endif %}
+          {% if latest_tags_list %}
+            <ul class="index-block__content">
+              {% for tag in latest_tags_list %}
+                <li>
+                  <div class="index-block__content-item">
+                    <a href="{% url 'recipes:tag_detail' tag.id %}">
+                      <div class="index-block__content-title">
+                        {{ tag.name|capfirst }}
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              {% endfor %}
+              {% if n_all_tags > n_recent_tags %}
+                <li>
+                  <div class="see-all-link">
+                    <a href="{% url 'recipes:tag_index' %}">
+                      <em>—See all {{ n_all_tags }} categories—</em>
+                    </a>
+                  </div>
+                </li>
+              {% endif %}
+            </ul>
+          {% else %}
+            <p>No category tags are available.</p>
+          {% endif %}
+        </div>
       </div>
 
       <div class="content-grid__footer">

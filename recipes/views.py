@@ -16,7 +16,7 @@ class RecipeIndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(RecipeIndexView, self).get_context_data(**kwargs)
 
-        n_recent_recipes = 10
+        n_recent_recipes = 20
         latest_recipes_list = Recipe.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_recipes]
         latest_recipe =  Recipe.objects.filter(
@@ -43,7 +43,7 @@ class TagIndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(TagIndexView, self).get_context_data(**kwargs)
 
-        n_recent_tags = 10
+        n_recent_tags = 20
         latest_tags_list = Tag.objects.filter(
                 created_at__lte=timezone.now()).order_by('-created_at')[:n_recent_tags]
         latest_tag =  Tag.objects.filter(

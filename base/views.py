@@ -30,8 +30,8 @@ class HomeView(generic.ListView):
         all_recipes_list = Recipe.objects.all()
         all_recipes_json = serializers.serialize('json', all_recipes_list)
 
-        n_recent_recipes = 10
-        n_recent_tags = 10
+        n_recent_recipes = 20
+        n_recent_tags = 20
         n_all_recipes = Recipe.objects.all().count()
         n_all_tags = Tag.objects.all().count()
         latest_recipes_list = Recipe.objects.filter(

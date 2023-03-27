@@ -18,24 +18,27 @@
     <div class="content-grid">
 
       <div class="content-grid__header">
-          {% include "base/partials/navbar.html" %}
+        {% include "base/partials/navbar.html" %}
       </div>
 
       <div class="content-grid__main">
-        <div class="index-header">
-          All Recipes
+        <div class="index-block">
+          <div class="index-block__header">
+            All Recipes
+            <hr/>
+          </div>
+          {% if all_recipes_list %}
+            <ul class="index-block__content">
+              {% for recipe in all_recipes_list|dictsort:"title" %}
+                <li>
+                  {% include "base/partials/recipe_index_list_entry.html" %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No recipes are available.</p>
+          {% endif %}
         </div>
-        {% if all_recipes_list %}
-          <ul class="index-list">
-            {% for recipe in all_recipes_list|dictsort:"title" %}
-              <li>
-                {% include "base/partials/recipe_index_list_entry.html" %}
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p>No recipes are available.</p>
-        {% endif %}
       </div>
 
       <div class="content-grid__footer">

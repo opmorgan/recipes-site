@@ -21,17 +21,20 @@
       </div>
 
       <div class="content-grid__main">
-        <div class="index-header">
+        <div class="index-block">
+        <div class="index-block__header">
           {{ tag.name|capfirst }} recipes
+          <hr/>
         </div>
 
-        <ul class="index-list">
+        <ul class="index-block__content">
           {% for recipe in recipes|dictsort:"title" %}
             <li>
               {% include "base/partials/recipe_index_list_entry.html" %}
             </li>
           {% endfor %}
         </ul>
+        </div>
       </div>
 
       <div class="content-grid__footer">
