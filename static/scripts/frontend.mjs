@@ -1956,7 +1956,7 @@ let L = class extends F {
       >
         <div class="recipe-search-result-content">
             <div class="recipe-result__title">
-              <strong>${s.fields.title}</strong>
+              ${s.fields.title}
             </div>
             <div class="recipe-result__description">
               <p>
