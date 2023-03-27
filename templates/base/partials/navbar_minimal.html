@@ -1,28 +1,44 @@
 <div class="content-grid__header__container">
-  <div class="content-grid__header__content">
 
-    <div class="content-grid__header__logo">
+  <section class="navbar">
+    <div class="navbar__logo">
       <a href="/">honeybit</a>
     </div>
 
-    <div class="content-grid__header__search">
-      {# <hb-recipes-search recipes="{{ all_recipes_json }}"></hb-recipes-search> #}
+    <div class="navbar__search">
+      <hb-recipes-search recipes="{{ all_recipes_json }}"></hb-recipes-search>
     </div>
 
-    <div class="content-grid__header__navbuttons">
-      {# <div class="navbutton__home"> #}
-      {#   <a href="/">Home</a> #}
-      {# </div> #}
-      <div class="navbutton__recipes">
-        <a href="{% url 'recipes:recipe_index' %}">Recipes</a>
-      </div>
-      <div class="navbutton__categories">
-        <a href="{% url 'recipes:tag_index' %}">Categories</a>
-      </div>
-      <div class="navbutton__add">
-        <a href="{% url 'admin:index' %}">+</a>
-      </div>
-    </div>
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+      <div class='menu-button'></div>
+    </label>
 
-  </div>
+    <ul class="menu">
+      <li>
+        <div class="navbutton__home">
+          <a class="menu__item navbutton__home" style="color: black" href="/">Home</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="menu__item" href="{% url 'recipes:recipe_index' %}">Recipes</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="menu__item" href="{% url 'recipes:tag_index' %}">Categories</a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="menu__item" href="{% url 'admin:index' %}">+</a>
+        </div>
+      </li>
+    </ul>
+
+
+  </section>
+
+
 </div>
